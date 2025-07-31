@@ -4,3 +4,12 @@
     3) @ComponentScan : 현재클래스 기준으로 현재패키지 및 하위패키지 내 컴포넌트(클래스)를 자동으로 스캔하여 등록한다.
         (1) 스캔 대상 : 주로 MVC 어노테이션(@Component @RestController @Controller @Service @Repository @Mapper···)
         (2) 주의할 점 : 현재클래스 기준 상위패키지는 스캔 대상이 아니다.(AppStart는 항상 최상위 패키지에 존재해야한다)
+
+
+Spring 실습1 : 게시판 RestController 만들기
+    1. AppStart 클래스 생성    2. BoardController 클래스 생성
+    3. 각 URL 매핑 만들기
+
+제출 :
+   1. 카카오톡방에 ip 제출 ( 강사가 체크 할때 까지 서버 켜주세요 )
+   2. itdanja.com에 과제 코드 git 링크 제출
