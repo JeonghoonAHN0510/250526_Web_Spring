@@ -1,0 +1,38 @@
+[ Annotation(@) ]
+1. 자바 및 Spring에서 코드에 메타데이터를 추가하는 문법
+2. 목적 : 메타데이터 제공, 코드 간소화, 가독성 향상
+3. 설명서처럼 해당 코드를 사용하는 방법을 부착하는 방식
+    -> @Override ···
+4. 종류
+    1) 표준 어노테이션 : 자바에서 기본적으로 제공하는 어노테이션
+        @Override : 상위클래스로부터 메소드를 재정의할 때 사용
+        @Deprecated : 해당 함수를 더이상 사용하지 않음을 알릴 때 사용
+    2) 메타 어노테이션 : 코드를 정의하거나 동작제어할 때 사용되는 어노테이션
+        (1) Servlet(자바 웹클래스)
+        (2) Spring
+5. 어노테이션 생성
+    1) @interface 어노테이션명{ }
+    2) 인터페이스 위에 다양한 @를 설정한다.
+        @Retention( ) : 어노테이션 생성주기(유지기간)을 설정
+            @Retention( RetentionPolicy.RUNTIME ) : 런타임까지 유지
+            @Retention( RetentionPolicy.CLASS ) : .class 파일에 포함, 실행 아닐 떄도 유지
+            @Retention( RetentionPolicy.SOURCE ) : 컴파일 이후 삭제한다
+        @Target( ) : 어노테이션 적용할 수 있는 위치(대상)을 설정
+            @Target( ElementType.METHOD ) : 메소드에서 사용
+            @Target( ElementType.TYPE ) : 클래스,인터페이스 등등 타입에서 사용
+            @Target( ElementType.FIELD ) : 멤버변수에서 사용
+            @Target( ElementType.PARAMETER ) : 매개변수에서 사용
+            @Target( ElementType.CONSTRUCTOR ) : 생성자에서 사용
+
+[ 메타데이터 ]
+1. 데이터에 대한 정보를 제공하는 데이터
+2. 자바 코드에 추가적인 데이터를 넣을 때 사용
+3. 동작 구조
+    1) 컴파일 : .java --> .class 파일 번역하면서 바이트로 변환
+    2) 리플렉션 : 런타임(실행중)에 클래스를 읽어와서 동적으로 객체 조작
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        -> 프로그램 실행 중 MYSQL 클래스 로드 함수 -> new Driver();를 실행해준다.
+
+
+
+@Override
