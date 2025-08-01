@@ -1,0 +1,14 @@
+1. @SpringBootApplication : 스프링부트 환경 설정
+    1) @SpringBootConfiguration : 프로젝트 내 @Configuration을 찾아서 bean(객체) 설정/등록할 수 있도록 설정
+    2) @EnableAutoConfiguration : 스프링부트가 필요한 bean(객체)를 자동으로 설정/등록한다. 내장형 Tomcat(웹서버) 설정
+    3) @ComponentScan : 현재클래스 기준으로 현재패키지 및 하위패키지 내 컴포넌트(클래스)를 자동으로 스캔하여 등록한다.
+        (1) 스캔 대상 : 주로 MVC 어노테이션(@Component @RestController @Controller @Service @Repository @Mapper···)
+        (2) 주의할 점 : 현재클래스 기준 상위패키지는 스캔 대상이 아니다.(AppStart는 항상 최상위 패키지에 존재해야한다)
+2. @Controller : HTTP(웹) 통신 기능 지원, 웹 통신 요청과 응답 처리
+3. @Component : bean(객체)를 자동으로 생성 -> 싱글톤 생략 가능
+4. @PostMapping : HTTP 통신의 메소드 중 Post 방식으로 요청 매핑(연결), 주로 CRUD에서 Create 역할
+5. @GetMapping : HTTP 통신의 메소드 중 Get 방식으로 요청 매핑(연결), 주로 CRUD에서 Read 역할
+6. @PutMapping : HTTP 통신의 메소드 중 Put 방식으로 요청 매핑(연결), 주로 CRUD에서 Update 역할
+7. @DeleteMapping : HTTP 통신의 메소드 중 Delete 방식으로 요청 매핑(연결), 주로 CRUD에서 Delete 역할
+    -> @XXXMapping("URL정의") : BaseURL(http://localhost:8080) 뒤로 사용할 URL을 정의할 수 있다.
+8. @ResponseBody : HTTP 통신의 요청 처리 이후, 응답 반환 시, 자바타입 -> 주로 JSON 타입으로 자동 변환 작업

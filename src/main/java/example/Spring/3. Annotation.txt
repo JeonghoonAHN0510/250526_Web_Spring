@@ -32,7 +32,3 @@
     2) 리플렉션 : 런타임(실행중)에 클래스를 읽어와서 동적으로 객체 조작
         Class.forName("com.mysql.cj.jdbc.Driver");
         -> 프로그램 실행 중 MYSQL 클래스 로드 함수 -> new Driver();를 실행해준다.
-
-
-
-@Override
