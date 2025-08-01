@@ -62,4 +62,30 @@ public class RestController1 {
         return 3;
     } // func end
 
+    /*
+                     @RequestParam          vs          @ModelAttribute             vs       @RequestBody
+       역할        단일 파라미터에 변수 저장              복수 파라미터에 객체 저장                본문(Body)을 객체에 저장
+     생략기준        변수명이 일치할 경우                  DTO 타입일 때 기본적용
+     주요타입     기본형:int,String,List,Map...        개발자가 만든 객체:DTO,VO....                   DTO
+    처리가능요청     쿼리스트링,<form:첨부파일X>          쿼리스트링,<form:첨부파일O>                   본문(Body)
+    HTTP 메소드     GET/POST/PUT/DELETE                 GET/POST/PUT/DELETE                     POST/PUT
+
+    Body(본문)이란? HTTP 본문에 매개변수 표현, 사용자에게 매개변수 노출 X(보안에 유리), POST/PUT에서 JSON타입으로 객체 지원
+    */
+    @PostMapping("/day03/method6")
+    // [BODY] : { "name" : "유재석", "age" : "40" }
+    public boolean method6( @RequestBody TaskDto taskDto ){
+        System.out.println("taskDto = " + taskDto);
+        System.out.println("RestController1.method6");
+        return true;
+    } // func end
+
+    @PutMapping("/day03/method7")
+    public int method7( @RequestBody Map<String, String> map ){
+        System.out.println("RestController1.method7");
+        System.out.println("map = " + map);
+
+        return 3;
+    } // func end
+
 } // class end
