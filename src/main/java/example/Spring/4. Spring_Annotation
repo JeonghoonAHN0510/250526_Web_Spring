@@ -12,3 +12,12 @@
 7. @DeleteMapping : HTTP 통신의 메소드 중 Delete 방식으로 요청 매핑(연결), 주로 CRUD에서 Delete 역할
     -> @XXXMapping("URL정의") : BaseURL(http://localhost:8080) 뒤로 사용할 URL을 정의할 수 있다.
 8. @ResponseBody : HTTP 통신의 요청 처리 이후, 응답 반환 시, 자바타입 -> 주로 JSON 타입으로 자동 변환 작업
+9. @RequestParam    : 쿼리스트링, 단일 매개변수, int/String/List/Map, Get/Delete
+10. @ModelAttribute : 쿼리스트링, 복수 매개변수, DTO/VO, Get/Delete
+11. @RequestBody    : HTTP 본문, 복수 객체(JSON), DTO/Map/List, Post/Put
+
+[ HTTP 자료전달방법 ]
+1. 쿼리스트링  : URL 경로상의 매개변수 표현, Post/Get/Put/Delete 메소드 표현
+    -> http://localhost:8080/board?mname=유재석&age=40
+2. BODY(본문) : HTTP BODY에 매개변수 표현, Post/Put 메소드 표현
+    -> [개발자도구] -> [네트워크] -> [지정 통신명] -> [payload]
