@@ -12,7 +12,7 @@ public class BoardController {
     // (*) boardDao 싱글톤 가져오기
     private BoardDao boardDao = BoardDao.getInstance();
 
-    // (1) 등록 기능 구현 : 등록은 보통 POST
+    // (1) 등록 기능 구현 : 등록은 보통 POST -> BODY
     @PostMapping("/board")
     public boolean boardWrite( @RequestBody BoardDto boardDto ){
         // 3. 객체화 된 dto를 dao에게 전달후 결과를 받는다.
