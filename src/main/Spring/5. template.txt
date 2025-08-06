@@ -1,0 +1,27 @@
+[ Spring 정적파일 ]
+- Spring 프로젝트 내 HTML/CSS/JS/IMG 등의 파일은 src -> main -> resources -> static에 위치
+- 만약 다른 폴더에 위치한다면, Spring이 식별 불가능
+- 코드 자체를 브라우저가 해석(렌더링) 가능
+1. Spring 프로젝트는 정해진 폴더(static) 내 HTML 경로를 지원한다.
+    -> http://localhost:8080/(static)이하의 경로
+    -> http://localhost:8080/example/example1.html
+2. 지원 확장자 : HTML/CSS/JS/IMG 등의 정적 확장자
+
+[ Spring 동적파일 ]
+- Spring 프로젝트 내 **JSP(JAVA+HTML:MVC1 패턴)**/**REACT(JS+HTML:MVC2 패턴)**/타임리프(JAVA+HTML)/머스테치 등의 파일
+    JSP란? .jsp 파일 내 java와 html 코드를 모두 작성 가능한 확장자 : MVC1 패턴( Controller + View )
+        -> 강의 기준으로 .jsp 파일을 사용하되 특정 기능만 사용하고, Controller / View 분리할 것이다.
+- 코드 자체를 브라우저가 해석 불가능 -> 각 프로그래밍언어를 해석해야함
+
+[ Spring + JSP ]
+- Spring은 공식적인 JSP를 지원하지 않는다.
+- 설치방법
+    1) build.gradle 파일 내 jsp 의존성(dependencies)에 추가
+        implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
+    2) 패키지 구성
+        (1) ( src -> main -> webapp ) 폴더 생성
+        (2) webapp 폴더 내 .jsp 파일 생성
+            -> 인텔리제이에서 자동완성 X -> VSCode에서 자동완성 가능
+        (3) 모든 .jsp 파일 상단에 설정 코드 삽입
+            -> <%@ page language = "java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+        (4) localhost:8080/(webapp) 이하의 경로
