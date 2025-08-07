@@ -13,6 +13,9 @@ import java.util.List;
 // @RequestMapping("/URL 주소") : 지정한 클래스 내 모든 메소드들의 공통 URL 지정
 public class StudentController {
 
+    // * StudentDao 싱글톤 가져오기
+    private StudentDao studentDao = StudentDao.getInstance();
+
     // 1. 저장 기능
     @PostMapping("/save")
     // @PostMapping("/URL 주소") : HTTP 요청 중에 method가 POST인 요청 매핑 + URL 주소 정의
@@ -20,7 +23,7 @@ public class StudentController {
         System.out.println("StudentController.save");
         System.out.println("studentDto = " + studentDto);
 
-        return false;
+        return studentDao.save( studentDto );
     } // func end
 
     // 2. 전체조회 기능
@@ -29,7 +32,7 @@ public class StudentController {
     public List<StudentDto> find(){
         System.out.println("StudentController.find");
 
-        return null;
+        return studentDao.find();
     } // fund end
 
 } // class end

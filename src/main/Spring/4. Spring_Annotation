@@ -17,7 +17,7 @@
 11. @RequestBody    : HTTP 본문, 복수 객체(JSON), DTO/Map/List, Post/Put
 12. @NoArgsConstructor : 컴파일 시, 기본생성자 자동 생성
 13. @AllArgsConstructor : 컴파일 시, 전체생성자 자동 생성
-14. @Getter : 컴파일 시, 모든 멤버변수에 대해서 getter 메소드 자동 생성
+14. @Getter : 클래스에 어노테이션하면 컴파일 시, 모든 멤버변수에 대해서 getter 메소드 자동 생성 가능 / 해당하는 멤버변수에만 getter를 제공받을 수도 있다.
 15. @Setter : 컴파일 시, 모든 멤버변수에 대해서 setter 메소드 자동 생성 / 생략 시, VO(읽기모드)
 16. @ToString : 객체 조회 시, 주소값 대신에 모든 멤버변수를 문자열로 출력하는 메소드 자동 생성
 17. @RestController :
