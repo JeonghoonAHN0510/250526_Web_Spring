@@ -23,8 +23,8 @@ public class BoardService {
     } // func end
 
     // 3. 게시물 단일조회
-    public BoardDto boardFing( int bno ){
-        return boardDao.boardfint( bno );
+    public BoardDto boardFind( int bno ){
+        return boardDao.boardFind( bno );
     } // func end
 
     // 4. 게시물 삭제

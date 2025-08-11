@@ -36,7 +36,7 @@ public class BoardController {
     @GetMapping("/find")
     public BoardDto boardFind( @RequestParam int bno ){
         System.out.println("BoardController.boardFind");
-        return boardService.boardFing( bno );
+        return boardService.boardFind( bno );
     } // func end
 
     // 4. 게시물 삭제

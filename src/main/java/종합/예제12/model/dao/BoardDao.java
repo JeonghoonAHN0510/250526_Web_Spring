@@ -59,7 +59,7 @@ public class BoardDao extends Dao {
     } // func end
 
     // 3. 게시물 단일조회
-    public BoardDto boardfint( int bno ){
+    public BoardDto boardFind( int bno ){
         BoardDto boardDto = new BoardDto();
         try {
             // 1. SQL 작성
