@@ -11,8 +11,8 @@
 6. @PutMapping : HTTP 통신의 메소드 중 Put 방식으로 요청 매핑(연결), 주로 CRUD에서 Update 역할
 7. @DeleteMapping : HTTP 통신의 메소드 중 Delete 방식으로 요청 매핑(연결), 주로 CRUD에서 Delete 역할
     -> @XXXMapping("URL정의") : BaseURL(http://localhost:8080) 뒤로 사용할 URL을 정의할 수 있다.
-8. @ResquestMapping : HTTP 통신의 class에 매핑, 주로 공통 URL 정의
-    -> @ResquestMapping("/member") -> 매핑된 클래스의 모든 주소가 /member로 시작하게 됨
+8. @RequestMapping : HTTP 통신의 class에 매핑, 주로 공통 URL 정의
+    -> @RequestMapping("/member") -> 매핑된 클래스의 모든 주소가 /member로 시작하게 됨
 9. @ResponseBody : HTTP 통신의 요청 처리 이후, 응답 반환 시, 자바타입 -> 주로 JSON 타입으로 자동 변환 작업
 10. @RequestParam    : 쿼리스트링, 단일 매개변수, int/String/List/Map, Get/Delete
 11. @ModelAttribute : 쿼리스트링, 복수 매개변수, DTO/VO, Get/Delete
