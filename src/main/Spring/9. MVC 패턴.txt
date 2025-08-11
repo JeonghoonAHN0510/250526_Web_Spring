@@ -1,0 +1,32 @@
+[ MVC 패턴 ]
+1. 소프트웨어 공학에서 사용되는 디자인패턴 중 하나
+2. 프로그램을 깔끔하고 효율적으로 만들기위한 설계 방법
+3. 종류
+    1) MVC 1 : Controller / View <---> Model
+        -> JSP 파일에서 HTML과 JAVA를 한 번에 작성
+        -> 빠른 개발이 가능하나, 유지보수와 역할분담이 어렵다.
+    2) MVC 2 : View <---> Controller <---> Model
+        -> View는 HTML만 담당, Controller에서는 제어(로직)만 담당
+        -> 로직이 분리되나, 파일 관리가 어렵다.
+    3) MVC 2 3Tier : View <---> Controller <---> Service <---> Model
+        -> Spring MVC에서 사용되는 패턴
+        -> Controller의 역할 분리 -> 제어 / 로직
+        -> 장점 : 관점지향 프로그래밍에 특화, 역할 분담
+        -> 단점 : 관리할 파일 수 증가
+4. 구역(레이어) 종류
+    1) View : JSP/REACT ( HTML, CSS, JS )
+        -> 역할 : 프론트엔드(화면구현) ···
+
+    2) Controller : @RestController @Controller
+        -> 역할 : HTTP 통신(요청/응답), 타입 변환, (타입에 대한)유효성 검사 ···
+
+    3) Service : @Service
+        -> 역할 : 로직( 기능에 있어서 실질적인 중요 코드 )
+        -> CRUD, 데이터 검증, 연산, 알고리즘, 트랜잭션 ···
+        -> SQL을 제외한 실질적인 로직
+
+    4) Repository : @Repository
+        -> 역할 : 저장소( 실질적인 저장소를 조작하는 코드 )( DAO, **JPA, myBatis** ··· )
+
+
+* 유효성 검사 위치 : JS, Controller, SQL, Service ···
