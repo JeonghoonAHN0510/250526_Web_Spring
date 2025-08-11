@@ -11,16 +11,18 @@
 6. @PutMapping : HTTP 통신의 메소드 중 Put 방식으로 요청 매핑(연결), 주로 CRUD에서 Update 역할
 7. @DeleteMapping : HTTP 통신의 메소드 중 Delete 방식으로 요청 매핑(연결), 주로 CRUD에서 Delete 역할
     -> @XXXMapping("URL정의") : BaseURL(http://localhost:8080) 뒤로 사용할 URL을 정의할 수 있다.
-8. @ResponseBody : HTTP 통신의 요청 처리 이후, 응답 반환 시, 자바타입 -> 주로 JSON 타입으로 자동 변환 작업
-9. @RequestParam    : 쿼리스트링, 단일 매개변수, int/String/List/Map, Get/Delete
-10. @ModelAttribute : 쿼리스트링, 복수 매개변수, DTO/VO, Get/Delete
-11. @RequestBody    : HTTP 본문, 복수 객체(JSON), DTO/Map/List, Post/Put
-12. @NoArgsConstructor : 컴파일 시, 기본생성자 자동 생성
-13. @AllArgsConstructor : 컴파일 시, 전체생성자 자동 생성
-14. @Getter : 클래스에 어노테이션하면 컴파일 시, 모든 멤버변수에 대해서 getter 메소드 자동 생성 가능 / 해당하는 멤버변수에만 getter를 제공받을 수도 있다.
-15. @Setter : 컴파일 시, 모든 멤버변수에 대해서 setter 메소드 자동 생성 / 생략 시, VO(읽기모드)
-16. @ToString : 객체 조회 시, 주소값 대신에 모든 멤버변수를 문자열로 출력하는 메소드 자동 생성
-17. @RestController :
+8. @ResquestMapping : HTTP 통신의 class에 매핑, 주로 공통 URL 정의
+    -> @ResquestMapping("/member") -> 매핑된 클래스의 모든 주소가 /member로 시작하게 됨
+9. @ResponseBody : HTTP 통신의 요청 처리 이후, 응답 반환 시, 자바타입 -> 주로 JSON 타입으로 자동 변환 작업
+10. @RequestParam    : 쿼리스트링, 단일 매개변수, int/String/List/Map, Get/Delete
+11. @ModelAttribute : 쿼리스트링, 복수 매개변수, DTO/VO, Get/Delete
+12. @RequestBody    : HTTP 본문, 복수 객체(JSON), DTO/Map/List, Post/Put
+13. @NoArgsConstructor : 컴파일 시, 기본생성자 자동 생성
+14. @AllArgsConstructor : 컴파일 시, 전체생성자 자동 생성
+15. @Getter : 클래스에 어노테이션하면 컴파일 시, 모든 멤버변수에 대해서 getter 메소드 자동 생성 가능 / 해당하는 멤버변수에만 getter를 제공받을 수도 있다.
+16. @Setter : 컴파일 시, 모든 멤버변수에 대해서 setter 메소드 자동 생성 / 생략 시, VO(읽기모드)
+17. @ToString : 객체 조회 시, 주소값 대신에 모든 멤버변수를 문자열로 출력하는 메소드 자동 생성
+18. @RestController : @Controller + @ResponseBody
 
 [ HTTP 자료전달방법 ]
 1. 쿼리스트링  : URL 경로상의 매개변수 표현, Post/Get/Put/Delete 메소드 표현

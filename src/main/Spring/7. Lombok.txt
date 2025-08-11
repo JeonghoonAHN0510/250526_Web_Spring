@@ -1,0 +1,20 @@
+[ Lombok ]
+1. 정의 : 반복되는 코드들을 줄여주는 라이브러리
+2. DTO, VO, Entity에서 주로 사용된다
+    DTO : Data Transfer Object(데이터 이동 객체)
+    VO  : Value Object(값을 가진 객체, 읽기 모드)
+    Entity : 개체, 주로 DB 레코드를 의미
+3. 설치
+    1) (환경) 인텔리제이 설치 -> 설정 > 플러그인 > Lombok
+    2) (프로젝트) Gradle 설치 -> start.spring.io > Lombok
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+4. 주요 어노테이션
+    1) @NoArgsConstructor   : 기본생성자 코드 자동생성
+    2) @AllArgsConstructor  : 전체생성자 코드 자동생성
+        -> @RequestXXX들이 사용될 때, 필수적으로 필요함
+    3) @Getter              : 멤버변수의 Getter 메소드 코드 자동생성
+    4) @Setter              : 멤버변수의 Setter 메소드 코드 자동생성
+        -> private 멤버변수에 대해 외부에서 간접 접근을 위해서
+    5) @ToString            : 객체 출력 시, 주소값 대신에 멤버변수 값을 문자열로 반환 메소드 자동생성
+        -> 개발자가 console에 객체 확인하기 위해서
