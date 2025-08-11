@@ -16,6 +16,12 @@
     <!-- 헤더 jsp 불러오기 -->
     <jsp:include page="/exam12/header.jsp"></jsp:include>
 
+    <div>
+        <h3> 수정 페이지 </h3>
+        내용 : <textarea class="bcontent"></textarea> <br>
+        <button type="button" onclick="boardUpdate()"> 수정 </button>
+
+    </div>
 
     <script src="/exam12/update.js"></script>
 </body>

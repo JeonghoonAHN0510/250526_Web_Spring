@@ -35,14 +35,14 @@ const boardDelete = async ( ) => {
     const bno = URL.get('bno');
     // * 확인 받기
     let check = confirm('정말 삭제하시겠습니까?');
-    if ( check ){
+    if ( check == true ){
     // 2. fetch option
         const option = { method : "DELETE" }
         // 3. fetch response
         const response = await fetch( `/board?bno=${bno}`, option )
         // 4. fetch data
         const data = await response.json();
-        if ( data ){
+        if ( data == true ){
             alert('삭제 성공')
             location.href = '/exam12/list.jsp'
         } else {
@@ -54,7 +54,9 @@ const boardDelete = async ( ) => {
 // [3] 수정페이지 이동
 const boardUpdateView = async ( ) => {
     console.log('boardUpdateView func exe');
-
-    location.href = '/exam12/update.jsp'
+    // 1. 수정할 게시물 번호 가져오기
+    const bno = new URLSearchParams( location.search ).get('bno');
+    // 2. 수정페이지에게 bno 전달하기
+    location.href = `/exam12/update.jsp?bno=${bno}`
 
 } // func end
