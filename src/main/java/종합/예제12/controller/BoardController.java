@@ -27,19 +27,30 @@ public class BoardController {
 
     // 2. 게시물 전체조회
     @GetMapping("")
-    public ArrayList<BoardDto> boardRead(){
-        System.out.println("BoardController.boardRead");
-        return boardService.boardRead();
+    public ArrayList<BoardDto> boardPrint(){
+        System.out.println("BoardController.boardPrint");
+        return boardService.boardPrint();
     } // func end
 
     // 3. 게시물 단일조회
-
+    @GetMapping("/find")
+    public BoardDto boardFind( @RequestParam int bno ){
+        System.out.println("BoardController.boardFind");
+        return boardService.boardFing( bno );
+    } // func end
 
     // 4. 게시물 삭제
-
+    @DeleteMapping("")
+    public boolean boardDelete( @RequestParam int bno ){
+        System.out.println("BoardController.boardDelete");
+        return boardService.boardDelete( bno );
+    } // func end
 
     // 5. 게시물 수정
-
-
-
+    @PutMapping("")
+    public boolean boardUpdate( @RequestBody BoardDto boardDto ){
+        System.out.println("BoardController.boardUpdate");
+        System.out.println("boardDto = " + boardDto);
+        return boardService.boardUpdate( boardDto );
+    } // func end
 } // class end
