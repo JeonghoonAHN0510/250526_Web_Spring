@@ -19,7 +19,7 @@ const boardWrite = async ( ) => {
     const response = await fetch( "/board", option )
     // 5. fetch data
     const data = response.json();
-    if( data ){
+    if( data == true ){
         alert('등록 성공')
         location.href = '/exam12/list.jsp'
     } else {
