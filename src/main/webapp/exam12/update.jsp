@@ -16,15 +16,8 @@
     <!-- 헤더 jsp 불러오기 -->
     <jsp:include page="/exam12/header.jsp"></jsp:include>
 
-    <div>
-        <h3> 게시물 상세 페이지 </h3>
-        작성자 : <div class="bwriterBox"></div>
-        내용 : <div class="bcontentBox"></div>
-        <button type="button" onclick="boardDelete()"> 삭제 </button>
-        <button type="button" onclick="boardUpdateView()"> 수정 </button>
-    </div>
 
-    <script src="/exam12/view.js"></script>
+    <script src="/exam12/update.js"></script>
 </body>
 
 </html>
