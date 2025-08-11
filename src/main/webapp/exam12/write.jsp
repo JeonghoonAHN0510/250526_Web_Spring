@@ -16,6 +16,15 @@
     <!-- 헤더 jsp 불러오기 -->
     <jsp:include page="/exam12/header.jsp"></jsp:include>
 
+    <div>
+        <h3> 게시물 등록 페이지 </h3>
+        내용 : <textarea class="bcontent"></textarea> <br>
+        작성자 : <input type="text" class="bwriter">
+        <button type="button" onclick="boardWrite()"> 등록 </button>
+    </div>
+
+
+    <script src="/exam12/write.js"></script>
 </body>
 
 </html>
