@@ -8,11 +8,8 @@ import lombok.*;
 @Setter
 @ToString
 public class MoneyDto {
-    private int custno;
-    private int salsnol;
-    private int pcost;
-    private int amount;
-    private int price;
-    private String pcode;
-    private String sdate;
-} // func end
+    private int custno;         // 회원코드
+    private String custname;    // 회원성명
+    private String grade;       // 회원등급
+    private int totalPrice;     // 회원별 총 매출
+} // class end
