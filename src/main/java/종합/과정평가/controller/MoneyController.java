@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import 종합.과정평가.model.dto.MoneyDto;
+import 종합.과정평가.model.dto.totalPriceDto;
 import 종합.과정평가.service.MoneyService;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class MoneyController {
 
     // 1. 회원매출조회
     @GetMapping("")
-    public ArrayList<MoneyDto> moneyPrint(){
+    public ArrayList<totalPriceDto> moneyPrint(){
         System.out.println("MoneyController.moneyPrint");
         return moneyService.moneyPrint();
     } // func end
