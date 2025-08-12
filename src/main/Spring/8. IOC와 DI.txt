@@ -14,6 +14,17 @@
 2. 목적 : 객체들 간의 결합도(관계)를 낮추고, 유지보수성을 향상하기 위해서
 3. 주요 어노테이션
     1) @Autowired : 스프링 컨테이너에 등록된 bean(객체, 정보)를 꺼내온다.
+4. 사용법
+    1) 멤버변수에 주입
+        @Autowired 클래스명 변수명;
+    2) 생성자에 주입 (*권장)
+        final 가져올클래스명 A;
+        @Autowired
+        public 클래스명(가져올클래스명 B){ this.A = B; }
+    3) Setter를 이용한 주입
+        가져올클래스명 A;
+        @Autowired
+        public void set변수명( 가져올클래스명 B ){ this.A = B; }
 
 [ IOC / DI ]
 - IOC와 DI를 사용하면, 싱글톤을 사용할 필요가 없어진다.

@@ -11,22 +11,23 @@
     3) MVC 2 3Tier : View <---> Controller <---> Service <---> Model
         -> Spring MVC에서 사용되는 패턴
         -> Controller의 역할 분리 -> 제어 / 로직
-        -> 장점 : 관점지향 프로그래밍에 특화, 역할 분담
+        -> 장점 : 관점지향 프로그래밍(AOP)에 특화, 역할 분담
         -> 단점 : 관리할 파일 수 증가
 4. 구역(레이어) 종류
     1) View : JSP/REACT ( HTML, CSS, JS )
         -> 역할 : 프론트엔드(화면구현) ···
+        -> Spring 프로젝트에서는 resources 폴더에 해당, JSP는 webapp 폴더에 해당
 
     2) Controller : @RestController @Controller
         -> 역할 : HTTP 통신(요청/응답), 타입 변환, (타입에 대한)유효성 검사 ···
 
     3) Service : @Service
-        -> 역할 : 로직( 기능에 있어서 실질적인 중요 코드 )
+        -> 역할 : 비지니스 로직( 기능에 있어서 실질적인 중요 코드 )
         -> CRUD, 데이터 검증, 연산, 알고리즘, 트랜잭션 ···
         -> SQL을 제외한 실질적인 로직
 
     4) Repository : @Repository
-        -> 역할 : 저장소( 실질적인 저장소를 조작하는 코드 )( DAO, **JPA, myBatis** ··· )
+        -> 역할 : 저장소( 실질적인 저장소를 조작하는 코드 )( DAO, **JPA**, **myBatis** ··· )
 
 
 * 유효성 검사 위치 : JS, Controller, SQL, Service ···
