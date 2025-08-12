@@ -15,7 +15,7 @@
     <!-- 헤더 JSP 불러오기 -->
     <jsp:include page="/assessment/header.jsp"></jsp:include>
 
-    <div>
+    <div id="main_container">
         <h2> 회원매출조회 </h2>
         <table>
             <thead>

@@ -15,9 +15,9 @@
     <!-- 헤더 JSP 불러오기 -->
     <jsp:include page="/assessment/header.jsp"></jsp:include>
 
-    <div>
-        <h2> 홈쇼핑 회원 등록 </h2>
-        <table border="1">
+    <div id="main_container">
+        <h2 class="add_top"> 홈쇼핑 회원 등록 </h2>
+        <table class="add_table" border="1">
             <tr>
                 <th>회원번호(자동발생)</th>
                 <td><input type="text" class="custnoInput"></td>

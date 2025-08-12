@@ -15,7 +15,7 @@
     <!-- 헤더 JSP 불러오기 -->
     <jsp:include page="/assessment/header.jsp"></jsp:include>
 
-    <div>
+    <div id="main_container">
         <h3> 쇼핑몰 회원관리 프로그램 </h3>
         <span> 쇼핑몰 회원정보와 회원매출정보 데이터베이스를 구축하고 회원관리 프로그램을 완성하는 프로그램이다.</span> <br>
         <span> 프로그램 작성 순서</span>

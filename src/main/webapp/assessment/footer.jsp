@@ -12,8 +12,8 @@
 </head>
 
 <body>
-    <div id="footer_container">
-        <h3 class="footer"> HRDKOREA Copyrightⓒ2016 All rights reserved. Human Resources Development Service Of Korea. </h3>
+    <div class="footer_container">
+        <h3 class="footer_main"> HRDKOREA Copyrightⓒ2016 All rights reserved. Human Resources Development Service Of Korea. </h3>
     </div>
 </body>
 

@@ -15,7 +15,7 @@
     <!-- 헤더 JSP 불러오기 -->
     <jsp:include page="/assessment/header.jsp"></jsp:include>
 
-    <div>
+    <div id="main_container">
         <h2> 홈쇼핑 회원 정보 수정 </h2>
         <table border="1">
             <tr>

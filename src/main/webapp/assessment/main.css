@@ -11,11 +11,58 @@ a{
     text-decoration: none;
 }
 /*====================================================================*/
-/* #footer_container{
-    background-color: blue;
+#header_container{
+    width: 1200px;
+    margin: 0px auto;
+}
+.footer_container, .header_inner{
+    background-color: #4242d5;
+    width: 1200px;
+    margin: 0px auto;
+}
+.footer_main, .header_main{
+    color : #FFFFFF;
+    text-align: center;
+    padding: 15px 0px;
+}
+.menu{
+    display: flex;
+}
+.menu li{
+    padding : 30px
+}
+.menu li a{
+    color: white;
+}
+#main_container{
+    height: 500px;
+    width: 1200px;
+    margin: 0 auto;
+    background-color: #e1dcdc;
+}
+.header_menu{
+    background-color: #6d6dd8;
+}
+#main_container h3{
+    text-align: center;
+    padding: 20px 0px;
+}
+#main_container span{
+    padding: 0px 10px;
+}
+.add_top{
+    text-align: center;
+    padding: 35px 0px;
+}
+.add_table{
+    width: 600px;
     margin: 0 auto;
 }
-.footer{
-    color : white;
-    
-} */
+.add_table button{
+    padding: 2px 5px;
+    border-radius: 2px;
+}
+.add_table input{
+    border-radius: 2px;
+    padding : 3px 0px 
+}
