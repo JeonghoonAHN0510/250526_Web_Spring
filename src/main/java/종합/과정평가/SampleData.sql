@@ -46,4 +46,4 @@ insert into money_tbl_02 values
     ( 100004, 20160010, 3000, 1, 3000, 'A007', '2016-01-06' );
 
 select * from member_tbl_02;
-select * from money_tbl_02;
+select * from money_tbl_02;	

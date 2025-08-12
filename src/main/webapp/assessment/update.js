@@ -76,3 +76,10 @@ const updateMember = async ( ) => {
         alert('회원번호가 입력되지 않았습니다.')
     } // if end
 } // func end
+
+// [3] 조회 페이지 이동
+const viewTrans = ( ) => {
+    console.log('viewTrans func exe');
+
+    location.href = '/assessment/view.jsp'
+} // func end
