@@ -17,8 +17,6 @@ public class MemberController {
         this.memberService = memberService;
     } // func end
 
-    // todo 공통 코드 함수화하기
-
     // 1. 회원등록기능
     // 0 : 성공, 1 : 등록실패, 2 : 성명 입력 X, 3: 전화 입력 X, 4 : 주소 입력 X, 5 : 가입일자 입력 X, 6 : 등급 입력 X, 7 : 도시코드 입력 X, 8 : 회원번호 입력 X
     @PostMapping("")

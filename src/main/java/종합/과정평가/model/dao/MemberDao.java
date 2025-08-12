@@ -69,15 +69,7 @@ public class MemberDao extends Dao{
             // 5. SQL 결과 반환
             while ( rs.next() ){
                 // 배열에 넣을 객체 생성
-                MemberDto memberDto = new MemberDto(
-                        rs.getInt("custno"),
-                        rs.getString("custname"),
-                        rs.getString("phone"),
-                        rs.getString("address"),
-                        rs.getString("joindate"),
-                        rs.getString("grade"),
-                        rs.getString("city")
-                );
+                MemberDto memberDto = returnDto( rs );
                 // 생성한 객체 배열에 넣기
                 memberDtos.add( memberDto );
             } // while end
@@ -125,17 +117,8 @@ public class MemberDao extends Dao{
             ResultSet rs = ps.executeQuery();
             // 5. SQL 결과 반환
             if ( rs.next() ){
-                // 반환할 객체 생성
-                MemberDto memberDto = new MemberDto(
-                        rs.getInt("custno"),
-                        rs.getString("custname"),
-                        rs.getString("phone"),
-                        rs.getString("address"),
-                        rs.getString("joindate"),
-                        rs.getString("grade"),
-                        rs.getString("city")
-                );
-                return memberDto;
+                // 반환할 객체 생성하여 반환
+                return returnDto( rs );
             } // if end
         } catch ( SQLException e ){
             System.out.println( e );
@@ -143,5 +126,23 @@ public class MemberDao extends Dao{
         return null;
     } // func end
 
+    // * 반환객체 만들기
+    public MemberDto returnDto ( ResultSet rs ){
+        try {
+            MemberDto memberDto = new MemberDto(
+                    rs.getInt("custno"),
+                    rs.getString("custname"),
+                    rs.getString("phone"),
+                    rs.getString("address"),
+                    rs.getString("joindate"),
+                    rs.getString("grade"),
+                    rs.getString("city")
+            );
+            return memberDto;
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return null;
+    } // func end
 
 } // class end
