@@ -16,7 +16,7 @@
     <jsp:include page="/assessment/header.jsp"></jsp:include>
 
     <div>
-        <h2> 홈쇼핑 회원 등록 </h2>
+        <h2> 홈쇼핑 회원 정보 수정 </h2>
         <table border="1">
             <tr>
                 <th>회원번호(자동발생)</th>
@@ -48,16 +48,17 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <button type="button" onclick="addMember()"> 등록 </button>
+                    <button type="button" onclick="updateMember()"> 수정 </button>
                     <button type="button" onclick="viewTrans()"> 조회 </button>
                 </td>
             </tr>
         </table>
     </div>
-    
+
     <!-- 푸터 JSP 불러오기 -->
     <jsp:include page="/assessment/footer.jsp"></jsp:include>
-    <script src="/assessment/add.js"></script>
+
+    <script src="/assessment/update.js"></script>
 </body>
 
 </html>

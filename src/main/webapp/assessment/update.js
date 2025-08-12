@@ -1,24 +1,38 @@
-console.log('add.js open');
+console.log('update.js open');
 
-// [1] 회원번호 자동생성
-const custnoPrint = async ( ) => {
-    console.log('custnoPrint func exe');
+// [1] 선택 회원정보 출력
+const memberPrintOne = async ( ) => {
+    console.log('memberPrintOne func exe');
+    // 0. custno 가져오기
+    const custno = new URLSearchParams( location.search ).get('custno');
     // 1. fetch option
     const option = { method : "GET" };
-    // 2. fetch response 
-    const response = await fetch( "/member/custno", option );
+    // 2. fetch response
+    const response = await fetch( `/member/one?custno=${custno}`, option );
     // 3. fetch data
     const data = await response.json();
     // 4. where
-    const custnoInput = document.querySelector('.custnoInput');
+    let custnoBox = document.querySelector('.custnoInput');
+    let custnameBox = document.querySelector('.custnameInput');
+    let phoneBox = document.querySelector('.phoneInput');
+    let addressBox = document.querySelector('.addressInput');
+    let joindateBox = document.querySelector('.joindateInput');
+    let gradeBox = document.querySelector('.gradeInput');
+    let cityBox = document.querySelector('.cityInput');
     // 5. print
-    custnoInput.value = data + 1;
+    custnoBox.value = data.custno;
+    custnameBox.value = data.custname;
+    phoneBox.value = data.phone;
+    addressBox.value = data.address;
+    joindateBox.value = data.joindate;
+    gradeBox.value = data.grade;
+    cityBox.value = data.city;
 } // func end
-custnoPrint();
+memberPrintOne();
 
-// [2] 회원 등록
-const addMember = async ( ) => {
-    console.log('addMember func exe');
+// [2] 회원정보 수정
+const updateMember = async ( ) => {
+    console.log('updateMember func exe');
     // 1. Input Value
     let custno = document.querySelector('.custnoInput').value;
     let custname = document.querySelector('.custnameInput').value;
@@ -31,7 +45,7 @@ const addMember = async ( ) => {
     const member = { custno, custname, phone, address, joindate, grade, city };
     // 3. fetch option
     const option = {
-        method : "POST",
+        method : "PUT",
         headers : {"Content-Type" : "application/json"},
         body : JSON.stringify( member )
     } // option end
@@ -43,9 +57,9 @@ const addMember = async ( ) => {
     // 0 : 성공, 1 : 등록실패, 2 : 성명 입력 X, 3: 전화 입력 X, 4 : 주소 입력 X
     // 5 : 가입일자 입력 X, 6 : 등급 입력 X, 7 : 도시코드 입력 X, 8 : 회원번호 입력 X
     if ( data == 0 ){
-        alert('등록 성공');
+        alert('수정 성공');
     } else if ( data == 1 ){
-        alert('등록 실패')
+        alert('수정 실패')
     } else if ( data == 2 ){
         alert('회원성명이 입력되지 않았습니다.')
     } else if ( data == 3 ){
@@ -61,11 +75,4 @@ const addMember = async ( ) => {
     } else if ( data == 8 ){
         alert('회원번호가 입력되지 않았습니다.')
     } // if end
-} // func end
-
-// [3] 조회 페이지 이동
-const viewTrans = ( ) => {
-    console.log('viewTrans func exe');
-
-    location.href = '/assessment/view.jsp'
 } // func end

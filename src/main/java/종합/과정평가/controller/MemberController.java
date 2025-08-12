@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import 종합.과정평가.model.dto.MemberDto;
 import 종합.과정평가.service.MemberService;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/member")
 public class MemberController {
@@ -14,6 +16,8 @@ public class MemberController {
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     } // func end
+
+    // todo 공통 코드 함수화하기
 
     // 1. 회원등록기능
     // 0 : 성공, 1 : 등록실패, 2 : 성명 입력 X, 3: 전화 입력 X, 4 : 주소 입력 X, 5 : 가입일자 입력 X, 6 : 등급 입력 X, 7 : 도시코드 입력 X, 8 : 회원번호 입력 X
@@ -37,16 +41,62 @@ public class MemberController {
         } else if ( memberDto.getCustno() == 0 ){
             return 8;
         } // if end
+        // 가입일자 형식변경
+        String joindate = memberDto.getJoindate();
+        if ( joindate.length() == 8 ){
+            joindate = joindate.substring(0, 4) + '-' +  joindate.substring(4, 6) + '-' + joindate.substring(6, 8);
+        } // if end
+        memberDto.setJoindate(joindate);
+
         return memberService.addMember(memberDto);
     } // func end
 
     // 2. 회원번호 자동생성
     @GetMapping("/custno")
     public int custnoPrint(){
+        System.out.println("MemberController.custnoPrint");
         return memberService.custnoPrint();
     } // func end
 
+    // 3. 회원목록 조회
+    @GetMapping("")
+    public ArrayList<MemberDto> memberPrint(){
+        System.out.println("MemberController.memberPrint");
+        return memberService.memberPrint();
+    } // func end
 
+    // 4. 회원정보 수정
+    // 0 : 성공, 1 : 등록실패, 2 : 성명 입력 X, 3: 전화 입력 X, 4 : 주소 입력 X, 5 : 가입일자 입력 X, 6 : 등급 입력 X, 7 : 도시코드 입력 X, 8 : 회원번호 입력 X
+    @PutMapping("")
+    public int updateMember( @RequestBody MemberDto memberDto ){
+        System.out.println("MemberController.updateMember");
+        System.out.println("memberDto = " + memberDto);
+        // 유효성 검사
+        if ( memberDto.getCustname().isEmpty() ){
+            return 2;
+        } else if ( memberDto.getPhone().isEmpty() ){
+            return 3;
+        } else if ( memberDto.getAddress().isEmpty() ){
+            return 4;
+        } else if ( memberDto.getJoindate().isEmpty() ){
+            return 5;
+        } else if ( memberDto.getGrade().isEmpty() ){
+            return 6;
+        } else if ( memberDto.getCity().isEmpty() ){
+            return 7;
+        } else if ( memberDto.getCustno() == 0 ){
+            return 8;
+        } // if end
+        return memberService.updateMember( memberDto );
+    } // func end
 
+    // 5. 선택 회원정보 출력
+    @GetMapping("/one")
+    public MemberDto memberPrintOne( int custno ){
+        System.out.println("MemberController.memberPrintOne");
+        System.out.println("custno = " + custno);
+
+        return memberService.memberPrintOne( custno );
+    } // func end
 
 } // class end

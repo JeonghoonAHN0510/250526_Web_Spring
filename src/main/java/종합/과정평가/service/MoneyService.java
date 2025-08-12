@@ -3,6 +3,9 @@ package 종합.과정평가.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import 종합.과정평가.model.dao.MoneyDao;
+import 종합.과정평가.model.dto.MoneyDto;
+
+import java.util.ArrayList;
 
 @Service
 public class MoneyService {
@@ -13,7 +16,10 @@ public class MoneyService {
         this.moneyDao = moneyDao;
     } // func end
 
-
+    // 1. 회원매출조회
+    public ArrayList<MoneyDto> moneyPrint(){
+        return moneyDao.monryPrint();
+    } // func end
 
 
 
