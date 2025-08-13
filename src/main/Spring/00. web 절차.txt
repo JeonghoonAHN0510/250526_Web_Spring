@@ -10,7 +10,7 @@
 [3] 공통 클래스 구성 : SuperDao, Dto 등등 구현
     -> SuperDao : DB 연결 등 공통 코드 구현 후, 일반 Dao에서 SuperDao 상속받기
     -> Dto : Lombok을 이용하여 구성, 기본적으로 DB 테이블과 일치하게 구성
-[4] API 명세서 작성
+[4] API 명세서 작성 - Controller 기준의 명세서
 
 [5] 기능 구현
     -> Dao          : DB와 통신

@@ -39,6 +39,7 @@ public class MemberController {
         if ( mno > 0 ){
             // 3. 세션 속성 추가하기
             session.setAttribute( "loginMno" , mno );
+            System.out.println("[로그인 성공]");
         } // if end
         // 4. 결과 반환하기
         return mno;
@@ -50,7 +51,7 @@ public class MemberController {
         System.out.println("MemberController.logout");
         // 1. 세션정보 가져오기
         HttpSession session = request.getSession();
-        // 2. 세션정보가 없거나 특정한 속성값이 없으면( 유효성 검사 )
+        // 2. 세션정보가 없거나 특정한 속성값이 없으면(=유효성 검사)
         if ( session == null || session.getAttribute( "loginMno" ) == null ){
             // 3. 비로그인 상태여서, 로그아웃 실패
             System.out.println("[로그아웃 실패]");
@@ -59,9 +60,31 @@ public class MemberController {
         // 4. 로그인 상태라면, 속성값 제거
         session.removeAttribute( "loginMno" );
         // 5. 로그아웃 성공 반환
-        System.out.println("[로그인 성공]");
+        System.out.println("[로그아웃 성공]");
         return true;
     } // func end
 
-    // [member04] 내정보 확인 기능 - info
+    // [member04] 내정보 조회 기능 - info
+    @GetMapping("/info")
+    public MemberDto info( HttpServletRequest request ){
+        System.out.println("MemberController.info");
+        // 1. 세션정보 가져오기
+        HttpSession session = request.getSession();
+        // 2. 세션정보가 없거나 특정한 속성값이 없으면(= 유효성 검사)
+        if ( session == null || session.getAttribute( "loginMno" ) == null ){
+            // 3. null 반환
+            System.out.println("[로그인 정보 없음]");
+            return null;
+        } // func end
+        // 4. 로그인 상태라면, mno 가져오기
+        int mno = ( int )session.getAttribute("loginMno");
+        System.out.println("[로그인 mno = " + mno + "]");
+        // 5. 로그인한 mno를 Service에게 전달하여 결과 반환하기
+        return memberService.info( mno );
+    } // func end
+
+    // [member05] 중복검사 기능 - check
+
+    // [member06] 회원정보수정 기능 - update
+
 } // class end

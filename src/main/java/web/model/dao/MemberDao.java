@@ -66,9 +66,35 @@ public class MemberDao extends Dao {
         return 0;
     } // func end
 
-    // [member04] 내정보 확인 기능 - info
+    // [member04] 내정보 조회 기능 - info
     public MemberDto info( int mno ){
-
+        try {
+            String SQL = "select * from member where mno = ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setInt( 1, mno );
+            ResultSet rs = ps.executeQuery();
+            if ( rs.next() ){
+                // *비밀번호를 제외한* 모두를 조회하여 객체 생성
+                MemberDto memberDto = new MemberDto(
+                        mno,
+                        rs.getString("mid"),
+                        "",
+                        rs.getString("mname"),
+                        rs.getString("mphone"),
+                        rs.getString("mdate")
+                );
+                // 생성한 객체 반환
+                return memberDto;
+            } // if end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        // 조회 실패 시, null 반환
         return null;
     } // func end
+
+    // [member05] 중복검사 기능 - check
+
+    // [member06] 회원정보수정 기능 - update
+
 } // class end

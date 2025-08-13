@@ -24,5 +24,13 @@ public class MemberService {
         return memberDao.login( memberDto );
     } // func end
 
-    // [member04] 내정보 확인 기능 - info
+    // [member04] 내정보 조회 기능 - info
+    public MemberDto info( int mno ){
+        return memberDao.info( mno );
+    } // func end
+
+    // [member05] 중복검사 기능 - check
+
+    // [member06] 회원정보수정 기능 - update
+
 } // class end
