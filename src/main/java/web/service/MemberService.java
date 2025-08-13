@@ -47,5 +47,7 @@ public class MemberService {
     } // func end
 
     // [member08] 회원탈퇴 기능 - delete
-
+    public boolean delete( MemberDto memberDto ){
+        return memberDao.delete( memberDto );
+    } // func end
 } // class end

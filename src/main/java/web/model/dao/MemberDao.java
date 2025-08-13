@@ -155,5 +155,20 @@ public class MemberDao extends Dao {
     } // func end
 
     // [member08] 회원탈퇴 기능 - delete
-
+    public boolean delete( MemberDto memberDto ){
+        try {
+            String SQL = "delete from member where mno = ? and mpwd = ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setInt( 1, memberDto.getMno() );
+            ps.setString( 2, memberDto.getMpwd() );
+            // return ps.executeUpdate() == 1;
+            int count = ps.executeUpdate();
+            if ( count == 1 ){
+                return true;
+            } // if end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return false;
+    } // func end
 } // class end
