@@ -1,0 +1,19 @@
+참고) https://docs.google.com/spreadsheets/d/1lBRVdhaUGJJwcGAm2CFG28FwttTXsXgH7vTNLnP0lqc/edit?gid=0#gid=0
+
+[1] 패키지 구성
+1. 자바코드 : src-> main -> java -> [홈페이지명] -> MVC패키지 구성
+2. JSP코드 : src-> main -> webapp -> jsp패키지 구성
+3. 그외파일 : src-> main -> resources -> static폴더 : css, js , img , 등등
+                                    -> application.properties : spring 설정 파일
+                                    -> sql 폴더 : 샘플 SQL 등
+[2] 기본 클래스 세팅 : AppStart, Controller, Service, Dto, Repository
+[3] 공통 클래스 구성 : SuperDao, Dto 등등 구현
+    -> SuperDao : DB 연결 등 공통 코드 구현 후, 일반 Dao에서 SuperDao 상속받기
+    -> Dto : Lombok을 이용하여 구성, 기본적으로 DB 테이블과 일치하게 구성
+[4] API 명세서 작성
+
+[5] 기능 구현
+    -> Dao
+    -> Service
+    -> Controller
+    -> Test(Talend API 활용)
