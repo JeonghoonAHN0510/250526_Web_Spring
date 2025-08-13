@@ -1,0 +1,19 @@
+- 통신 : 매체를 사용하여 정보를 주고받는 과정/행위
+- 네트워크 : 인터넷을 통해 연결된 구조에서 정보를 주고받는 과정
+
+[ 프로토콜 ]
+1. 네트워크에서 데이터를 통신하기위한 규약/규칙
+2. 주요 프로토콜
+    1) IP       : Internet Protocol, 네트워크를 사용하는 컴퓨터 식별 번호
+    2) PORT     : 네트워크를 사용하는 컴퓨터 안에서의 프로그램(프로세스) 식별 번호
+        - 주요 PORT : 3306(MySQL), 8080(TomCat), 20/21(FTP), 53(DNS) ···
+        - PORT 번호 찾기 : cmd -> 'netstat -ano' -> 'taskkill /f /pid PID'
+    3) DNS      : Domain Name Service, IP를 사람이 이해할 수 있는 문자로 변환해주는 서비스
+        -> 도메인을 사용하여 특정한 IP를 문자로 변경하면, 암기하기 쉽다.
+        - 진짜 IP 찾기 : cmd -> 'nslookup 도메인주소' ex) nslookup www.naver.com
+    4) HTTP     : HyperText Transfer Protocol, HTML/XML 문서들을 통신하는 규약
+    5) HTTPS    : HTTP + Secure, HTTP에 보안 체계(SSL)를 부여한 프로토콜
+    6) SMTP     : Simple Mail Transfer Protocol, 간이 메일 전송 규약, 메일 전송 서비스
+        -> 도메인 회사에서 무료 제공 | 문자서비스는 유료
+    7) FTP      : File Transfer Protocol, 파일 전송 규약
+    8) SSL      : Secure Sockets Layer, 암호화 기술
