@@ -16,11 +16,12 @@ const waitingPrint = async ( ) => {
     const wnoBox = document.querySelector('.wnoBox');
     const wphoneBox = document.querySelector('.wphoneBox');
     const wcountBox = document.querySelector('.wcountBox');
+    const wdateBox = document.querySelector('.wdateBox');
     // 5. print
     wnoBox.innerHTML = data.wno;
     wphoneBox.innerHTML = data.wphone;
     wcountBox.innerHTML = data.wcount;
-
+    wdateBox.innerHTML = data.wdate;
 } // func end
 waitingPrint();
 

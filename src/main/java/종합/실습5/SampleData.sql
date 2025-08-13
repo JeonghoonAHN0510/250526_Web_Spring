@@ -6,6 +6,7 @@ create table waiting(
     wno int auto_increment , 
     wphone varchar(20) not null,
     wcount int not null ,
+    wdate datetime default now(),
     constraint primary key(wno)
 );
 

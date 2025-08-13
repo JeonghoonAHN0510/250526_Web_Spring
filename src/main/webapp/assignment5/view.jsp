@@ -18,6 +18,7 @@
     대기번호 : <span class="wnoBox"></span> <br>
     연락처 : <span class="wphoneBox"></span> <br>
     대기인원 : <span class="wcountBox"></span> <br>
+    등록일시 : <span class="wdateBox"></span> <br> <br>
 
     <button type="button" onclick="updateTrans()"> 수정 </button>
     <button type="button" onclick="waitingDelete()"> 삭제 </button>

@@ -23,6 +23,7 @@
                 <th>대기번호</th>
                 <th>연락처</th>
                 <th>대기인원</th>
+                <th>등록일시</th>
             </tr>
         </thead>
         <tbody id="waitingTbody">

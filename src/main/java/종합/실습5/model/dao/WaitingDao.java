@@ -50,7 +50,8 @@ public class WaitingDao extends Dao {
                 WaitingDto waitingDto = new WaitingDto(
                         rs.getInt("wno"),
                         rs.getString("wphone"),
-                        rs.getInt("wcount")
+                        rs.getInt("wcount"),
+                        rs.getString("wdate")
                 );
                 // 생성한 객체 리스트에 넣기
                 list.add( waitingDto );
@@ -78,7 +79,8 @@ public class WaitingDao extends Dao {
                 WaitingDto waitingDto = new WaitingDto(
                         rs.getInt("wno"),
                         rs.getString("wphone"),
-                        rs.getInt("wcount")
+                        rs.getInt("wcount"),
+                        rs.getString("wdate")
                 );
                 return waitingDto;
             } // if end

@@ -18,6 +18,7 @@ const waitingPrintAll = async ( ) => {
                     <td>${waiting.wno}</td>
                     <td><a href="/assignment5/view.jsp?wno=${waiting.wno}">${waiting.wphone}</a></td>
                     <td>${waiting.wcount}</td>
+                    <td>${waiting.wdate}</td>
                 </tr>`
     });
     // 6. print

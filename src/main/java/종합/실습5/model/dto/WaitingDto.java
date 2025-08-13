@@ -11,5 +11,5 @@ public class WaitingDto {
     private int wno;
     private String wphone;
     private int wcount;
-
+    private String wdate;
 } // class end
