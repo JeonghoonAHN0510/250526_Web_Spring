@@ -26,6 +26,7 @@ public class LoginController {
 
         // ** 세션 속성 추가하기, 속성이란? key-value로 구성된 메모리 공간
         session.setAttribute( "loginMno", 3 );                      // ( "속성명", 속성값 ), "loginMno"라는 속성명으로 3이라는 데이터를 저장
+        System.out.println("[로그인 성공]");
 
         return true;
     } // func end
@@ -46,6 +47,21 @@ public class LoginController {
         int loginMno = ( int ) obj;
         System.out.println("[로그인 상태]");
         System.out.println("loginMno = " + loginMno);
+
+        return true;
+    } // func end
+
+    // [3] 로그아웃 기능 : 세선정보 내 속성 제거하기
+    @GetMapping("/logout")
+    public boolean logout( HttpServletRequest request ){
+        // 1. 세선정보 가져오기
+        HttpSession session = request.getSession();
+        // * 세션정보에 세션이 존재하는지 확인 후, 존재하면 뒤 진행 / 존재하지않으면 비로그인 상태 알림
+        // 2.1. 특정한 속성 제거하기
+        session.removeAttribute( "loginMno" );
+        // 2.2. 전체 속성 제거하기
+        // session.invalidate();
+        System.out.println("[로그아웃 완료]");
 
         return true;
     } // func end
