@@ -30,6 +30,9 @@ public class MemberService {
     } // func end
 
     // [member05] 중복검사 기능 - check
+    public boolean check( String type, String data ){
+        return memberDao.check( type, data );
+    } // func end
 
     // [member06] 회원정보수정 기능 - update
 

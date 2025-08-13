@@ -94,6 +94,24 @@ public class MemberDao extends Dao {
     } // func end
 
     // [member05] 중복검사 기능 - check
+    // 특정한 속성의 값 중복 확인
+    // mid나 mname의 중복을 확인하고 싶을 때, 사용 -> 속성명은 ? 지원 X
+    public boolean check( String type, String data ){
+        try {
+            String SQL = "select * from member where " + type + " = ? ";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setString( 1, data );
+            ResultSet rs = ps.executeQuery();
+            if ( rs.next() ){
+                // 중복이면 true
+                return true;
+            } // if end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        // 중복이 아니면 false
+        return false;
+    } // func end
 
     // [member06] 회원정보수정 기능 - update
 

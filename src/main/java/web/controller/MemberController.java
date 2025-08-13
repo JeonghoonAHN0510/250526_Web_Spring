@@ -84,6 +84,13 @@ public class MemberController {
     } // func end
 
     // [member05] 중복검사 기능 - check
+    // true : 중복 존재, false : 중복 없음
+    @GetMapping("/check")
+    public boolean check( @RequestParam String type, @RequestParam String data ){
+        System.out.println("MemberController.check");
+
+        return memberService.check( type, data );
+    } // func end
 
     // [member06] 회원정보수정 기능 - update
 
