@@ -93,5 +93,29 @@ public class MemberController {
     } // func end
 
     // [member06] 회원정보수정 기능 - update
+    @PutMapping("/update")
+    public boolean update( @RequestBody MemberDto memberDto, HttpServletRequest request ){
+        System.out.println("MemberController.update");
+        // 1. 세션정보 가져오기
+        HttpSession session = request.getSession();
+        // 2. 세션정보 유효성 검사
+        if ( session == null || session.getAttribute( "loginMno" ) == null ){
+            // 3. 비로그인 상태면, false 반환
+            System.out.println("[로그인 정보 없음]");
+            return false;
+        } // if end
+        // 4. 로그인 상태라면, mno 가져오기
+        int mno = ( int ) session.getAttribute("loginMno");
+        // 5. 로그인 중인 mno를 입력받은 객체에 넣기
+        memberDto.setMno( mno );
+        // 6. 객체를 Service에게 전달 후 결과 반환하기
+        System.out.println("[회원정보수정 성공]");
+        return memberService.update( memberDto );
+    } // func end
+
+    // [member07] 비밀번호수정 기능 - updatePassword
+
+
+    // [member08] 회원탈퇴 기능 - delete
 
 } // class end

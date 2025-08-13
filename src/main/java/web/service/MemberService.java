@@ -35,5 +35,10 @@ public class MemberService {
     } // func end
 
     // [member06] 회원정보수정 기능 - update
+    public boolean update( MemberDto memberDto ){
+        return memberDao.update( memberDto );
+    } // func end
+
+    // [member07] 비밀번호수정 기능 - updatePassword
 
 } // class end

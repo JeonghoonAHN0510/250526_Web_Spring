@@ -114,5 +114,25 @@ public class MemberDao extends Dao {
     } // func end
 
     // [member06] 회원정보수정 기능 - update
+    public boolean update( MemberDto memberDto ){
+        try {
+            String SQL = "update member set mname = ?, mphone = ? where mno = ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setString( 1, memberDto.getMname() );
+            ps.setString( 2, memberDto.getMphone() );
+            ps.setInt( 3, memberDto.getMno() );
+            int count = ps.executeUpdate();
+            if ( count == 1 ){
+                // 수정에 성공하면
+                return true;
+            } // if end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        // 수정에 실패하면
+        return false;
+    } // func end
+
+    // [member07] 비밀번호수정 기능 - updatePassword
 
 } // class end
