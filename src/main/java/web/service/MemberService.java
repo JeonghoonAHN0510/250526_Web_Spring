@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import web.model.dao.MemberDao;
 import web.model.dto.MemberDto;
 
+import java.util.Map;
+
 @Service    // 스프링 컨테이너에 객체 등록
 public class MemberService {
     // * MemberDao 가져오기
@@ -40,8 +42,8 @@ public class MemberService {
     } // func end
 
     // [member07] 비밀번호수정 기능 - updatePassword
-    public boolean updatePassword( MemberDto memberDto ){
-        return memberDao.updatePassword( memberDto );
+    public boolean updatePassword( int mno, Map< String, String > map ){
+        return memberDao.updatePassword( mno, map );
     } // func end
 
     // [member08] 회원탈퇴 기능 - delete

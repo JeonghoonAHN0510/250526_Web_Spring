@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
 
 @Repository    // 스프링 컨테이너에 객체 등록
 public class MemberDao extends Dao {
@@ -134,19 +135,22 @@ public class MemberDao extends Dao {
     } // func end
 
     // [member07] 비밀번호수정 기능 - updatePassword
-    public boolean updatePassword( MemberDto memberDto ){
+    public boolean updatePassword( int mno, Map< String, String > map ){
         try {
-            String SQL = "update member set mpwd = ? where mno = ?";
+            String SQL = "update member set mpwd = ? where mno = ? and mpwd = ?";
             PreparedStatement ps = conn.prepareStatement( SQL );
-            ps.setString( 1, memberDto.getMpwd() );
-            ps.setInt( 2, memberDto.getMno() );
+            ps.setString( 1, map.get( "newPwd" ) );     // 신규 비밀번호
+            ps.setInt( 2, mno );
+            ps.setString( 3, map.get( "oldPwd" ) );     // 기존 비밀번호
             int count = ps.executeUpdate();
             if ( count == 1 ){
+                // 수정에 성공하면
                 return true;
             } // if end
         } catch ( SQLException e ){
             System.out.println( e );
         } // try-catch end
+        // 수정에 실패하면
         return false;
     } // func end
 

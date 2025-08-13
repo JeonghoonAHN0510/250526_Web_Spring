@@ -119,15 +119,17 @@ public class MemberController {
     } // func end
 
     // [member07] 비밀번호수정 기능 - updatePassword
+    @PutMapping("/update/password")
     public boolean updatePassword( @RequestBody Map< String, String > map, HttpServletRequest request ){
         System.out.println("MemberController.updatePassword");
         // 1. 세션정보 가져오기
         HttpSession session = request.getSession();
-
-        // . Service에게 전달할 객체 생성
-        MemberDto memberDto = new MemberDto();
-
-        return memberService.updatePassword( memberDto );
+        // 2. 세션정보 유효성 검사
+        if ( !checkSession( session ) ) return false;
+        // 3. 로그인 상태라면, mno 가져오기
+        int mno = ( int )session.getAttribute("loginMno");
+        // 4. Service에게 전달 후 결과 반환하기
+        return memberService.updatePassword( mno, map );
     } // func end
 
     // [member08] 회원탈퇴 기능 - delete
