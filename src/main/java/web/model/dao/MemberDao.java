@@ -42,4 +42,33 @@ public class MemberDao extends Dao {
         return 0;
     } // func end
 
+    // [member02] 로그인 기능 - login
+    public int login( MemberDto memberDto ){
+        try {
+            // 1. SQL 작성
+            String SQL = "select mno from member where mid = ? and mpwd = ?";
+            // 2. SQL 기재
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            // 3. SQL 매개변수 대입
+            ps.setString( 1, memberDto.getMid() );
+            ps.setString( 2, memberDto.getMpwd() );
+            // 4. SQL 실행
+            ResultSet rs = ps.executeQuery();
+            // 5. SQL 결과 반환
+            if ( rs.next() ){
+                // 로그인 성공 시, 조회한 회원번호 반환
+                return rs.getInt( "mno" );
+            } // if end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        // 로그인 실패 시, 0 반환
+        return 0;
+    } // func end
+
+    // [member04] 내정보 확인 기능 - info
+    public MemberDto info( int mno ){
+
+        return null;
+    } // func end
 } // class end
