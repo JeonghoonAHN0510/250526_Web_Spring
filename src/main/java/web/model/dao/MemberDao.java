@@ -134,5 +134,22 @@ public class MemberDao extends Dao {
     } // func end
 
     // [member07] 비밀번호수정 기능 - updatePassword
+    public boolean updatePassword( MemberDto memberDto ){
+        try {
+            String SQL = "update member set mpwd = ? where mno = ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setString( 1, memberDto.getMpwd() );
+            ps.setInt( 2, memberDto.getMno() );
+            int count = ps.executeUpdate();
+            if ( count == 1 ){
+                return true;
+            } // if end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return false;
+    } // func end
+
+    // [member08] 회원탈퇴 기능 - delete
 
 } // class end

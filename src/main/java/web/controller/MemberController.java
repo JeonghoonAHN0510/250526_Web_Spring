@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import web.model.dto.MemberDto;
 import web.service.MemberService;
 
+import java.util.Map;
+
 @RestController    // 스프링 컨테이너에 객체 등록
 @RequestMapping("/member")
 public class MemberController {
@@ -52,11 +54,12 @@ public class MemberController {
         // 1. 세션정보 가져오기
         HttpSession session = request.getSession();
         // 2. 세션정보가 없거나 특정한 속성값이 없으면(=유효성 검사)
-        if ( session == null || session.getAttribute( "loginMno" ) == null ){
-            // 3. 비로그인 상태여서, 로그아웃 실패
-            System.out.println("[로그아웃 실패]");
-            return false;
-        } // if end
+        if ( !checkSession( session ) ) return false;
+//        if ( session == null || session.getAttribute( "loginMno" ) == null ){
+//            // 3. 비로그인 상태여서, 로그아웃 실패
+//            System.out.println("[로그아웃 실패]");
+//            return false;
+//        } // if end
         // 4. 로그인 상태라면, 속성값 제거
         session.removeAttribute( "loginMno" );
         // 5. 로그아웃 성공 반환
@@ -71,11 +74,12 @@ public class MemberController {
         // 1. 세션정보 가져오기
         HttpSession session = request.getSession();
         // 2. 세션정보가 없거나 특정한 속성값이 없으면(= 유효성 검사)
-        if ( session == null || session.getAttribute( "loginMno" ) == null ){
-            // 3. null 반환
-            System.out.println("[로그인 정보 없음]");
-            return null;
-        } // func end
+        if ( !checkSession( session ) ) return null;
+//        if ( session == null || session.getAttribute( "loginMno" ) == null ){
+//            // 3. null 반환
+//            System.out.println("[로그인 정보 없음]");
+//            return null;
+//        } // func end
         // 4. 로그인 상태라면, mno 가져오기
         int mno = ( int )session.getAttribute("loginMno");
         System.out.println("[로그인 mno = " + mno + "]");
@@ -99,12 +103,13 @@ public class MemberController {
         // 1. 세션정보 가져오기
         HttpSession session = request.getSession();
         // 2. 세션정보 유효성 검사
-        if ( session == null || session.getAttribute( "loginMno" ) == null ){
-            // 3. 비로그인 상태면, false 반환
-            System.out.println("[로그인 정보 없음]");
-            return false;
-        } // if end
-        // 4. 로그인 상태라면, mno 가져오기
+        if ( !checkSession( session ) ) return false;
+//        if ( session == null || session.getAttribute( "loginMno" ) == null ){
+//            // 3. 비로그인 상태면, false 반환
+//            System.out.println("[로그인 정보 없음]");
+//            return false;
+//        } // if end
+        // 4. 로그인 상태라면, mno
         int mno = ( int ) session.getAttribute("loginMno");
         // 5. 로그인 중인 mno를 입력받은 객체에 넣기
         memberDto.setMno( mno );
@@ -114,8 +119,31 @@ public class MemberController {
     } // func end
 
     // [member07] 비밀번호수정 기능 - updatePassword
+    public boolean updatePassword( @RequestBody Map< String, String > map, HttpServletRequest request ){
+        System.out.println("MemberController.updatePassword");
+        // 1. 세션정보 가져오기
+        HttpSession session = request.getSession();
 
+        // . Service에게 전달할 객체 생성
+        MemberDto memberDto = new MemberDto();
+
+        return memberService.updatePassword( memberDto );
+    } // func end
 
     // [member08] 회원탈퇴 기능 - delete
+
+
+    // [member00] 세션정보 유효성검사 - checkSession
+    public boolean checkSession( HttpSession session ){
+        System.out.println("MemberController.checkSession");
+        // 1. 세션정보 유효성검사 -> 세션정보가 없거나 특정한 속성값이 없으면
+        if ( session == null || session.getAttribute( "loginMno" ) == null ){
+            System.out.println("[로그인 정보 없음]");
+            // 2. false 반환
+            return false;
+        } // if end
+        // 3. 로그인 정보가 있으면 true 반환
+        return true;
+    } // func end
 
 } // class end
