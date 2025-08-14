@@ -28,6 +28,7 @@
         <a href="/member/find.jsp"> 아이디/비밀번호 찾기 </a>
     </div>
 
+    <!-- JS 불러오기 -->
     <script src="/js/member/login.js"></script>
 </body>
 
