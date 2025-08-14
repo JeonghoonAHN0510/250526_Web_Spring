@@ -113,10 +113,11 @@ public class MemberController {
         if ( !checkSession( session ) ) return false;
         // 3. 로그인 상태라면, mno 가져오기
         int mno = ( int )session.getAttribute("loginMno");
-        // 4. 세션 초기화
-        session.invalidate();
-        // 5. Service에게 전달 후 결과 반환하기
-        return memberService.updatePassword( mno, map );
+        // 4. Service에게 전달 후 결과 반환하기
+        boolean result = memberService.updatePassword( mno, map );
+        // 5. 세션 초기화
+        if ( result ) session.invalidate();
+        return result;
     } // func end
 
     // [member08] 회원탈퇴 기능 - delete
@@ -150,5 +151,10 @@ public class MemberController {
         // 3. 로그인 정보가 있으면 true 반환
         return true;
     } // func end
+
+    // [member09] 아이디 찾기 - findId
+
+
+    // [member10] 비밀번호 찾기 - findPwd
 
 } // class end

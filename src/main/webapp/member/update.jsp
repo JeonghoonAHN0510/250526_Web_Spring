@@ -19,7 +19,14 @@
     <!-- header JSP 불러오기 -->
     <jsp:include page="/header.jsp"></jsp:include>
 
-    
+    <div id="container">
+        <h3> 회원정보수정 페이지 </h3>
+        <div> 회원번호 : <span class="mno"></span></div>
+        <div> 아이디 : <span class="mid"></span></div>
+        <div> 이름 : <input type="text" class="mname"></div>
+        <div> 연락처 : <input type="text" class="mphone"></div>
+        <button type="button" onclick="onUpdate()"> 수정 </button>
+    </div> 
 
     <!-- JS 불러오기 -->
     <script src="/js/member/update.js"></script>
