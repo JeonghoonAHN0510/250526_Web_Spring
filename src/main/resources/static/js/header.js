@@ -1,8 +1,8 @@
 console.log('header.js open');
 
 // [1] 내정보 요청하여 메뉴 나누기
-const info = async ( ) => {
-    console.log('info func exe');
+const infoMenu = async ( ) => {
+    console.log('infoMenu func exe');
     // 0. where
     const logMenu = document.querySelector('#log-menu');
     let html = '';
@@ -29,7 +29,7 @@ const info = async ( ) => {
     // 5. print
     logMenu.innerHTML = html;
 } // func end
-info(); // header.jsp가 실행될 때마다, 최초 1번 실행
+infoMenu(); // header.jsp가 실행될 때마다, 최초 1번 실행
 
 // [2] 로그아웃
 const logout = async ( ) => {

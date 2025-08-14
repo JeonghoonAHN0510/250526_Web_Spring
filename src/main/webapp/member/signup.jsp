@@ -10,8 +10,8 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <!-- CSS 불러오기 : static 이하 경로부터 작성 -->
-    <link href="/css/common.css" rel="stylesheet">
-    <link href="/css/member/signup.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/member/signup.css">
 
 </head>
 

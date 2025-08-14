@@ -11,6 +11,7 @@
 
     <!-- CSS 불러오기 : static 이하 경로부터 작성 -->
     <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/member/info.css">
 
 </head>
 
@@ -18,10 +19,8 @@
     <!-- header JSP 불러오기 -->
     <jsp:include page="/header.jsp"></jsp:include>
 
-    
-
     <!-- JS 불러오기 -->
-
+    <script src="/js/member/info.js"></script>
 </body>
 
 </html>
