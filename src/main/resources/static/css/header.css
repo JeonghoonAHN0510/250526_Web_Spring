@@ -1,0 +1,21 @@
+/*======================공통 CSS===================*/
+
+
+/*======================header CSS===================*/
+#header{
+    display: flex;
+    /* 양쪽에 붙이기 */    
+    justify-content: space-between;
+}
+#header > #sub-menu{
+    display: flex;
+}
+#header > #sub-menu > li{
+    margin-left: 10px;
+}
+#header > #log-menu{
+    display: flex;
+}
+#header > #log-menu > li{
+    margin-left: 10px;
+}

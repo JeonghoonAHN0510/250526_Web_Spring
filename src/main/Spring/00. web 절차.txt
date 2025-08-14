@@ -19,3 +19,5 @@
     -> Service      : 비지니스 로직 구현
     -> Controller   : 세션 관리, 매핑
     -> Test(Talend API 활용)
+
+[6] 기본적인 HTML 구현하기
