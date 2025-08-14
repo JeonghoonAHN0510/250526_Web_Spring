@@ -31,7 +31,8 @@ const onPwdUpdate = async ( ) => {
     } // try-catch end
 } // func end
 
-// [1] 기존 회원정보 출력
+// [*] 기존 회원정보 출력
+// -> 비로그인 시, 로그인페이지로 이동시키기 위한 함수( 원래는 메소드를 만들어서 연결해야하는데, 일단 연결해놓았다.)
 const info = async ( ) => {
     console.log('info func exe');
     try {
