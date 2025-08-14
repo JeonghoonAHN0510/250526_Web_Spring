@@ -11,6 +11,7 @@
 
     <!-- CSS 불러오기 : static 이하 경로부터 작성 -->
     <link href="/css/header.css" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
 
 </head>
 

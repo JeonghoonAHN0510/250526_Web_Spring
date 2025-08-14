@@ -8,8 +8,10 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
+
+    <!-- CSS 불러오기 : static 이하 경로부터 작성 -->
+    <link href="/css/common.css" rel="stylesheet">
+
 </head>
 
 <body>
