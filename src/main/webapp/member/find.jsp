@@ -19,7 +19,17 @@
     <!-- header JSP 불러오기 -->
     <jsp:include page="/header.jsp"></jsp:include>
 
-    
+    <div id="container">
+        <h3> 아이디 찾기 </h3>
+        이름 : <input type="text" class="findIdmname" placeholder="이름 입력"> <br>
+        연락처 : <input type="text" class="findIdmphone" placeholder="연락처 입력">
+        <button type="button" onclick="findId()"> 아이디 찾기 </button>
+        <br>
+        <h3> 비밀번호 찾기 </h3>
+        아이디 : <input type="text" class="findPwdmid" placeholder="아이디 입력"> <br>
+        연락처 : <input type="text" class="findPwdmphone" placeholder="연락처 입력">
+        <button type="button" onclick="findPwd()"> 비밀번호 찾기 </button>
+    </div>
 
     <!-- JS 불러오기 -->
     <script src="/js/member/find.js"></script>

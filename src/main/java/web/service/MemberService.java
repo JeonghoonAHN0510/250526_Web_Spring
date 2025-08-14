@@ -53,7 +53,7 @@ public class MemberService {
 
     // [member09] 아이디 찾기 - findId
     // 이름 + 연락처를 입력받아, 일치 시 아이디를 반환한다.
-    public String findId( MemberDto memberDto ){
+    public MemberDto findId( MemberDto memberDto ){
         return memberDao.findId( memberDto );
     } // func end
 
@@ -65,7 +65,7 @@ public class MemberService {
 
     // [member11] 난수 생성 - createPwd
     // 새로운 난수 비밀번호 생성 후 반환하고, 생성된 비밀번호를 DB에 업데이트한다.
-    public String createPwd( MemberDto memberDto ){
+    public MemberDto createPwd( MemberDto memberDto ){
         return memberDao.createPwd( memberDto );
     } // func end
 } // class end

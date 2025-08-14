@@ -174,7 +174,7 @@ public class MemberDao extends Dao {
 
     // [member09] 아이디 찾기 - findId
     // 이름 + 연락처를 입력받아, 일치 시 아이디를 반환한다.
-    public String findId( MemberDto memberDto ){
+    public MemberDto findId( MemberDto memberDto ){
         try {
             String SQL = "select mid from member where mname = ? and mphone = ?";
             PreparedStatement ps = conn.prepareStatement( SQL );
@@ -182,7 +182,8 @@ public class MemberDao extends Dao {
             ps.setString( 2, memberDto.getMphone() );
             ResultSet rs = ps.executeQuery();
             if ( rs.next() ){
-                return rs.getString( "mid" );
+                memberDto.setMid( rs.getString( "mid" ) );
+                return memberDto;
             } // if end
         } catch ( SQLException e ){
             System.out.println( e );
@@ -210,7 +211,7 @@ public class MemberDao extends Dao {
 
     // [member11] 난수 생성 - createPwd
     // 새로운 난수 비밀번호 생성 후 반환하고, 생성된 비밀번호를 DB에 업데이트한다.
-    public String createPwd( MemberDto memberDto ){
+    public MemberDto createPwd( MemberDto memberDto ){
         try {
             String SQL = "update member set mpwd = ? where mid = ? and mphone = ?";
             PreparedStatement ps = conn.prepareStatement( SQL );
@@ -219,7 +220,7 @@ public class MemberDao extends Dao {
             ps.setString( 3, memberDto.getMphone() );
             int count = ps.executeUpdate();
             if ( count == 1 ){
-                return memberDto.getMpwd();
+                return memberDto;
             } // if end
         } catch ( SQLException e ){
             System.out.println( e );

@@ -1,1 +1,24 @@
 console.log('find.js open')
+
+// [1] 아이디 찾기
+const findId = async ( ) => {
+    console.log('findId func exe');
+    try {
+        // 1. Input value
+        const mname = document.querySelector('.findIdmname').value;
+        const mphone = document.querySelector('.findIdmphone').value;
+        // 2. fetch option
+        const option = { method : "GET" };
+        // 3. fetch response
+        const response = await fetch( `/member/findId?mname=${mname}&mphone=${mphone}`, option );
+        // 4. fetch data
+        const data = await response.json();
+        // 5. result
+        alert(`아이디 : ${data.mid}`);
+    } catch ( error ) {
+        console.log( error );
+        alert('일치하지 않는 정보입니다.');
+    } // try-catch end
+} // func end
+
+// [2] 비밀번호 찾기

@@ -156,7 +156,7 @@ public class MemberController {
     // [member09] 아이디 찾기 - findId
     // 이름 + 연락처를 입력받아, 일치 시 아이디를 반환한다.
     @GetMapping("/findId")
-    public String findId( @RequestParam String mname, @RequestParam String mphone ){
+    public MemberDto findId( @RequestParam String mname, @RequestParam String mphone ){
         System.out.println("MemberController.findId");
         // 1. Service에게 전달할 객체 생성 후 값 넣기
         MemberDto memberDto = new MemberDto();
@@ -170,7 +170,7 @@ public class MemberController {
     // 아이디 + 연락처를 입력받아, 일치하는지 확인 후 일치하면,
     // 새로운 난수 비밀번호 생성 후 반환하고, 생성된 비밀번호를 DB에 업데이트한다.
     @GetMapping("/findPwd")
-    public String findPwd( @RequestParam String mid, @RequestParam String mphone ){
+    public MemberDto findPwd( @RequestParam String mid, @RequestParam String mphone ){
         System.out.println("MemberController.findPwd");
         // 1. Service에게 전달할 객체 생성 후 값 넣기
         MemberDto memberDto = new MemberDto();
@@ -186,9 +186,8 @@ public class MemberController {
         } // if end
     } // func end
 
-
     // [member11] 난수 생성 - createPwd
-    public String createPwd( MemberDto memberDto ){
+    public MemberDto createPwd( MemberDto memberDto ){
         // 1. 새로운 비밀번호 선언
         StringBuilder newPwd = new StringBuilder();
         // 2. 10자리 새로운 비밀번호 생성
@@ -211,5 +210,4 @@ public class MemberController {
         memberDto.setMpwd( newPwd.toString() );
         return memberService.createPwd( memberDto );
     } // func end
-
 } // class end
