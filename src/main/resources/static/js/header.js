@@ -13,6 +13,8 @@ const info = async ( ) => {
         const response = await fetch( "/member/info", option );
         // 3. fetch data
         const data = await response.json();
+        // return 값이 null이면, json() 변환이 안되기 때문에 catch에 잡혀서 넘어간다.
+        // 즉, data == null로 잡아서 비로그인 시, 출력문을 작성하면 안 된다.
         console.log( data );
         // 4. what
         html += `<li><span> ${data.mid}님 </span></li>
