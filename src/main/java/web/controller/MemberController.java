@@ -8,6 +8,7 @@ import web.model.dto.MemberDto;
 import web.service.MemberService;
 
 import java.util.Map;
+import java.util.Random;
 
 @RestController    // 스프링 컨테이너에 객체 등록
 @RequestMapping("/member")
@@ -166,7 +167,49 @@ public class MemberController {
     } // func end
 
     // [member10] 비밀번호 찾기 - findPwd
-    // 아이디 + 연락처를 입력받아, 일치 시 새로운 난수 비밀번호 생성 후 반환하고, 생성된 비밀번호를 DB에 업데이트한다.
+    // 아이디 + 연락처를 입력받아, 일치하는지 확인 후 일치하면,
+    // 새로운 난수 비밀번호 생성 후 반환하고, 생성된 비밀번호를 DB에 업데이트한다.
+    @GetMapping("/findPwd")
+    public String findPwd( @RequestParam String mid, @RequestParam String mphone ){
+        System.out.println("MemberController.findPwd");
+        // 1. Service에게 전달할 객체 생성 후 값 넣기
+        MemberDto memberDto = new MemberDto();
+        memberDto.setMid( mid );
+        memberDto.setMphone( mphone );
+        // 2. Service에게 전달하여, 일치하는지 확인하기
+        if ( memberService.findPwd( memberDto ) == 1 ){
+            // 3. 일치하면, 난수를 생성하여 반환
+            return createPwd( memberDto );
+        } else {
+            // 4. 일치하지 않으면, null 반환
+            return null;
+        } // if end
+    } // func end
 
+
+    // [member11] 난수 생성 - createPwd
+    public String createPwd( MemberDto memberDto ){
+        // 1. 새로운 비밀번호 선언
+        StringBuilder newPwd = new StringBuilder();
+        // 2. 10자리 새로운 비밀번호 생성
+        for ( int i = 1; i <= 10; i++ ){
+            Random random = new Random();
+            int type = random.nextInt( 3 );
+            if ( type == 0 ){           // 소문자
+                int value = random.nextInt( 26 ) + 'a';
+                newPwd.append( ( char ) value );
+            } else if ( type == 1 ){    // 정수
+                int value = random.nextInt( 10 ) + '0';
+                newPwd.append( ( char ) value );
+            } else {                    // 대문자
+                int value = random.nextInt( 26 ) + 'A';
+                newPwd.append( ( char ) value );
+            } // if end
+        } // for end
+        System.out.println( newPwd );
+        // 3. 생성한 난수 비밀번호 Service에게 전달 후, 결과 반환
+        memberDto.setMpwd( newPwd.toString() );
+        return memberService.createPwd( memberDto );
+    } // func end
 
 } // class end

@@ -191,5 +191,39 @@ public class MemberDao extends Dao {
     } // func end
 
     // [member10] 비밀번호 찾기 - findPwd
-    // 아이디 + 연락처를 입력받아, 일치 시 새로운 난수 비밀번호 생성 후 반환하고, 생성된 비밀번호를 DB에 업데이트한다.
+    // 아이디 + 연락처를 입력받아, 일치확인. -> 0이면 불일치, 1이면 일치
+    public int findPwd( MemberDto memberDto ){
+        try {
+            String SQL = "select count(*) from member where mid = ? and mphone = ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setString( 1, memberDto.getMid() );
+            ps.setString( 2, memberDto.getMphone() );
+            ResultSet rs = ps.executeQuery();
+            if ( rs.next() ){
+                return rs.getInt( "count(*)" );
+            } // func end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return 0;
+    } // func end
+
+    // [member11] 난수 생성 - createPwd
+    // 새로운 난수 비밀번호 생성 후 반환하고, 생성된 비밀번호를 DB에 업데이트한다.
+    public String createPwd( MemberDto memberDto ){
+        try {
+            String SQL = "update member set mpwd = ? where mid = ? and mphone = ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setString( 1, memberDto.getMpwd() );
+            ps.setString( 2, memberDto.getMid() );
+            ps.setString( 3, memberDto.getMphone() );
+            int count = ps.executeUpdate();
+            if ( count == 1 ){
+                return memberDto.getMpwd();
+            } // if end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return null;
+    } // func end
 } // class end

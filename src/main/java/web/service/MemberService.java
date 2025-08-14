@@ -58,5 +58,14 @@ public class MemberService {
     } // func end
 
     // [member10] 비밀번호 찾기 - findPwd
-    // 아이디 + 연락처를 입력받아, 일치 시 새로운 난수 비밀번호 생성 후 반환하고, 생성된 비밀번호를 DB에 업데이트한다.
+    // 아이디 + 연락처를 입력받아, 일치확인. -> 0이면 불일치, 1이면 일치
+    public int findPwd( MemberDto memberDto ){
+        return memberDao.findPwd( memberDto );
+    } // func end
+
+    // [member11] 난수 생성 - createPwd
+    // 새로운 난수 비밀번호 생성 후 반환하고, 생성된 비밀번호를 DB에 업데이트한다.
+    public String createPwd( MemberDto memberDto ){
+        return memberDao.createPwd( memberDto );
+    } // func end
 } // class end
