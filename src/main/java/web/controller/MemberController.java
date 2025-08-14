@@ -177,7 +177,7 @@ public class MemberController {
         memberDto.setMid( mid );
         memberDto.setMphone( mphone );
         // 2. Service에게 전달하여, 일치하는지 확인하기
-        if ( memberService.findPwd( memberDto ) == 1 ){
+        if ( memberService.findPwd( memberDto ) != null ){
             // 3. 일치하면, 난수를 생성하여 반환
             return createPwd( memberDto );
         } else {

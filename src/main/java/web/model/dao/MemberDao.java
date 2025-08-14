@@ -193,7 +193,7 @@ public class MemberDao extends Dao {
 
     // [member10] 비밀번호 찾기 - findPwd
     // 아이디 + 연락처를 입력받아, 일치확인. -> 0이면 불일치, 1이면 일치
-    public int findPwd( MemberDto memberDto ){
+    public MemberDto findPwd( MemberDto memberDto ){
         try {
             String SQL = "select count(*) from member where mid = ? and mphone = ?";
             PreparedStatement ps = conn.prepareStatement( SQL );
@@ -201,12 +201,15 @@ public class MemberDao extends Dao {
             ps.setString( 2, memberDto.getMphone() );
             ResultSet rs = ps.executeQuery();
             if ( rs.next() ){
-                return rs.getInt( "count(*)" );
+                // 일치한다면 객체 그대로 반환
+                if ( rs.getInt( 1 ) == 1 ){
+                    return memberDto;
+                } // if end
             } // func end
         } catch ( SQLException e ){
             System.out.println( e );
         } // try-catch end
-        return 0;
+        return null;
     } // func end
 
     // [member11] 난수 생성 - createPwd

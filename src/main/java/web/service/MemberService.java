@@ -59,7 +59,7 @@ public class MemberService {
 
     // [member10] 비밀번호 찾기 - findPwd
     // 아이디 + 연락처를 입력받아, 일치확인. -> 0이면 불일치, 1이면 일치
-    public int findPwd( MemberDto memberDto ){
+    public MemberDto findPwd( MemberDto memberDto ){
         return memberDao.findPwd( memberDto );
     } // func end
 
