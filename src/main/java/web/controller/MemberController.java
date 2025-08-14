@@ -113,7 +113,9 @@ public class MemberController {
         if ( !checkSession( session ) ) return false;
         // 3. 로그인 상태라면, mno 가져오기
         int mno = ( int )session.getAttribute("loginMno");
-        // 4. Service에게 전달 후 결과 반환하기
+        // 4. 세션 초기화
+        session.invalidate();
+        // 5. Service에게 전달 후 결과 반환하기
         return memberService.updatePassword( mno, map );
     } // func end
 
@@ -130,7 +132,9 @@ public class MemberController {
         MemberDto memberDto = new MemberDto();
         memberDto.setMno( mno );
         memberDto.setMpwd( mpwd );
-        // 5. Service에게 전달 후, 결과 반환하기
+        // 5. 세션 초기화
+        session.invalidate();
+        // 6. Service에게 전달 후, 결과 반환하기
         return memberService.delete( memberDto );
     } // func end
 
