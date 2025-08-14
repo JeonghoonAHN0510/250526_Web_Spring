@@ -4,7 +4,7 @@ console.log('signup.js open');
 const signup = async ( ) => {
     console.log('signup func exe');
     // 유효성 검사 체크리스트에 false가 존재하면, 회원가입 진행 불가능
-    if ( signPass[0] == false ){
+    if ( signPass[0] == false || signPass[1] == false ){
         alert('올바른 정보를 입력해주세요.');
         return;
     } // if end
