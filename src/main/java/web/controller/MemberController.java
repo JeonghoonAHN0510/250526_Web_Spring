@@ -153,8 +153,20 @@ public class MemberController {
     } // func end
 
     // [member09] 아이디 찾기 - findId
-
+    // 이름 + 연락처를 입력받아, 일치 시 아이디를 반환한다.
+    @GetMapping("/findId")
+    public String findId( @RequestParam String mname, @RequestParam String mphone ){
+        System.out.println("MemberController.findId");
+        // 1. Service에게 전달할 객체 생성 후 값 넣기
+        MemberDto memberDto = new MemberDto();
+        memberDto.setMname( mname );
+        memberDto.setMphone( mphone );
+        // 2. Service에게 전달 후 결과 받기
+        return memberService.findId( memberDto );
+    } // func end
 
     // [member10] 비밀번호 찾기 - findPwd
+    // 아이디 + 연락처를 입력받아, 일치 시 새로운 난수 비밀번호 생성 후 반환하고, 생성된 비밀번호를 DB에 업데이트한다.
+
 
 } // class end

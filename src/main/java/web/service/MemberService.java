@@ -50,4 +50,13 @@ public class MemberService {
     public boolean delete( MemberDto memberDto ){
         return memberDao.delete( memberDto );
     } // func end
+
+    // [member09] 아이디 찾기 - findId
+    // 이름 + 연락처를 입력받아, 일치 시 아이디를 반환한다.
+    public String findId( MemberDto memberDto ){
+        return memberDao.findId( memberDto );
+    } // func end
+
+    // [member10] 비밀번호 찾기 - findPwd
+    // 아이디 + 연락처를 입력받아, 일치 시 새로운 난수 비밀번호 생성 후 반환하고, 생성된 비밀번호를 DB에 업데이트한다.
 } // class end

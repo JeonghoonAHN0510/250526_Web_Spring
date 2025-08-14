@@ -171,4 +171,25 @@ public class MemberDao extends Dao {
         } // try-catch end
         return false;
     } // func end
+
+    // [member09] 아이디 찾기 - findId
+    // 이름 + 연락처를 입력받아, 일치 시 아이디를 반환한다.
+    public String findId( MemberDto memberDto ){
+        try {
+            String SQL = "select mid from member where mname = ? and mphone = ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setString( 1, memberDto.getMname() );
+            ps.setString( 2, memberDto.getMphone() );
+            ResultSet rs = ps.executeQuery();
+            if ( rs.next() ){
+                return rs.getString( "mid" );
+            } // if end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return null;
+    } // func end
+
+    // [member10] 비밀번호 찾기 - findPwd
+    // 아이디 + 연락처를 입력받아, 일치 시 새로운 난수 비밀번호 생성 후 반환하고, 생성된 비밀번호를 DB에 업데이트한다.
 } // class end
