@@ -28,7 +28,7 @@
         <div class="mdateBox"></div>
         <a href="/member/update.jsp"> 회원정보 수정 </a>     <br>
         <a href="/member/pwdUpdate.jsp"> 비밀번호 수정 </a>  <br>
-        <a href="" onclick="onDelete()"> 회원 탈퇴 </a>      <br>
+        <a href="#" onclick="onDelete()"> 회원 탈퇴 </a>     <br>
     </div>
 
     <!-- JS 불러오기 -->
