@@ -11,7 +11,7 @@
 
     <!-- CSS 불러오기 : static 이하 경로부터 작성 -->
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/member/info.css">
+    <link rel="stylesheet" href="/css/member/update.css">
 
 </head>
 
@@ -19,20 +19,10 @@
     <!-- header JSP 불러오기 -->
     <jsp:include page="/header.jsp"></jsp:include>
 
-    <div id="container">
-        <h3> 마이페이지 </h3>
-        <div class="mnoBox"></div>
-        <div class="midBox"></div>
-        <div class="mnameBox"></div>
-        <div class="mphoneBox"></div>
-        <div class="mdateBox"></div>
-        <a href="/member/update.jsp"> 회원정보 수정 </a>     <br>
-        <a href="/member/pwdUpdate.jsp"> 비밀번호 수정 </a>  <br>
-        <a href="" onclick="onDelete()"> 회원 탈퇴 </a>      <br>
-    </div>
+    
 
     <!-- JS 불러오기 -->
-    <script src="/js/member/info.js"></script>
+    <script src="/js/member/update.js"></script>
 </body>
 
 </html>
