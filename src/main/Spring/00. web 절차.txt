@@ -21,3 +21,4 @@
     -> Test(Talend API 활용)
 
 [6] 기본적인 HTML 구현하기
+[7] JS 구현하여, Java와 fetch로 연동하기
