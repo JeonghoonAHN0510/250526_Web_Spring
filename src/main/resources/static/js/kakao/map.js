@@ -1,5 +1,17 @@
 console.log('map.js open');
 
+/*
+    [ APP KEY 발급 ]
+    1. https://developers.kakao.com/
+    2. [앱] -> [앱 생성]
+    3. 앱이름, 회사명, 카테고리 아무거나 선택
+    4. [대시보드] -> [앱] -> [일반] -> [APP KEY] 확인
+    5. [Web 플랫폼 등록]
+        -> http://localhost:8080
+        -> http://192.168.40.186:8080
+    6. [카카오맵] -> [사용설정] -> [활성화]
+*/
+
 // [1] 간단한 주소 출력
 const kakaoMap1 = async ( ) => {
     // 1. 지도를 담을 영역의 DOM 레퍼런스

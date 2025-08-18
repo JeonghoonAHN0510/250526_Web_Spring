@@ -10,6 +10,9 @@
 #header > #sub-menu > li{
     margin-left: 10px;
 }
+#header > #sub-menu img{
+    width : 50px;
+}
 #header > #log-menu{
     display: flex;
 }
