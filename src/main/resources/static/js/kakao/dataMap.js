@@ -35,7 +35,7 @@ const kakaoMap = async ( ) => {
     // 1. 지도를 표시할 div
     var map = new kakao.maps.Map(document.getElementById('map'), {
         center : new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
-        level : 14 // 지도의 확대 레벨
+        level : 12 // 지도의 확대 레벨
     });
 
     // 2. 마커 클러스터러를 생성합니다
