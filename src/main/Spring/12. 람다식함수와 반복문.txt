@@ -1,0 +1,36 @@
+[ JAVA / JS 표현 ]
+- JAVA
+    1) 기본 메소드
+        반환타입 메소드명( 매개변수타입 매개변수명 ){ 실행문; }
+        int add( int a, int b ){ return a + b; }
+    2) 람다식 함수
+        ( 매개변수타입 매개변수명 ) -> { 실행문; }
+        ( int a, int b ) -> { return a + b; }
+    3) 반복문
+        - for ( int i = 0; i < 10; i++ ) { }
+        - for ( 타입 변수 : 리스트/배열 ) { }
+        - 리스트.forEach( 변수 -> { } );
+        - 리스트.stream().map( 변수 -> { } ).collect( Collectors.to컬렉션명() );
+        - 리스트.stream().filter( 변수 -> { } ).collect( Collectros.to컬렉션명() );
+
+- JS
+    1) 기본 함수
+        function 함수명( 매개변수명 ){ 실행문; }
+        function add( a, b ){ return a + b; }
+    2) 람다식 함수
+        ( 매개변수명 ) => { 실행문; }
+        ( a, b ) => { return a + b; }
+            const plus = ( a, b ) => { retrun a + b; }
+            plus( 3, 6 );
+    3) 반복문
+        - for ( let i = 0; i < 10; i++ ) { }
+        - for ( let index in 배열 ) { }
+        - for ( let value of 배열 ) { }
+        - 리스트.forEach( 변수 => { } )  -> 반환값이 없다.
+            array.forEach( value => { console.log( value ) })
+        - 리스트.map( 변수 => { } )      -> 반환값이 있다.
+            let newArray = array.map( value -> { return value; })
+            newArray에는 반복되는 return값이 저장된다.
+        - 리스트.filter( 변수 => { } )   -> 반환값/조건문이 있다.
+            let newArray = array.filter( value => { return value > 10 })
+            newArray에는 반복하며 조건에 충족하는 return값이 저장된다.
