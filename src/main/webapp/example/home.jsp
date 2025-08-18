@@ -18,7 +18,7 @@
         <jsp:include page = "/example/header.jsp"></jsp:include>
 
         <h4> JSP 파일 내 JSP 파일 포함하기 -> HTML는 안되는 기능 </h4>
-        <h3> 메인페이지 : localhost:8080/example/home.jsp </h3>
+        <h3> 메인페이지 : localhost:8080/Days/home.jsp </h3>
         <h3> home.jsp </h3>
 
         <!-- 푸터 파일 -->

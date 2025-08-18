@@ -4,7 +4,7 @@
 - 코드 자체를 브라우저가 해석(렌더링) 가능
 1. Spring 프로젝트는 정해진 폴더(static) 내 HTML 경로를 지원한다.
     -> http://localhost:8080/(static)이하의 경로
-    -> http://localhost:8080/example/example1.html
+    -> http://localhost:8080/Days/example1.html
 2. 지원 확장자 : HTML/CSS/JS/IMG 등의 정적 확장자
 
 [ Spring 동적파일 ]
