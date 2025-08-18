@@ -10,7 +10,7 @@ const dataAPI = async ( ) => {
     const option = { method : "GET" };
     const response = await fetch( URL + serviceKey, option );
     const data = await response.json();
-    console.log( data.data.경도 );
+    console.log( data );
     // 3. 가져온 데이터 출력하기
     // 3-1. where
     const sidebar = document.querySelector('#sidebar');

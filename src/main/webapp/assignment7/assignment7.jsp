@@ -17,6 +17,8 @@
 </head>
 
 <body>
+    <!-- header JSP 불러오기 -->
+    <jsp:include page="/header.jsp"></jsp:include>
 
     <div id="container">
         <!-- KAKAO 지도가 출력되는 DIV -->
