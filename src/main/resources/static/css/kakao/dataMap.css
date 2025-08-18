@@ -1,0 +1,9 @@
+#map{ width: 80%; };
+#sidebar{
+    width: 20%;
+    padding: 10px;
+    overflow-y: auto;   /* 내용이 넘쳤을 때, 세로 스크롤 자동 생성 */
+}
+#store{
+    margin-bottom: 20px;
+}

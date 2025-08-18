@@ -1,6 +1,6 @@
 console.log('map.js open');
 
-
+// [1] 간단한 주소 출력
 const kakaoMap1 = async ( ) => {
     // 1. 지도를 담을 영역의 DOM 레퍼런스
     var container = document.getElementById('map');
@@ -12,8 +12,9 @@ const kakaoMap1 = async ( ) => {
     // 3. 지도 생성 및 객체 리턴
     var map = new kakao.maps.Map( container, options );
 } // func end
-// kakaoMap1();
+kakaoMap1();
 
+// [2] 클릭한 위치에 마커 표시하기 , https://apis.map.kakao.com/web/sample/addMapClickEventWithMarker/
 const kakaoMap2 = async ( ) => {
     // 1. 지도를 표시할 div 
     var mapContainer = document.getElementById('map'),
@@ -48,6 +49,7 @@ const kakaoMap2 = async ( ) => {
 } // func end
 // kakaoMap2();
 
+// [3] 클릭한 위치에 마커 표시하기 , https://apis.map.kakao.com/web/sample/addMarkerClickEvent/
 const kakaoMap3 = async ( ) => {
     // 1. 지도를 표시할 div 
     var mapContainer = document.getElementById('map'),
@@ -79,7 +81,7 @@ const kakaoMap3 = async ( ) => {
 } // func end
 // kakaoMap3();
 
-
+// [4] 여러개 마커 표시하기 , https://apis.map.kakao.com/web/sample/multipleMarkerImage/
 const kakaoMap4 = async ( ) => {
     // 1. 지도를 표시할 div 
     var mapContainer = document.getElementById('map'),
@@ -114,4 +116,4 @@ const kakaoMap4 = async ( ) => {
         });
     }
 } // func end
-kakaoMap4();
+// kakaoMap4();

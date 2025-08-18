@@ -22,7 +22,7 @@
             <li><a href="/index.jsp"><img src="/img/logo.jpg"></a></li>
             <li><a href="/datago/data.jsp"> 공공데이터 </a></li>
             <li><a href="/kakao/map.jsp"> 카카오지도 </a></li>
-            <li><a href="#"> 메뉴3 </a></li>
+            <li><a href="/kakao/dataMap.jsp"> 데이터지도 </a></li>
         </ul>
         <ul id="log-menu">
         
