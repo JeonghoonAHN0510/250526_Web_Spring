@@ -1,5 +1,6 @@
 package web.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,18 +25,25 @@ public class PointController {
 
     // [2] 특정 회원 포인트 지급 전체 조회
     @GetMapping("/getlog")
-    public List<PointDto> getPointlog( int mno ){
+    public List<PointDto> getPointlog( HttpSession session ){
         System.out.println("PointController.getPointlog");
-        System.out.println("mno = " + mno);
-
+        // 1. 로그인 유효성 검사
+        if( session == null || session.getAttribute("loginMno") == null ) return null;
+        // 2. 로그인 상태라면, loginMno 꺼내기
+        int mno = ( int ) session.getAttribute("loginMno");
+        // 3. Service에게 mno 전달 후 결과 반환하기
         return pointService.getPointlog( mno );
     } // func end
 
     // [3] 특정 회원 포인트 합계 조회
     @GetMapping("/gettotal")
-    public int memberPoint( @RequestParam int mno ){
+    public int memberPoint( HttpSession session ){
         System.out.println("PointController.memberPoint");
-        System.out.println("mno = " + mno);
+        // 1. 로그인 유효성 검사
+        if( session == null || session.getAttribute("loginMno") == null ) return 0;
+        // 2. 로그인 상태라면, loginMno 꺼내기
+        int mno = ( int ) session.getAttribute("loginMno");
+        // 3. Service에게 mno 전달 후 결과 반환하기
 
         return pointService.memberPoint( mno );
     } // func end
