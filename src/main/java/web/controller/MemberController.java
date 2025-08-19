@@ -140,19 +140,6 @@ public class MemberController {
         return memberService.delete( memberDto );
     } // func end
 
-    // [member00] 세션정보 유효성검사 - checkSession
-    public boolean checkSession( HttpSession session ){
-        System.out.println("MemberController.checkSession");
-        // 1. 세션정보 유효성검사 -> 세션정보가 없거나 특정한 속성값이 없으면
-        if ( session == null || session.getAttribute( "loginMno" ) == null ){
-            System.out.println("[로그인 정보 없음]");
-            // 2. false 반환
-            return false;
-        } // if end
-        // 3. 로그인 정보가 있으면 true 반환
-        return true;
-    } // func end
-
     // [member09] 아이디 찾기 - findId
     // 이름 + 연락처를 입력받아, 일치 시 아이디를 반환한다.
     @GetMapping("/findId")
@@ -178,5 +165,18 @@ public class MemberController {
         memberDto.setMphone( mphone );
         // 2. Service에게 전달 후, 결과 반환하기
         return memberService.findPwd( memberDto );
+    } // func end
+
+    // [member00] 세션정보 유효성검사 - checkSession
+    public boolean checkSession( HttpSession session ){
+        System.out.println("MemberController.checkSession");
+        // 1. 세션정보 유효성검사 -> 세션정보가 없거나 특정한 속성값이 없으면
+        if ( session == null || session.getAttribute( "loginMno" ) == null ){
+            System.out.println("[로그인 정보 없음]");
+            // 2. false 반환
+            return false;
+        } // if end
+        // 3. 로그인 정보가 있으면 true 반환
+        return true;
     } // func end
 } // class end
