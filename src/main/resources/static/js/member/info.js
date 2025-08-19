@@ -60,6 +60,7 @@ const onDelete = async ( ) => {
     } // try-catch end
 } // func end
 
+// [3] 특정 회원의 포인트 지급 로그
 const getPointlog = async ( ) => {
     console.log('getPointlog func exe');
 

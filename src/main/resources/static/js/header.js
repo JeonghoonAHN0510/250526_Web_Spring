@@ -16,8 +16,12 @@ const infoMenu = async ( ) => {
         // return 값이 null이면, json() 변환이 안되기 때문에 catch에 잡혀서 넘어간다.
         // 즉, data == null로 잡아서 비로그인 시, 출력문을 작성하면 안 된다.
         console.log( data );
+        // * 특정 회원의 포인트 합계 가져오기 -> await를 사용하여 promise가 끝나는 것을 기다린다.
+        let point = await memberPoint();
+        console.log( point );
+        point = point.toLocaleString('ko-KR');
         // 4. what
-        html += `<li><span> ${data.mid}님 </span></li>
+        html += `<li><span> ${data.mid}님 (현재 포인트 : ${point}점) </span></li>
                 <li><a href="/member/info.jsp"> 내정보 </a></li>
                 <li><a href="#" onclick="logout()"> 로그아웃 </a></li>`
     } catch {
@@ -52,4 +56,18 @@ const logout = async ( ) => {
     } catch {
 
     } // try-catch end
+} // func end
+
+// [3] 특정 회원의 포인트 총합 반환 메소드
+const memberPoint = async ( ) => {
+    console.log('memberPoint func exe');
+    // 1. fetch option
+    const option = { method : "GET" };
+    // 2. fetch response
+    const response = await fetch( "/point/gettotal", option );
+    // 3. fetch data
+    const data = await response.json();
+    console.log( data );
+    // 4. return
+    return data;
 } // func end
