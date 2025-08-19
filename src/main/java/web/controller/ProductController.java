@@ -66,12 +66,8 @@ public class ProductController {
     @GetMapping("/find")
     public ProductDto getProduct( @RequestParam int pno ){
         System.out.println("ProductController.getProduct");
+        System.out.println("pno = " + pno);
 
         return productService.getProduct( pno );
     } // func end
-
 } // class end
-
-
-
-
