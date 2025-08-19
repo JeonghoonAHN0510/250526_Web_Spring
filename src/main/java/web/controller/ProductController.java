@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import web.model.dto.ProductDto;
 import web.service.FileService;
+import web.service.MemberService;
 import web.service.ProductService;
 
 import java.util.List;
@@ -14,19 +15,21 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
     private final ProductService productService;
+    private final MemberService memberService;
     // 업로드할 때 필요한 FileService 가져오기
     private final FileService fileService;
     @Autowired
-    public ProductController ( ProductService productService, FileService fileService ) {
+    public ProductController ( ProductService productService, FileService fileService, MemberService memberService ) {
         this.productService = productService;
         this.fileService = fileService;
+        this.memberService = memberService;
     } // func end
 
     // [1] 제품 등록
     @PostMapping("/create")
     public int createProduct( ProductDto productDto, HttpSession session ){
         // 1-1. 로그인 상태 확인하기 -> 세션정보가 없거나 특정한 속성값이 없으면
-        if ( session == null || session.getAttribute("loginMno") == null ) return 0;
+        if ( !memberService.checkSession( session ) ) return 0;
         // 1-2. 로그인 상태라면, 세션에서 로그인 번호를 꺼낸다.
         int loginMno = ( int ) session.getAttribute("loginMno");
         // 1-3. 로그인 번호를 ProductDto에 추가한다.

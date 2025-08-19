@@ -8,7 +8,6 @@ import web.model.dto.MemberDto;
 import web.service.MemberService;
 
 import java.util.Map;
-import java.util.Random;
 
 @RestController    // 스프링 컨테이너에 객체 등록
 @RequestMapping("/member")
@@ -55,7 +54,7 @@ public class MemberController {
         // 1. 세션정보 가져오기
         HttpSession session = request.getSession();
         // 2. 세션정보가 없거나 특정한 속성값이 없으면(=유효성 검사)
-        if ( !checkSession( session ) ) return false;
+        if ( !memberService.checkSession( session ) ) return false;
         // 3. 로그인 상태라면, 속성값 제거
         session.removeAttribute( "loginMno" );
         // 4. 로그아웃 성공 반환
@@ -70,7 +69,7 @@ public class MemberController {
         // 1. 세션정보 가져오기
         HttpSession session = request.getSession();
         // 2. 세션정보가 없거나 특정한 속성값이 없으면(= 유효성 검사)
-        if ( !checkSession( session ) ) return null;
+        if ( !memberService.checkSession( session ) ) return null;
         // 3. 로그인 상태라면, mno 가져오기
         int mno = ( int )session.getAttribute("loginMno");
         System.out.println("[로그인 mno = " + mno + "]");
@@ -94,7 +93,7 @@ public class MemberController {
         // 1. 세션정보 가져오기
         HttpSession session = request.getSession();
         // 2. 세션정보 유효성 검사
-        if ( !checkSession( session ) ) return false;
+        if ( !memberService.checkSession( session ) ) return false;
         // 3. 로그인 상태라면, mno
         int mno = ( int ) session.getAttribute("loginMno");
         // 4. 로그인 중인 mno를 입력받은 객체에 넣기
@@ -111,7 +110,7 @@ public class MemberController {
         // 1. 세션정보 가져오기
         HttpSession session = request.getSession();
         // 2. 세션정보 유효성 검사
-        if ( !checkSession( session ) ) return false;
+        if ( !memberService.checkSession( session ) ) return false;
         // 3. 로그인 상태라면, mno 가져오기
         int mno = ( int )session.getAttribute("loginMno");
         // 4. Service에게 전달 후 결과 반환하기
@@ -127,7 +126,7 @@ public class MemberController {
         System.out.println("MemberController.delete");
         // 1. 세션정보 가져오기 -> 매개변수에서 바로 가져올 수 있다.
         // 2. 세션정보 유효성 검사
-        if ( !checkSession( session ) ) return false;
+        if ( !memberService.checkSession( session ) ) return false;
         // 3. 로그인 상태라면, mno 가져오기
         int mno = ( int ) session.getAttribute("loginMno");
         // 4. Service에게 전달할 객체 생성
@@ -165,18 +164,5 @@ public class MemberController {
         memberDto.setMphone( mphone );
         // 2. Service에게 전달 후, 결과 반환하기
         return memberService.findPwd( memberDto );
-    } // func end
-
-    // [member00] 세션정보 유효성검사 - checkSession
-    public boolean checkSession( HttpSession session ){
-        System.out.println("MemberController.checkSession");
-        // 1. 세션정보 유효성검사 -> 세션정보가 없거나 특정한 속성값이 없으면
-        if ( session == null || session.getAttribute( "loginMno" ) == null ){
-            System.out.println("[로그인 정보 없음]");
-            // 2. false 반환
-            return false;
-        } // if end
-        // 3. 로그인 정보가 있으면 true 반환
-        return true;
     } // func end
 } // class end

@@ -13,7 +13,7 @@ import java.util.List;
 public class PointDao extends Dao {
 
     // [1] 포인트 지급
-
+    
 
     // [2] 특정 회원 포인트 지급 전체 조회
     public List<PointDto> getPointlog( int mno ){

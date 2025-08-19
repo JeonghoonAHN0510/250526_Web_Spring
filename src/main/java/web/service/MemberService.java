@@ -1,5 +1,6 @@
 package web.service;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.model.dao.MemberDao;
@@ -104,5 +105,18 @@ public class MemberService {
         } // for end
         System.out.println( newPwd );
         return newPwd.toString();
+    } // func end
+
+    // [member00] 세션정보 유효성검사 - checkSession
+    public boolean checkSession( HttpSession session ){
+        System.out.println("MemberController.checkSession");
+        // 1. 세션정보 유효성검사 -> 세션정보가 없거나 특정한 속성값이 없으면
+        if ( session == null || session.getAttribute( "loginMno" ) == null ){
+            System.out.println("[로그인 정보 없음]");
+            // 2. false 반환
+            return false;
+        } // if end
+        // 3. 로그인 정보가 있으면 true 반환
+        return true;
     } // func end
 } // class end
