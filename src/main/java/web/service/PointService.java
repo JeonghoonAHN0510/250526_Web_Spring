@@ -15,8 +15,17 @@ public class PointService {
         this.pointDao = pointDao;
     } // func end
 
-    // [1] 포인트 지급
+    // [1-1] 회원가입 포인트 지급
+    // true : 지급성공, false : 지급실패
+    public boolean signupPoint( int mno ){
+        return pointDao.signupPoint(mno);
+    } // func end
 
+    // [1-2] 로그인 포인트 지급
+    // true : 지급성공, false : 지급실패
+    public boolean loginPoint( int mno ){
+        return pointDao.loginPoint(mno);
+    } // func end
 
     // [2] 특정 회원 포인트 지급 전체 조회
     public List<PointDto> getPointlog( int mno ){

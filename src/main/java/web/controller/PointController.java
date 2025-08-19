@@ -22,7 +22,7 @@ public class PointController {
         this.memberService = memberService;
     } // func end
 
-    // [1] 포인트 지급
+    // [1] 포인트 지급 : MemberController에서 진행
 
 
     // [2] 특정 회원 포인트 지급 전체 조회

@@ -12,8 +12,33 @@ import java.util.List;
 @Repository
 public class PointDao extends Dao {
 
-    // [1] 포인트 지급
-    
+    // [1-1] 회원가입 포인트 지급
+    // true : 지급성공, false : 지급실패
+    public boolean signupPoint( int mno ){
+        try {
+            String SQL = "insert into pointlog ( mno, plpoint, plcomment ) values ( ?, 1000, '회원가입' )";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setInt( 1, mno );
+            return ps.executeUpdate() == 1;
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return false;
+    } // func end
+
+    // [1-2] 로그인 포인트 지급
+    // true : 지급성공, false : 지급실패
+    public boolean loginPoint( int mno ){
+        try {
+            String SQL = "insert into pointlog ( mno, plpoint, plcomment ) values ( ?, 100, '로그인')";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setInt( 1, mno );
+            return ps.executeUpdate() == 1;
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } //try-catch end
+        return false;
+    } // func end
 
     // [2] 특정 회원 포인트 지급 전체 조회
     public List<PointDto> getPointlog( int mno ){
