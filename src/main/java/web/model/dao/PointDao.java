@@ -54,7 +54,7 @@ public class PointDao extends Dao {
                 pointDto.setMno( rs.getInt( "mno" ) );
                 pointDto.setPlpoint( rs.getInt( "plpoint" ) );
                 pointDto.setPlcomment( rs.getString( "plcomment" ) );
-                pointDto.setPldata( rs.getString( "pldate" ) );
+                pointDto.setPldate( rs.getString( "pldate" ) );
 
                 list.add( pointDto );
             } // while end

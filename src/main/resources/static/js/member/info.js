@@ -59,3 +59,31 @@ const onDelete = async ( ) => {
         console.log( error );
     } // try-catch end
 } // func end
+
+const getPointlog = async ( ) => {
+    console.log('getPointlog func exe');
+
+    // 1. fetch option
+    const option = { method : "GET" }
+    // 2. fetch response
+    const response = await fetch( "/point/getlog", option );
+    // 3. fetch data
+    const data = await response.json();
+    console.log( data );
+    // 4. where
+    const pointlogTbody = document.querySelector('#pointlogTbody');
+    // 5. what
+    let html = '';
+    for ( let i = 0; i < data.length; i++ ){
+        let log = data[i];
+        html += `<tr>
+                    <td>${ i + 1}</td>
+                    <td>${log.plpoint}</td>
+                    <td>${log.plcomment}</td>
+                    <td>${log.pldate}</td>
+                 </tr>`
+    } // for end
+    // 6. print
+    pointlogTbody.innerHTML = html;
+} // func end
+getPointlog();

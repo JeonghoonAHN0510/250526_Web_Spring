@@ -29,6 +29,19 @@
         <a href="/member/update.jsp"> 회원정보 수정 </a>     <br>
         <a href="/member/pwdUpdate.jsp"> 비밀번호 수정 </a>  <br>
         <a href="#" onclick="onDelete()"> 회원 탈퇴 </a>     <br>
+        <table id="pointlog" border="1">
+            <thead>
+                <tr>
+                    <th>지급번호</th>
+                    <th>지급포인트</th>
+                    <th>지급사유</th>
+                    <th>지급일시</th>
+                </tr>
+            </thead>
+            <tbody id="pointlogTbody">
+
+            </tbody>
+        </table>
     </div>
 
     <!-- JS 불러오기 -->

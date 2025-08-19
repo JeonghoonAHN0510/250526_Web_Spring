@@ -12,7 +12,7 @@ public class PointDto {
     private int mno;
     private int plpoint;
     private String plcomment;
-    private String pldata;
+    private String pldate;
 
     // + 부가적인 정보 추가
     // 1. 특정 회원의 합계 포인트
