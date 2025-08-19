@@ -2,6 +2,7 @@ package web.controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,8 +57,13 @@ public class ProductController {
         return result;
     } // func end
 
-    // [2] 제품 전체 조회
+    // [2] 제품 정보 전체 조회
+    @GetMapping("/list")
+    public List<ProductDto> getAllProduct(){
+        System.out.println("ProductController.getAllProduct");
 
+        return productService.getAllProduct();
+    } // func end
 
     // [3] 제품 상세 조회
 
