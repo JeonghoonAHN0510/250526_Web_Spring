@@ -1,0 +1,74 @@
+[ HTTP ] : HyperText Transfer Protocol -> 문자 이동 통신 규약
+1. 정의 : 웹에서 사용되는 문자/바이트 통신 규약
+2. 특징
+    1) 무상태 프로토콜( 저장 기능이 없다 )
+    2) 독립적이다. 이전 통신과 다음 통신의 연관성이 없다.
+    3) TCP/IP 프로토콜에 종속되어 동작한다. -> IP를 사용한다.
+3. 주소체계
+    * http://ip번호:port번호/자원경로?쿼리스트링
+    * (수업 기준) 자원 경로
+                    (1) jsp : webapp 이하의 경로
+                    (2) js/css/img : resources -> static 이하의 경로
+                    (3) Controller : Mapping 경로
+    1) URL : 웹 자원의 주소, 네트워크 상의 자료가 어디에 있는지를 표시하는 규약
+        http://localhost:8080/member/login.jsp
+        https://nid.naver.com/user2/join/agree
+    2) URI : 각종 자료들의 유일한 이름이나 위치를 표시하는 규약, URL + 쿼리스트링
+        https://nid.naver.com/user2/join/agree?lang=ko_KR
+4. HTTP HEADER : HTTP 통신 정보/옵션이 들어있는 곳
+    * 브라우저 F12 -> 네트워크 탭에서 확인 가능
+    [ 주요 속성 ]
+    1) HTTP Method          : HTTP를 이용한 통신 요청을 할 때 분류하는 규칙
+    2) HTTP Content-Type    : HTTP를 이용하여 데이터의 타입/데이터 정보를 보내서, 받는 사람이 타입을 알게 하는 것
+    3) HTTP Body            : HTTP를 이용하여 데이터의 내용/본문을 보낼 때 사용되는 규칙
+    4) HTTP Host            : HTTP를 이용한 통신을 요청하는 서버의 도메인 주소
+5. HTTP Method 종류
+    1) GET      : @GetMapping       Read
+    2) POST     : @PostMapping      Create
+    3) PUT      : @PutMapping       Update
+    4) DELETE   : @DeleteMapping    Delete
+6. HTTP Content-Type 종류
+    1) text/html                            : HTML 문서( JSP 포함 )
+    2) text/plain                           : 일반 텍스트( JAVA - String 반환 )
+    3) application/json                     : JSON 데이터( REST API의 주 데이터 )
+    4) application/x-www-form-urlencoded    : 폼 형식 데이터( html <form> 마크업 )
+    5) multipart/form-data                  : 첨부파일 업로드, 대용량 데이터(바이트)
+7. HTTP 사용처
+    1) 브라우저       : 크롬, 엣지, 사파리 ···에서 웹주소 입력(GET 방식만 사용가능)
+    2) Talend API   : 개발자 입장에서의 HTTP REST 테스트
+    3) JS           : fetch, ajax(jquery), axios(node.js) ··· HTTP 통신 라이브러리
+8. HTTP 데이터를 보내는 방법
+    1) 쿼리스트링을 이용 ( GET, POST, PUT, DELETE )
+        - URL 주소에서 ? 이후로 매개변수와 값을 표기하여 데이터를 전달한다.
+        - 경로에 데이터가 노출되어, 보안에 취약하다.
+        - localhost:8080/member/login.jsp?id=qwe
+        - @RequestParam
+    2) Body를 이용 ( POST, PUT )
+        - fetch의 option에 데이터를 넣어 전달한다.
+        - 경로에 데이터가 노출되지않아, 보안에 유리하다.
+        - HTTP 요청과 응답 내용 자체를 전달하는 방법
+        - localhost:8080/member/login.jsp   { "id" : "qwe" }
+        - @RequestBody
+    3) <form> 마크업을 이용 ( POST )
+        - HTML <form> 안의 데이터를 전달한다.
+        - 종류
+            (1) 데이터 위주   : application/x-www-form-urlencoded
+            (2) 첨부파일 위주 : multipart/form-data
+        - @ModelAttribute ( 생략가능 )
+9. HTTP 응답 코드
+    1) 정의 : 서버가 클라이언트의 요청에 대한 결과를 나타내는 코드
+    2) 종류
+        - 1XX : 요청을 받고 진행중
+        - 2XX : 요청을 받고 응답을 처리한 상태
+            200 : 요청을 받고, 응답 자료가 존재 O
+            201 : 저장 성공 후, 응답 자료가 존재 O
+            204 : 저장 성공 후, 응답 자료가 존재 X
+        - 3XX : 요청을 완료하기위해 추가 조치가 필요한 상태
+        - 4XX : 클라이언트 오류 -> 데이터/Mapping 확인
+            400 : 서버가 이해할 수 없는 요청 -> 쿼리스트링, body, Mapping 오류
+            401 : 접근하기 위한 인증이 필요
+            403 : 권한 거부 -> 인증은 됐지만, 권한이 없어서 거부
+            404 : URL 경로 상의 자원이 존재 X -> URL 경로가 잘못됨
+            409 : 중복값일 때 -> 요청과 현재 리소스값이 중복이다
+        - 5XX : 서버 오류 -> JAVA 확인
+            500 : 서버의 예기치 못한 오류 발생
