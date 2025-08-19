@@ -59,15 +59,7 @@ public class ProductDao extends Dao {
             PreparedStatement ps = conn.prepareStatement( SQL );
             ResultSet rs = ps.executeQuery();
             while( rs.next() ){
-                ProductDto productDto = new ProductDto();
-                productDto.setPno( rs.getInt( "pno" ) );
-                productDto.setPname( rs.getString( "pname" ) );
-                productDto.setPprice( rs.getInt( "pprice" ) );
-                productDto.setPcomment( rs.getString( "pcomment" ) );
-                productDto.setPdate( rs.getString( "pdate" ) );
-                productDto.setPlat( rs.getDouble( "plat" ) );
-                productDto.setPlng( rs.getDouble( "plng" ) );
-                productDto.setMno( rs.getInt( "mno" ) );
+                ProductDto productDto = createProductDto( rs );
 
                 list.add( productDto );
             } // while end
@@ -96,6 +88,36 @@ public class ProductDao extends Dao {
 
 
     // [3] 제품 상세 조회
+    public ProductDto getProduct( int pno ){
+        try {
+            String SQL = "select * from product where pno = ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setInt( 1, pno );
+            ResultSet rs = ps.executeQuery();
+            if ( rs.next() ){
+                return createProductDto( rs );
+            } // if end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return null;
+    } // func end
 
-
+    // [*] 제품 객체 생성 메소드
+    private ProductDto createProductDto( ResultSet rs ){
+        ProductDto productDto = new ProductDto();
+        try {
+            productDto.setPno( rs.getInt( "pno" ) );
+            productDto.setPname( rs.getString( "pname" ) );
+            productDto.setPprice( rs.getInt( "pprice" ) );
+            productDto.setPcomment( rs.getString( "pcomment" ) );
+            productDto.setPdate( rs.getString( "pdate" ) );
+            productDto.setPlat( rs.getDouble( "plat" ) );
+            productDto.setPlng( rs.getDouble( "plng" ) );
+            productDto.setMno( rs.getInt( "mno" ) );
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return productDto;
+    } // func end
 } // class end

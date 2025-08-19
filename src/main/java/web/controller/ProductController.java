@@ -2,10 +2,7 @@ package web.controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import web.model.dto.ProductDto;
 import web.service.FileService;
@@ -66,7 +63,12 @@ public class ProductController {
     } // func end
 
     // [3] 제품 상세 조회
+    @GetMapping("/find")
+    public ProductDto getProduct( @RequestParam int pno ){
+        System.out.println("ProductController.getProduct");
 
+        return productService.getProduct( pno );
+    } // func end
 
 } // class end
 

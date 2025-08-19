@@ -42,6 +42,17 @@ public class ProductService {
     } // func end
 
     // [3] 제품 상세 조회
-
-
+    public ProductDto getProduct( int pno ){
+        // 1-1. 특정 제품 정보 조회
+        ProductDto productDto = productDao.getProduct( pno );
+        // 1-2. 만약에 조회됐으면
+        if ( productDto != null ){
+            // 2. 특정 제품 이미지명 조회
+            List<String> images = productDao.getProductImageName( pno );
+            // 3. 조회된 이미지명을 특정 제품의 Dto에 포함시키기
+            productDto.setImages( images );
+        } // if end
+        // 4. 이미지명이 포함된 결과 반환
+        return productDto;
+    } // func end
 } // class end
