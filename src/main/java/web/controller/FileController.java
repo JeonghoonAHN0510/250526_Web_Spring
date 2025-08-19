@@ -28,7 +28,7 @@ public class FileController {
 
     // [2] 파일 다운로드
     @GetMapping("/download")
-    // 쿼리스트링 : fileName = fb419c88-17ff-4ae5-8bfc-65c1872f7473_logo.jpg
+    // 쿼리스트링 : fileName = 다운로드할 파일
     public void fileDownload( @RequestParam String fileName, HttpServletResponse response ){
         System.out.println("FileController.fileDownload");
         System.out.println("fileName = " + fileName + ", response = " + response);
@@ -36,5 +36,13 @@ public class FileController {
         fileService.fileDownload( fileName, response );
     } // func end
 
+    // [3] 파일 삭제
+    @GetMapping("/delete")
+    // 쿼리스트링 : fileName = 삭제할 파일
+    public boolean fileDelete( @RequestParam String fileName ){
+        System.out.println("FileController.fileDelete");
+        System.out.println("fileName = " + fileName);
 
+        return fileService.fileDelete( fileName );
+    } // func end
 } // class end

@@ -90,7 +90,7 @@ public class FileService {
             // 3-4. 안전하게 스트림 닫기, 스트림이란? 바이트가 다니는 통신 경로
             fin.close();    // 필수는 아니지만, 대용량에서는 직접 닫는 것을 권장!
 
-            //========================================= 다운로드 형식 지정 =======================================\\
+            //=============================================== 다운로드 형식 지정 ===============================================\\
             // 1. 파일의 uuid 제거하기, 필수는 아님
             // .split("문자") : 문자열을 '문자' 기준으로 자르기
             String oldFilename = fileName.split("_")[1];    // 파일명을 '_' 기준으로 잘라서 2번째 문자열을 반환받는다.
@@ -98,7 +98,7 @@ public class FileService {
             // 2. 응답 형식 지정하기 -> 다운로드 형식과 다운로드 파일 지정
             // URL은 한글을 지원하지않기 때문에, URLEncoder.encode( 파일명, "UTF-8")이 필요
             response.setHeader( "Content-Disposition", "attachment; filename=" + URLEncoder.encode( oldFilename, "UTF-8") );
-            //=================================================================================================\\
+            //===============================================================================================================\\
 
             // 4. 가져온 파일을 사용자에게 보내기
             // 4-1. 파일 출력스트림 객체 생성, Servlet이란? HTTP 요청/응답 클래스
@@ -113,6 +113,20 @@ public class FileService {
     } // func end
 
     // [3] 파일 삭제
+    public boolean fileDelete( String fileName ){
+        // 1. 삭제할 파일명과 업로드 경로 합치기
+        String filePath = uploadPath + fileName;
 
+        // 2. 만약에 경로에 파일이 존재하면, 삭제 + true 반환
+        File file = new File( filePath );
+        if ( file.exists() ){
+            // .delete() : 지정한 경로의 파일 삭제
+            file.delete();
+            return true;
+        } else {
+            // 3. 존재하지않으면, false 반환
+            return false;
+        } // if end
+    } // func end
 
 } // class end
