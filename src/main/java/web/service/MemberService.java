@@ -3,6 +3,7 @@ package web.service;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import web.model.dao.MemberDao;
 import web.model.dto.MemberDto;
 import web.model.dto.PointDto;
@@ -15,10 +16,12 @@ public class MemberService {
     // * MemberDao 가져오기
     private final MemberDao memberDao;
     private final PointService pointService;
+    private final FileService fileService;
     @Autowired  // 스프링 컨테이너에 등록된 빈 주입받기
-    public MemberService( MemberDao memberDao, PointService pointService ){
+    public MemberService( MemberDao memberDao, PointService pointService, FileService fileService ){
         this.memberDao = memberDao;
         this.pointService = pointService;
+        this.fileService = fileService;
     } // func end
 
     // [member01] 회원가입 기능 - signup
@@ -37,9 +40,18 @@ public class MemberService {
         } else {
             return 0;
         } // if end
-        // 4. 회원가입 프로필 등록
+        // 4. 업로드 파일 확인하기
+        // 4-1. 첨부파일이 존재한다면
+        if ( !memberDto.getUpload().isEmpty() ){
+            // 4-2. 첨부파일을 꺼내서 업로드 진행
+            MultipartFile multipartFile = memberDto.getUpload();
+            String mimgname = fileService.fileUpload( multipartFile );
+            // 4-3. 파일명을 memberDto에 넣기
+            memberDto.setMimgname( mimgname );
+        } // if end
+        // 5. 회원가입 프로필 등록
         if ( !memberDao.signupProfile( memberDto ) ) return 0;
-        // 5. 최종적으로 반환
+        // 6. 최종적으로 반환
         return mno;
     } // func end
 
@@ -81,6 +93,15 @@ public class MemberService {
     public boolean update( MemberDto memberDto ){
         // 1. 기본회원정보 수정을 실패하면, false 반환
         if ( !memberDao.update( memberDto ) ) return false;
+        // 2. 업로드 파일 확인하기
+        // 2-1. 첨부파일이 존재한다면
+        if ( !memberDto.getUpload().isEmpty() ){
+            // 2-2. 첨부파일을 꺼내서 업로드 진행
+            MultipartFile multipartFile = memberDto.getUpload();
+            String mimgname = fileService.fileUpload( multipartFile );
+            // 2-3. 파일명을 memberDto에 넣기
+            memberDto.setMimgname( mimgname );
+        } // if end
         // 2. 성공했다면, 프로필사진 수정하고 반환
         return memberDao.signupProfile( memberDto );
     } // func end

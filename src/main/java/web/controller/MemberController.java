@@ -16,11 +16,9 @@ import java.util.Map;
 public class MemberController {
     // * MemberService 가져오기
     private final MemberService memberService;
-    private final FileService fileService;
     @Autowired  // 스프링 컨테이너에 등록된 빈 주입받기
-    public MemberController( MemberService memberService, FileService fileService ){
+    public MemberController( MemberService memberService ){
         this.memberService = memberService;
-        this.fileService = fileService;
     } // func end
 
     // [member01] 회원가입 기능 - signup
@@ -29,15 +27,6 @@ public class MemberController {
         System.out.println("MemberController.signup");
         System.out.println("memberDto = " + memberDto);
 
-        // 1. 업로드 파일 확인하기
-        // 1-1. 첨부파일이 존재한다면
-        if ( !memberDto.getUpload().isEmpty() ){
-            // 1-2. 첨부파일을 꺼내서 업로드 진행
-            MultipartFile multipartFile = memberDto.getUpload();
-            String mimgname = fileService.fileUpload( multipartFile );
-            // 1-3. 파일명을 memberDto에 넣기
-            memberDto.setMimgname( mimgname );
-        } // if end
         return memberService.signup( memberDto );
     } // func end
 
@@ -111,16 +100,7 @@ public class MemberController {
         int mno = ( int ) session.getAttribute("loginMno");
         // 4. 로그인 중인 mno를 입력받은 객체에 넣기
         memberDto.setMno( mno );
-        // 5. 업로드 파일 확인하기
-        // 5-1. 첨부파일이 존재한다면
-        if ( !memberDto.getUpload().isEmpty() ){
-            // 5-2. 첨부파일을 꺼내서 업로드 진행
-            MultipartFile multipartFile = memberDto.getUpload();
-            String mimgname = fileService.fileUpload( multipartFile );
-            // 5-3. 파일명을 memberDto에 넣기
-            memberDto.setMimgname( mimgname );
-        } // if end
-        // 6. 객체를 Service에게 전달 후 결과 반환하기
+        // 5. 객체를 Service에게 전달 후 결과 반환하기
         System.out.println("[회원정보수정 성공]");
         return memberService.update( memberDto );
     } // func end
