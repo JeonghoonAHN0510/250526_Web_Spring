@@ -24,6 +24,7 @@
             <li><a href="/kakao/map.jsp"> 카카오지도 </a></li>
             <li><a href="/kakao/dataMap.jsp"> 데이터지도 </a></li>
             <li><a href="/product/create.jsp"> 제품등록 </a></li>
+            <li><a href="/product/list.jsp"> 제품조회 </a></li>
             <li><a href="/assignment7/assignment7.jsp"> 실습7 </a></li>
         </ul>
         <ul id="log-menu">
