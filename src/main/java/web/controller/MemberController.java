@@ -15,11 +15,9 @@ import java.util.Map;
 public class MemberController {
     // * MemberService 가져오기
     private final MemberService memberService;
-    private final PointService pointService;
     @Autowired  // 스프링 컨테이너에 등록된 빈 주입받기
-    public MemberController( MemberService memberService, PointService pointService ){
+    public MemberController( MemberService memberService ){
         this.memberService = memberService;
-        this.pointService = pointService;
     } // func end
 
     // [member01] 회원가입 기능 - signup
@@ -27,12 +25,8 @@ public class MemberController {
     public int signup( @RequestBody MemberDto memberDto ){
         System.out.println("MemberController.signup");
         System.out.println("memberDto = " + memberDto);
-        int mno = memberService.signup( memberDto );
-        if ( mno > 0 ){
-            // * 회원가입 포인트 지급
-            pointService.signupPoint( mno );
-        } // if end
-        return mno;
+
+        return memberService.signup( memberDto );
     } // func end
 
     // [member02] 로그인 기능 - login
@@ -49,8 +43,6 @@ public class MemberController {
             // 3. 세션 속성 추가하기
             session.setAttribute( "loginMno" , mno );
             System.out.println("[로그인 성공]");
-            // * 로그인 포인트 지급
-            pointService.loginPoint( mno );
         } // if end
         // 4. 결과 반환하기
         return mno;

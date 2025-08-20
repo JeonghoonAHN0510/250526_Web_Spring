@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.model.dao.MemberDao;
 import web.model.dto.MemberDto;
+import web.model.dto.PointDto;
 
 import java.util.Map;
 import java.util.Random;
@@ -13,19 +14,39 @@ import java.util.Random;
 public class MemberService {
     // * MemberDao 가져오기
     private final MemberDao memberDao;
+    private final PointService pointService;
     @Autowired  // 스프링 컨테이너에 등록된 빈 주입받기
-    public MemberService( MemberDao memberDao ){
+    public MemberService( MemberDao memberDao, PointService pointService ){
         this.memberDao = memberDao;
+        this.pointService = pointService;
     } // func end
 
     // [member01] 회원가입 기능 - signup
     public int signup( MemberDto memberDto ){
-        return memberDao.signup( memberDto );
+        // 1. 회원가입 성공여부 받아오기
+        int result = memberDao.signup( memberDto );
+        // 2. 포인트 지급할 포인트 객체 생성
+        PointDto pointDto = new PointDto();
+        pointDto.setMno( result );
+        pointDto.setPlpoint( 1000 );
+        pointDto.setPlcomment( "회원가입" );
+        // 3. 회원가입에 성공했다면, 포인트 지급
+        if ( result > 0 ) pointService.addPoint( pointDto );
+        return result;
     } // func end
 
     // [member02] 로그인 기능 - login
     public int login( MemberDto memberDto ){
-        return memberDao.login( memberDto );
+        // 1. 로그인 성공여부 받아오기
+        int result = memberDao.login( memberDto );
+        // 2. 포인트 지급할 포인트 객체 생성
+        PointDto pointDto = new PointDto();
+        pointDto.setMno( result );
+        pointDto.setPlpoint( 100 );
+        pointDto.setPlcomment( "로그인" );
+        // 3. 로그인에 성공했다면, 포인트 지급
+        if ( result > 0 ) pointService.addPoint( pointDto );
+        return result;
     } // func end
 
     // [member04] 내정보 조회 기능 - info
