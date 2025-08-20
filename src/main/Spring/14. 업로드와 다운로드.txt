@@ -1,0 +1,97 @@
+[ 업로드 ]
+- 클라이언트가 서버에 파일(데이터)를 전송하는 행위
+
+[ 다운로드 ]
+- 서버가 클라이언트에게 파일(데이터)를 전송하는 행위
+
+[ 스트림 ]
+- 바이트 단위 데이터의 흐름
+- 입출력/네트워크/파일처리 등에서 사용
+- 바이트란? 8bit = 1byte, 윈도우의 기본 저장단위
+
+[ 버퍼(buffer) ]
+- 데이터가 이동하는 흐름 간의 처리속도를 일정하게 유지하기위한 임시 저장소
+
+[ 자바 입출력 ] - 자바 기준
+- Input  : 외부에서 자바 메모리로 들어오는 행위
+    FileInputStream     : 파일을 자바로 들어오는 통로를 만드는 클래스
+- Output : 자바 메모리에서 외부로 나가는 행위
+    ServletOutputStream : 파일을 외부로 나가는 통로를 만드는 클래스
+    Servlet이란? HTTP 요청/응답을 매핑하는 클래스
+
+[ UUID ]
+- 무한대에 가까운 고유한 난수 값 생성, 고유 식별자
+- 사용법
+    1) UUID.randomUUID().toString(); : UUID 생성하여 String으로 반환
+
+[ MultipartFile 인터페이스 ]
+- 주로 대용량 바이트 파일을 조작할 때 사용되는 인터페이스
+    -> @ModelAttribute로 매핑한다.
+    -> 복수 첨부파일 : List<MultipartFile>로 묶어서 이동한다.
+    -> 첨부파일 업로드 용량 제한 : application.properties에서 설정한다.
+- 주요 메소드
+    1) .getOriginalFilename()  : 첨부파일의 파일명을 반환
+        -> UUID + '_' + multipartFile.getOriginalFilename() : 파일명 중복 제거
+    2) .transferTo( File 객체 ) : 지정한 객체 경로로 첨부파일을 이동, 일반예외 발생
+
+[ File 클래스 ]
+- 자바에서 외부파일을 조작하는 클래스
+- 사용법
+    1) File file = new File( 파일경로 ) : 파일경로 연동
+- 주요 메소드
+    1) .exists() : 지정한 파일경로에 파일 존재여부 반환(boolean)
+    2) .mkdir()  : 지정한 파일경로 생성
+    3) .length() : 지정한 파일의 용량 반환( byte단위, long타입 )
+    4) .delete() : 지정한 파일 삭제
+
+[ 업로드 경로 ]
+    프로젝트 경로 : System.getProperty("user.dir")
+                        +
+    방법1) 프로젝트 폴더 내 src   : 개발자가 코드를 작성하는 폴더
+    방법2) 프로젝트 폴더 내 build : 서버가 실행될 때 컴파일된 코드가 저장되는 폴더
+        -> '/build/resources/main/static/upload/'
+
+[ 스프링 업로드 구현 절차 ]
+    1. 업로드 경로 설정
+    2. MultipartFile 인터페이스를 이용한 첨부파일 매핑
+    3. [ File 클래스 ]
+       -> 3-1. 업로드 경로 유효성 검사
+          경로가 존재하지 않으면, 경로 생성( .mkdir(); )
+       -> 3-2. 업로드 첨부파일 객체 생성
+          File uploadFile = new File( uploadFilePath );
+    4. 첨부파일 업로드 진행
+       -> multipartFile.transferTo( uploadFile );
+
+[ 스프링 다운로드 구현 절차 ]
+    1. HttpServletResponse 클래스를 이용한 클라이언트 응답 객체를 매개변수로 받기
+    2. 다운로드 경로 설정
+    3. [ File 클래스 ]
+        -> 3-1. 파일 유효성 검사
+           경로에 파일이 존재하지 않으면, 메소드 종료
+        -> 3-2. 파일 용량만큼의 배열 생성
+           long fileSize  = file.legnth();
+           byte[] bytes = new byte[ (int) fileSize ];
+    4. [ FileInputStream 클래스 ]
+        -> 4-1. 파일 입력스트림 객체 생성
+           FileInputStream fin = new FileInputStream( 다운로드 경로 )
+        -> 4-2. 파일을 읽어와서 배열에 저장
+           fin.read( bytes );
+        -> 4-3. 안전하게 스트림 닫기
+           fin.close();
+    5. 다운로드 형식 지정
+        -> response.setHeader( "Content-Disposition", "attachment; filename=" + URLEncoder.encode( fileName, "UTF-8") );
+    6. [ ServletOutputStream 클래스 ]
+        -> 6-1. 파일 출력스트림 객체 생성
+           ServletOutputStream fout = response.getOutputStream();
+        -> 6-2. 읽어온 바이트배열을 클라이언트에게 출력하기
+           fout.write( bytes );
+        -> 6-3. 안전하게 스트림 닫기
+           fout.close();
+
+[ 스프링 삭제 구현 절차 ]
+    1. 삭제 경로 설정
+    2. [ File 클래스 ]
+        -> 2-1. 파일이 존재하지 않으면, 메소드 종료
+        -> 2-2. 파일이 존재하면 삭제
+           file.delete();
+        -> 2-3. 삭제 후, 메소드 종료
