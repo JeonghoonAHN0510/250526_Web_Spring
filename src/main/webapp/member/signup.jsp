@@ -21,14 +21,17 @@
 
     <div id="container">
         <h3> 회원가입 페이지 </h3>
-        아이디 : <input type="text" class="idInput" id="idInput" onkeyup="idCheck()"> <br> <div class="idCheck"></div>
-        <!-- onkeyup : 키보드에서 손을 땠을 때, 발동 -->
-        비밀번호 : <input type="password" class="pwdInput" id="pwdInput"> <br>
-        이름 : <input type="text" class="nameInput" id="nameInput"> <br>
-        연락처 : <input type="text" class="phoneInput" id="phoneInput" onkeyup="phoneCheck()"> <br> <div class="phoneCheck"></div>
-        <button type="button" onclick="signup()"> 회원가입 </button>
-        <a href="/member/login.jsp"> 로그인하기 </a>
-        <a href="/member/find.jsp"> 아이디/비밀번호 찾기 </a>
+        <form id="signupForm">
+            아이디 : <input type="text" name="mid" onkeyup="idCheck()"> <br> <div class="idCheck"></div>
+            <!-- onkeyup : 키보드에서 손을 땠을 때, 발동 -->
+            비밀번호 : <input type="password" name="mpwd"> <br>
+            이름 : <input type="text" name="mname"> <br>
+            연락처 : <input type="text" name="mphone" onkeyup="phoneCheck()"> <br> <div class="phoneCheck"></div>
+            프로필 사진 : <input type="file" name="upload"> <br>
+            <button type="button" onclick="signup()"> 회원가입 </button>
+            <a href="/member/login.jsp"> 로그인하기 </a>
+            <a href="/member/find.jsp"> 아이디/비밀번호 찾기 </a>
+        </form>
     </div>
 
     <!-- JS 불러오기 -->

@@ -15,18 +15,14 @@ const signup = async ( ) => {
     } // if end
 
     try{
-        // 1. Input value
-        const mid = document.querySelector('.idInput').value;
-        const mpwd = document.querySelector('.pwdInput').value;
-        const mname = document.querySelector('.nameInput').value;
-        const mphone = document.querySelector('.phoneInput').value;
-        // 2. Object
-        const obj = { mid, mpwd, mname, mphone };
-        // 3. fetch option
+        // 1-1. 전송할 form 가져오기
+        const signupForm = document.querySelector('#signupForm');
+        // 1-2. 대용량 form으로 변환
+        const signupFormData = new FormData( signupForm );
+        // 2. fetch option
         const option = {
             method : "POST",
-            headers : { "Content-Type" : "application/json" },
-            body : JSON.stringify( obj )
+            body : signupFormData
         } // option end
         // 4. fetch response
         const response = await fetch( "/member/signup", option );
@@ -48,8 +44,14 @@ const signup = async ( ) => {
 const idCheck = async ( ) => {
     console.log('idCheck func exe');
     try{
+        // 1-1. 전송할 form 가져오기
+        const signupForm = document.querySelector('#signupForm');
+        // 1-2. 대용량 form으로 변환
+        const signupFormData = new FormData( signupForm );
+        console.log( signupFormData.get('mid') );
+
         // 1. Input value
-        const mid = document.querySelector('.idInput').value;
+        const mid = signupFormData.get('mid');
         // 2. where
         const idCheckBox = document.querySelector('.idCheck');
         // * 길이 유효성 검사
@@ -82,8 +84,13 @@ const idCheck = async ( ) => {
 const phoneCheck = async ( ) => {
     console.log('phoneCheck func exe');
     try{
-        // 1. Input value
-        const mphone = document.querySelector('.phoneInput').value;
+        // 1-1. 전송할 form 가져오기
+        const signupForm = document.querySelector('#signupForm');
+        // 1-2. 대용량 form으로 변환
+        const signupFormData = new FormData( signupForm );
+        console.log( signupFormData.get('mphone') );
+
+        const mphone = signupFormData.get('mphone');
         // 2. where
         const phoneCheckBox = document.querySelector('.phoneCheck');
         // * 길이 유효성 검사
