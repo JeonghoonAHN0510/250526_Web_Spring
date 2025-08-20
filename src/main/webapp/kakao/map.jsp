@@ -28,6 +28,7 @@
     <!-- KAKAO 지도 API JS -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=919404b20e4cfe7a95976c5ee731c5de"></script>
     <!-- JS 불러오기 : static 이하 경로부터 작성 -->
+    <script src="/js/kakao/position.js"></script>
     <script src="/js/kakao/map.js"></script>
 </body>
 

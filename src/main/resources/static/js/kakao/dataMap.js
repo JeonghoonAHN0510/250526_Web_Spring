@@ -32,9 +32,12 @@ dataAPI();
 const kakaoMap = async ( ) => {
     console.log('kakaoMap func exe');
 
+    // 클라이언트의 위치 정보 가져오기
+    const position = await myPosition();
+
     // 1. 지도를 표시할 div
     var map = new kakao.maps.Map(document.getElementById('map'), {
-        center : new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
+        center : new kakao.maps.LatLng( position.coords.latitude, position.coords.longitude ), // 지도의 중심좌표
         level : 12 // 지도의 확대 레벨
     });
 

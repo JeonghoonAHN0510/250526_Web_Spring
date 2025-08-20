@@ -12,13 +12,19 @@ console.log('map.js open');
     6. [카카오맵] -> [사용설정] -> [활성화]
 */
 
+
+
 // [1] 간단한 주소 출력
 const kakaoMap1 = async ( ) => {
+
+    // 클라이언트의 위치 정보 가져오기
+    const position = await myPosition();
+
     // 1. 지도를 담을 영역의 DOM 레퍼런스
     var container = document.getElementById('map');
     // 2. 지도를 생성할 때 필요한 기본 옵션
     var options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+        center: new kakao.maps.LatLng( position.coords.latitude, position.coords.longitude ), //지도의 중심좌표.
         level: 3 //지도의 레벨(확대, 축소 정도)
     };
     // 3. 지도 생성 및 객체 리턴
@@ -28,10 +34,14 @@ kakaoMap1();
 
 // [2] 클릭한 위치에 마커 표시하기 , https://apis.map.kakao.com/web/sample/addMapClickEventWithMarker/
 const kakaoMap2 = async ( ) => {
+    
+    // 클라이언트의 위치 정보 가져오기
+    const position = await myPosition();
+
     // 1. 지도를 표시할 div 
     var mapContainer = document.getElementById('map'),
         mapOption = { 
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            center: new kakao.maps.LatLng( position.coords.latitude, position.coords.longitude ), // 지도의 중심좌표
             level: 3 // 지도의 확대 레벨
         };
 
