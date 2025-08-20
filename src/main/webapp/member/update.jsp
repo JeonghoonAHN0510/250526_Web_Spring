@@ -20,12 +20,15 @@
     <jsp:include page="/header.jsp"></jsp:include>
 
     <div id="container">
-        <h3> 회원정보수정 페이지 </h3>
-        <div> 회원번호 : <span class="mno"></span></div>
-        <div> 아이디 : <span class="mid"></span></div>
-        <div> 이름 : <input type="text" class="mname"></div>
-        <div> 연락처 : <input type="text" class="mphone"></div>
-        <button type="button" onclick="onUpdate()"> 수정 </button>
+        <form id="updateForm">
+            <h3> 회원정보수정 페이지 </h3>
+            <div> 회원번호 : <span name="mno" class="mno"></span></div>
+            <div> 아이디 : <span name="mid" class="mid"></span></div>
+            <div> 이름 : <input type="text" name="mname" class="mname"></div>
+            <div> 연락처 : <input type="text" name="mphone" class="mphone"></div>
+            <div> 프로필 사진 : <input type="file" name="upload"></div>
+            <button type="button" onclick="onUpdate()"> 수정 </button>
+        </form>
     </div> 
 
     <!-- JS 불러오기 -->

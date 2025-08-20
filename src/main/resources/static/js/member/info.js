@@ -15,7 +15,7 @@ const info = async ( ) => {
         // 만약, 프로필 이미지가 없다면
         if ( data.mimgname == null ){
             // 기본 이미지 출력
-            mimgURL = 'https://placehold.co/50x50';
+            mimgURL = 'https://placehold.co/150x150';
         } // if end
         // 4. where
         const mimgBox = document.querySelector('.mimgBox');

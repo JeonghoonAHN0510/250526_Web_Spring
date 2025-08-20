@@ -26,21 +26,22 @@ info();
 const onUpdate = async ( ) => {
     console.log('onUpdate func exe');
     try {
-        // 1. Input value
-        const mname = document.querySelector('.mname').value;
+        
+        // 1-1. Form 가져오기
+        const updateForm = document.querySelector('#updateForm');
+        // 1-2. 대용량 Form으로 변환
+        const updateFormData = new FormData( updateForm );
+        // 1-3. Input value
         const mphone = document.querySelector('.mphone').value;
         // * 길이 유효성 검사
         if ( mphone.length != 13 ){
             alert('- 포함한 13글자 연락처를 입력해주세요.');
             return;
         } // if end
-        // 2. Object
-        const obj = { mname, mphone };
         // 3. fetch option
         const option = {
             method : "PUT",
-            headers : { "Content-Type" : "application/json" },
-            body : JSON.stringify( obj )
+            body : updateFormData
         } // option end
         // 4. fetch response
         const response = await fetch ( "/member/update", option );
