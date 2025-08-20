@@ -20,10 +20,20 @@ const infoMenu = async ( ) => {
         let point = await memberPoint();
         console.log( point );
         point = point.toLocaleString('ko-KR');
+        console.log( data.mimgname );
+        // 출력할 이미지의 주소 생성
+        let mimgURL = `/upload/${data.mimgname}`
+        // 만약, 프로필 이미지가 없다면
+        if ( data.mimgname == null ){
+            // 기본 이미지 출력
+            mimgURL = 'https://placehold.co/50x50';
+        } // if end
+
         // 4. what
-        html += `<li><span> ${data.mid}님 (현재 포인트 : ${point}점) </span></li>
-                <li><a href="/member/info.jsp"> 내정보 </a></li>
-                <li><a href="#" onclick="logout()"> 로그아웃 </a></li>`
+        html += `<li><img src="${mimgURL}"></li>
+                 <li><span> ${data.mid}님 (현재 포인트 : ${point}점) </span></li>
+                 <li><a href="/member/info.jsp"> 내정보 </a></li>
+                 <li><a href="#" onclick="logout()"> 로그아웃 </a></li>`
     } catch {
         // * 로그인 안했을 때, 비정상 통신 fetch
         // 4. what
