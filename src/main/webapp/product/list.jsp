@@ -23,9 +23,12 @@
         <div id="map" style="width:100%;height:350px;"></div>
 
     </div>
+
+
     <!-- KAKAO 지도 API JS -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=919404b20e4cfe7a95976c5ee731c5de&libraries=clusterer"></script>
     <!-- JS 불러오기 : static 이하 경로부터 작성 -->
+    <script src="/js/kakao/position.js"></script>
     <script src="/js/product/list.js"></script>
 </body>
 

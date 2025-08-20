@@ -21,13 +21,16 @@ const getList = async ( ) => {
 const getMap = async ( ) => {
     console.log('getMap func exe');
 
+    // 클라이언트의 위치 정보 가져오기
+    const position = await myPosition();
+
     // 1. 지도 생성
     // 지도를 표시할 div
     var map = new kakao.maps.Map(document.getElementById('map'), {
         // 지도의 중심좌표
-        center : new kakao.maps.LatLng(37.48942383081153, 126.72433796566986),
+        center : new kakao.maps.LatLng( position.coords.latitude, position.coords.longitude ),
         // 지도의 확대 레벨
-        level : 10
+        level : 5
     });
 
     // 2. 마커 클러스터러를 생성합니다
