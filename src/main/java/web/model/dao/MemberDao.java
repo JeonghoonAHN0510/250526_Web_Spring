@@ -77,7 +77,7 @@ public class MemberDao extends Dao {
             if ( rs.next() ){
                 // *비밀번호를 제외한* 모두를 조회하여 객체 생성
                 MemberDto memberDto = new MemberDto();
-                memberDto.setMid( rs.getString( "mno" ) );
+                memberDto.setMno( rs.getInt( "mno" ) );
                 memberDto.setMid( rs.getString( "mid" ) );
                 memberDto.setMname( rs.getString( "mname" ) );
                 memberDto.setMphone( rs.getString( "mphone" ) );
@@ -240,5 +240,22 @@ public class MemberDao extends Dao {
             System.out.println( e );
         } // try-catch end
         return false;
+    } // func end
+
+    // 로그인 프로필사진 조회
+    public String getProfile( MemberDto memberDto ){
+        try {
+            // 특정 회원의 최신 프로필 사진을 찾기위해, order by 진행
+            String SQL = "select mimgname from memberimg where mno = ? order by mimgno desc limit 1";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setInt( 1, memberDto.getMno() );
+            ResultSet rs = ps.executeQuery();
+            if ( rs.next() ){
+                return rs.getString( "mimgname" );
+            } // if end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return null;
     } // func end
 } // class end

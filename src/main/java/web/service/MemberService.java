@@ -59,7 +59,17 @@ public class MemberService {
 
     // [member04] 내정보 조회 기능 - info
     public MemberDto info( int mno ){
-        return memberDao.info( mno );
+        // 1. 내 정보를 조회하기
+        MemberDto memberDto = memberDao.info( mno );
+        // 2. 조회에 성공했다면
+        if ( memberDto != null ){
+            // 3. 프로필 사진 조회
+            String mimgname = memberDao.getProfile( memberDto );
+            // 4. 조회한 파일명을 memberDto에 저장
+            memberDto.setMimgname( mimgname );
+        } // if end
+        // 5. 최종적으로 반환
+        return memberDto;
     } // func end
 
     // [member05] 중복검사 기능 - check
