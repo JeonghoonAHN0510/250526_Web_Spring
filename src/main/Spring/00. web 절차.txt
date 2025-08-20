@@ -5,6 +5,11 @@
     - 파일파트 기능구현 : https://docs.google.com/spreadsheets/d/1xdLQnrAlXw0nD1sSvQCNxVm4wvMUkZhCgJy5hcEMMrM/edit?usp=sharing
     - 제품파트 화면구현 : https://docs.google.com/spreadsheets/d/1qN8Cm4EooJqndLipCcgzlAjhJTswmFlbqkmODE-GwnE/edit?usp=sharing
 
+대표적 API 관련
+- 카카오 : https://apis.map.kakao.com/
+- 네이버 : https://developers.naver.com/main/
+- TMAP  : https://tmapapi.tmapmobility.com/index.html
+
 [1] 패키지 구성
 1. 자바코드 : src-> main -> java -> [홈페이지명] -> MVC패키지 구성
 2. JSP코드 : src-> main -> webapp -> jsp패키지 구성
