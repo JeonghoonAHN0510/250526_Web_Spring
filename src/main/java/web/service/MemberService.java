@@ -79,7 +79,10 @@ public class MemberService {
 
     // [member06] 회원정보수정 기능 - update
     public boolean update( MemberDto memberDto ){
-        return memberDao.update( memberDto );
+        // 1. 기본회원정보 수정을 실패하면, false 반환
+        if ( !memberDao.update( memberDto ) ) return false;
+        // 2. 성공했다면, 프로필사진 수정하고 반환
+        return memberDao.signupProfile( memberDto );
     } // func end
 
     // [member07] 비밀번호수정 기능 - updatePassword

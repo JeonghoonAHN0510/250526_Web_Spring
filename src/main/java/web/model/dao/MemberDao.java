@@ -228,7 +228,7 @@ public class MemberDao extends Dao {
         return false;
     } // func end
 
-    // 회원가입 프로필 등록
+    // 회원가입 프로필 등록 및 추가
     public boolean signupProfile( MemberDto memberDto ){
         try {
             String SQL = "insert into memberimg ( mimgname, mno ) values ( ?, ? )";

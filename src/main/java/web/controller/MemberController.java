@@ -101,7 +101,7 @@ public class MemberController {
 
     // [member06] 회원정보수정 기능 - update
     @PutMapping("/update")
-    public boolean update( @RequestBody MemberDto memberDto, HttpServletRequest request ){
+    public boolean update( MemberDto memberDto, HttpServletRequest request ){
         System.out.println("MemberController.update");
         // 1. 세션정보 가져오기
         HttpSession session = request.getSession();
@@ -111,7 +111,16 @@ public class MemberController {
         int mno = ( int ) session.getAttribute("loginMno");
         // 4. 로그인 중인 mno를 입력받은 객체에 넣기
         memberDto.setMno( mno );
-        // 5. 객체를 Service에게 전달 후 결과 반환하기
+        // 5. 업로드 파일 확인하기
+        // 5-1. 첨부파일이 존재한다면
+        if ( !memberDto.getUpload().isEmpty() ){
+            // 5-2. 첨부파일을 꺼내서 업로드 진행
+            MultipartFile multipartFile = memberDto.getUpload();
+            String mimgname = fileService.fileUpload( multipartFile );
+            // 5-3. 파일명을 memberDto에 넣기
+            memberDto.setMimgname( mimgname );
+        } // if end
+        // 6. 객체를 Service에게 전달 후 결과 반환하기
         System.out.println("[회원정보수정 성공]");
         return memberService.update( memberDto );
     } // func end
