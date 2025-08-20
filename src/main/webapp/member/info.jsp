@@ -21,6 +21,7 @@
 
     <div id="container">
         <h3> 마이페이지 </h3>
+        <div class="mimgBox"></div>
         <div class="mnoBox"></div>
         <div class="midBox"></div>
         <div class="mnameBox"></div>

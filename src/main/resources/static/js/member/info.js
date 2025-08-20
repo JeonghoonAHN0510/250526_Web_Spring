@@ -10,13 +10,22 @@ const info = async ( ) => {
         const response = await fetch( "/member/info", option );
         // 3. fetch data
         const data = await response.json();
+        // * mimgURL 만들기 -> 출력할 이미지의 주소 생성
+        let mimgURL = `/upload/${data.mimgname}`
+        // 만약, 프로필 이미지가 없다면
+        if ( data.mimgname == null ){
+            // 기본 이미지 출력
+            mimgURL = 'https://placehold.co/50x50';
+        } // if end
         // 4. where
+        const mimgBox = document.querySelector('.mimgBox');
         const mnoBox = document.querySelector('.mnoBox');
         const midBox = document.querySelector('.midBox');
         const mnameBox = document.querySelector('.mnameBox');
         const mphoneBox = document.querySelector('.mphoneBox');
         const mdateBox = document.querySelector('.mdateBox');
         // 5. print
+        mimgBox.innerHTML = `<img src="${mimgURL}">`
         mnoBox.innerHTML = `회원번호 : ${data.mno}`;
         midBox.innerHTML = `아이디 : ${data.mid}`;
         mnameBox.innerHTML = `이름 : ${data.mname}`;
