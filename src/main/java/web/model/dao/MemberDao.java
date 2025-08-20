@@ -76,14 +76,12 @@ public class MemberDao extends Dao {
             ResultSet rs = ps.executeQuery();
             if ( rs.next() ){
                 // *비밀번호를 제외한* 모두를 조회하여 객체 생성
-                MemberDto memberDto = new MemberDto(
-                        mno,
-                        rs.getString("mid"),
-                        "",
-                        rs.getString("mname"),
-                        rs.getString("mphone"),
-                        rs.getString("mdate")
-                );
+                MemberDto memberDto = new MemberDto();
+                memberDto.setMid( rs.getString( "mno" ) );
+                memberDto.setMid( rs.getString( "mid" ) );
+                memberDto.setMname( rs.getString( "mname" ) );
+                memberDto.setMphone( rs.getString( "mphone" ) );
+                memberDto.setMdate( rs.getString( "mdate" ) );
                 // 생성한 객체 반환
                 return memberDto;
             } // if end
@@ -224,6 +222,20 @@ public class MemberDao extends Dao {
                 // 수정에 성공하면 true 반환
                 return true;
             } // if end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return false;
+    } // func end
+
+    // 회원가입 프로필 등록
+    public boolean signupProfile( MemberDto memberDto ){
+        try {
+            String SQL = "insert into memberimg ( mimgname, mno ) values ( ?, ? )";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setString( 1, memberDto.getMimgname() );
+            ps.setInt( 2, memberDto.getMno() );
+            return ps.executeUpdate() == 1;
         } catch ( SQLException e ){
             System.out.println( e );
         } // try-catch end

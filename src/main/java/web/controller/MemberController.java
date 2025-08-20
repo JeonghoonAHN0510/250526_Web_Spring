@@ -4,9 +4,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import web.model.dto.MemberDto;
+import web.service.FileService;
 import web.service.MemberService;
-import web.service.PointService;
 
 import java.util.Map;
 
@@ -15,23 +16,34 @@ import java.util.Map;
 public class MemberController {
     // * MemberService 가져오기
     private final MemberService memberService;
+    private final FileService fileService;
     @Autowired  // 스프링 컨테이너에 등록된 빈 주입받기
-    public MemberController( MemberService memberService ){
+    public MemberController( MemberService memberService, FileService fileService ){
         this.memberService = memberService;
+        this.fileService = fileService;
     } // func end
 
     // [member01] 회원가입 기능 - signup
     @PostMapping("/signup")
-    public int signup( @RequestBody MemberDto memberDto ){
+    public int signup( MemberDto memberDto ){
         System.out.println("MemberController.signup");
         System.out.println("memberDto = " + memberDto);
 
+        // 1. 업로드 파일 확인하기
+        // 1-1. 첨부파일이 존재한다면
+        if ( !memberDto.getUpload().isEmpty() ){
+            // 1-2. 첨부파일을 꺼내서 업로드 진행
+            MultipartFile multipartFile = memberDto.getUpload();
+            String mimgname = fileService.fileUpload( multipartFile );
+            // 1-3. 파일명을 memberDto에 넣기
+            memberDto.setMimgname( mimgname );
+        } // if end
         return memberService.signup( memberDto );
     } // func end
 
     // [member02] 로그인 기능 - login
     @PostMapping("/login")  // 비밀번호를 보여주지않기 위해서, POST
-    public int login(@RequestBody MemberDto memberDto, HttpServletRequest request ){
+    public int login( @RequestBody MemberDto memberDto, HttpServletRequest request ){
         System.out.println("MemberController.login");
         System.out.println("memberDto = " + memberDto);
         // 0. 로그인한 회원번호 가져오기

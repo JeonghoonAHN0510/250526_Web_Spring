@@ -24,15 +24,23 @@ public class MemberService {
     // [member01] 회원가입 기능 - signup
     public int signup( MemberDto memberDto ){
         // 1. 회원가입 성공여부 받아오기
-        int result = memberDao.signup( memberDto );
+        int mno = memberDao.signup( memberDto );
+        memberDto.setMno( mno );
         // 2. 포인트 지급할 포인트 객체 생성
         PointDto pointDto = new PointDto();
-        pointDto.setMno( result );
+        pointDto.setMno( mno );
         pointDto.setPlpoint( 1000 );
         pointDto.setPlcomment( "회원가입" );
         // 3. 회원가입에 성공했다면, 포인트 지급
-        if ( result > 0 ) pointService.addPoint( pointDto );
-        return result;
+        if ( mno > 0 ){
+            pointService.addPoint( pointDto );
+        } else {
+            return 0;
+        } // if end
+        // 4. 회원가입 프로필 등록
+        if ( !memberDao.signupProfile( memberDto ) ) return 0;
+        // 5. 최종적으로 반환
+        return mno;
     } // func end
 
     // [member02] 로그인 기능 - login
