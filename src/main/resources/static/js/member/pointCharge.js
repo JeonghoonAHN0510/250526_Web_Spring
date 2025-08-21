@@ -26,10 +26,19 @@ const payment = async ( ) => {
     });
     console.log( response );
 
-    if (response.code !== undefined) {
-        // 오류 발생
-        console.log('결제 성공')
+    if ( response.code !== undefined ){
+        // 오류 발생 -> 지금 컨셉에선 결제 성공
+        console.log('결제 성공');
+
+        // 1. fetch
+        const option = { method : "POST" };
+        const response = await fetch( `/payment/add?point=${point}`, option );
+        const data = await response.json();
+        console.log( data );
+        if ( data > 0 ){
+            alert(`${point}원 결제 성공!`)
+        } else {
+            alert('결제 실패')
+        } // if end
     } // if end
-
-
 } // func end
