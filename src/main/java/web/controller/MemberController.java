@@ -167,4 +167,12 @@ public class MemberController {
         // 2. Service에게 전달 후, 결과 반환하기
         return memberService.findPwd( memberDto );
     } // func end
+
+    // 세션정보 유효성 검사 반환
+    @GetMapping("/session")
+    public boolean checkSession( HttpSession session ){
+        System.out.println("MemberController.checkSession");
+
+        return memberService.checkSession( session );
+    } // func end
 } // class end

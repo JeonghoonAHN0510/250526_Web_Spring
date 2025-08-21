@@ -1,8 +1,10 @@
 console.log('pointCharge.js open');
 
-
-
+// [1] 결제 기능구현
 const payment = async ( ) => {
+    // 로그인 확인하기
+    checkSession();
+
     const pointName = document.getElementsByName('point');
     console.log( pointName );
     let point = "";
@@ -37,8 +39,23 @@ const payment = async ( ) => {
         console.log( data );
         if ( data > 0 ){
             alert(`${point}원 결제 성공!`)
+            location.href = '/member/pointCharge.jsp';
         } else {
             alert('결제 실패')
         } // if end
+    } // if end
+} // func end
+
+// [2] 현재 세션 조회
+const checkSession = async ( ) => {
+    console.log('checkSession func exe');
+    // 1. fetch
+    const option = { method : "GET" };
+    const response = await fetch( "/member/session", option );
+    const data = await response.json();
+    // 2. 결과 반환
+    if ( data == false ){
+        alert('로그인 후 이용해주세요.')
+        location.href = '/member/login.jsp';
     } // if end
 } // func end
