@@ -90,10 +90,20 @@ CREATE TABLE memberimg (
 	CONSTRAINT FOREIGN KEY (mno) REFERENCES member(mno) ON DELETE CASCADE
 );
 
+-- ---------------------- payment ---------------------------------- --
+CREATE TABLE payment (
+    pno       INT AUTO_INCREMENT PRIMARY KEY,  -- 결제번호
+    mno       INT NOT NULL,                    -- 회원번호 (FK)
+    pamount   INT NOT NULL,                    -- 결제금액
+    pdate     DATETIME DEFAULT now(),          -- 결제일시
+    CONSTRAINT FOREIGN KEY (mno) REFERENCES member(mno) ON DELETE CASCADE
+);
+
 /*
 select * from member;
 select * from product;
 select * from productimg;
 select * from pointlog;
 select * from memberimg;
+select * from payment;
 */
