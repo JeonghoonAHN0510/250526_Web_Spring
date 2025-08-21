@@ -19,12 +19,14 @@
         -> Spring 프로젝트에서는 resources 폴더에 해당, JSP는 webapp 폴더에 해당
 
     2) Controller : @RestController @Controller
-        -> 역할 : HTTP 통신(요청/응답), 타입 변환, (타입에 대한)유효성 검사 ···
+        -> 역할 : HTTP 통신(요청/응답), 매개변수/반환값의 타입 관리, (타입에 대한)유효성 검사, 세션 관리 ···
+        -> 클라이언트의 1번 요청은 하나의 Controller에게 위임
 
     3) Service : @Service
         -> 역할 : 비지니스 로직( 기능에 있어서 실질적인 중요 코드 )
         -> CRUD, 데이터 검증, 연산, 알고리즘, 트랜잭션 ···
         -> SQL을 제외한 실질적인 로직
+        -> 다른 Service를 호출할 수 있다.
 
     4) Repository : @Repository
         -> 역할 : 저장소( 실질적인 저장소를 조작하는 코드 )( DAO, **JPA**, **myBatis** ··· )
