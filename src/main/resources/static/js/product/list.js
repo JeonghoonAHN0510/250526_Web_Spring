@@ -55,6 +55,24 @@ const getMap = async ( ) => {
         // 3-3. 마커 클릭 이벤트
         kakao.maps.event.addListener( marker, 'click', ( ) => {
             alert( `클릭한 제품명은 ${product.pname}입니다.`)
+
+            // 업로드된 이미지 출력하기
+            // where
+            const productDiv = document.querySelector('#productDiv');
+            // what, JSP(webapp이하 경로), css/js/img(static이하 경로)
+            let html = '';
+            // 이미지가 없다면
+            if ( product.images.length == 0 ){
+                html += `<img src="/upload/default.png">`
+            } else {
+                // 이미지가 여러개라면, 반복문을 통해 추가
+                for ( let i = 0; i < product.images.length; i++){
+                    let image = product.images[i];
+                    html += `<img src="/upload/${image}">`
+                } // for end
+            } // if end
+            // print
+            productDiv.innerHTML = html;
         })
         // 3-4. 마커 반환
         return marker;
