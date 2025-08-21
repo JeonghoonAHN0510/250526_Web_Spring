@@ -62,6 +62,19 @@
     4. 첨부파일 업로드 진행
        -> multipartFile.transferTo( uploadFile );
 
+[ JS 첨부파일 Form fetch 전송 절차 ]
+    1. 일반 텍스트폼을 가져오기
+        -> const form = document.querySelector('form식별자명');
+        -> form 마크업 내 name 속성명과 JAVA의 Dto 속성명이 일치해야한다.
+        -> <input name="pname"> == ProductDto{ String pname; }
+    2. 일반 텍스트폼 --> 대용량 바이트폼으로 전환
+        -> const formData = new FormData( form );
+    3. 기존 폼 속성 외의 속성 추가
+        -> formData.append( "속성명", 값 );
+    4. option 구성하기
+        -> const option = { method : "POST/PUT", body : formData } , headers 생략
+    5. fetch 진행
+
 [ 스프링 다운로드 구현 절차 ]
     1. HttpServletResponse 클래스를 이용한 클라이언트 응답 객체를 매개변수로 받기
     2. 다운로드 경로 설정
