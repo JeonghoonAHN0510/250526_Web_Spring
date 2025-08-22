@@ -1,0 +1,6 @@
+1. 부트스트랩 : https://getbootstrap.kr/
+2. 코드펜 : https://codepen.io/
+3. 플로우 순서 작성 : https://drawio.com/
+    -> 프로그램 흐름, 기능(화면)에 따른 알고리즘
+4. 프로토타입 작성(프론트엔드) : https://www.figma.com/
+5. 협업 관련 : https://www.atlassian.com/
