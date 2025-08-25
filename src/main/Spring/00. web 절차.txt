@@ -4,6 +4,7 @@
     - API 활용        : https://docs.google.com/spreadsheets/d/1wzAZ2jiSEBdCaIqVxTRUFXpl1BLYEWMGG_nNzvlDKi4/edit?usp=sharing
     - 파일파트 기능구현 : https://docs.google.com/spreadsheets/d/1xdLQnrAlXw0nD1sSvQCNxVm4wvMUkZhCgJy5hcEMMrM/edit?usp=sharing
     - 제품파트 화면구현 : https://docs.google.com/spreadsheets/d/1qN8Cm4EooJqndLipCcgzlAjhJTswmFlbqkmODE-GwnE/edit?usp=sharing
+    - 게시판  기능구현  : https://docs.google.com/spreadsheets/d/1JjS62_L2Z5Ds83bUBEBUbRDXZ6AwrUoG2vlzgW5Mrpw/edit?usp=sharing
 
 대표적 API 관련
 - 카카오 : https://apis.map.kakao.com/
