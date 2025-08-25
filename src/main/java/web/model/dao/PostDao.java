@@ -50,24 +50,26 @@ public class PostDao extends Dao {
     } // func end
 
     // [2-2] 게시물 전체조회( 페이징처리 + 최신순 )
-    public List< PostDto > findAllPrint( int cno, int startRow, int count ){
+    public List< PostDto > findAllPrint( int cno, int startRow, int perCount ){
         List< PostDto > postList = new ArrayList<>();
         try {
-            String SQL = "select * from post where cno = ? order by pno desc limit ?, ?";
+            String SQL = "select * from post p inner join member m using ( mno ) where p.cno = ? order by p.pno desc limit ?, ?";
+            // limit startRow, perCount : startRow부터 perCount 추출
             PreparedStatement ps = conn.prepareStatement( SQL );
             ps.setInt( 1, cno );
             ps.setInt( 2, startRow );
-            ps.setInt( 3, count );
+            ps.setInt( 3, perCount );
             ResultSet rs = ps.executeQuery();
             while ( rs.next() ){
                 PostDto postDto = new PostDto();
-                postDto.setPno( rs.getInt( "pno" ) );
-                postDto.setPtitle( rs.getString( "ptitle" ) );
-                postDto.setPcontent( rs.getString( "pcontent" ) );
-                postDto.setPdate( rs.getString( "pdate" ) );
-                postDto.setPview( rs.getInt( "pview" ) );
-                postDto.setMno( rs.getInt( "mno" ) );
-                postDto.setCno( rs.getInt( "cno" ) );
+                postDto.setPno( rs.getInt( "pno" ) );                   // 게시물 번호
+                postDto.setPtitle( rs.getString( "ptitle" ) );          // 게시물 제목
+                postDto.setPcontent( rs.getString( "pcontent" ) );      // 게시물 내용
+                postDto.setPdate( rs.getString( "pdate" ) );            // 게시물 작성일
+                postDto.setPview( rs.getInt( "pview" ) );               // 게시물 조회수
+                postDto.setMno( rs.getInt( "mno" ) );                   // 게시물 작성자 번호
+                postDto.setCno( rs.getInt( "cno" ) );                   // 게시물 카테고리 번호
+                postDto.setMid( rs.getString( "mid" ) );                // 게시물 작성자 아이디
                 postList.add( postDto );
             } // while end
         } catch ( SQLException e ){
