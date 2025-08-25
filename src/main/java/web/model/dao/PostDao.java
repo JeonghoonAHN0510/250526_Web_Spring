@@ -1,12 +1,15 @@
 package web.model.dao;
 
 import org.springframework.stereotype.Repository;
+import web.model.dto.PageDto;
 import web.model.dto.PostDto;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class PostDao extends Dao {
@@ -28,5 +31,48 @@ public class PostDao extends Dao {
             System.out.println( e );
         } // try-catch end
         return 0;
+    } // func end
+
+    // [2-1] 카테고리별 자료 개수 구하기
+    public int getTotalCount( int cno ){
+        try {
+            String SQL = "select count(*) from post where cno = ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setInt( 1, cno );
+            ResultSet rs = ps.executeQuery();
+            if ( rs.next() ){
+                return rs.getInt( 1 );
+            } // if end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return 0;
+    } // func end
+
+    // [2-2] 게시물 전체조회( 페이징처리 + 최신순 )
+    public List< PostDto > findAllPrint( int cno, int startRow, int count ){
+        List< PostDto > postList = new ArrayList<>();
+        try {
+            String SQL = "select * from post where cno = ? order by pno desc limit ?, ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setInt( 1, cno );
+            ps.setInt( 2, startRow );
+            ps.setInt( 3, count );
+            ResultSet rs = ps.executeQuery();
+            while ( rs.next() ){
+                PostDto postDto = new PostDto();
+                postDto.setPno( rs.getInt( "pno" ) );
+                postDto.setPtitle( rs.getString( "ptitle" ) );
+                postDto.setPcontent( rs.getString( "pcontent" ) );
+                postDto.setPdate( rs.getString( "pdate" ) );
+                postDto.setPview( rs.getInt( "pview" ) );
+                postDto.setMno( rs.getInt( "mno" ) );
+                postDto.setCno( rs.getInt( "cno" ) );
+                postList.add( postDto );
+            } // while end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return postList;
     } // func end
 } // class end

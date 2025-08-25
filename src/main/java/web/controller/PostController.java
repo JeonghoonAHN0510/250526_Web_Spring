@@ -31,4 +31,6 @@ public class PostController {
         // 4. Service를 호출하고, 응답 반환
         return postService.writePost( postDto );
     } // func end
+
+    // [2] 게시물 전체조회(페이징처리)
 } // class end
