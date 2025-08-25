@@ -171,6 +171,7 @@ public class MemberService {
     } // func end
 
     // [member00] 세션정보 유효성검사 - checkSession
+    // 로그인 상태 : true, 비로그인 상태 : false
     public boolean checkSession( HttpSession session ){
         System.out.println("MemberController.checkSession");
         // 1. 세션정보 유효성검사 -> 세션정보가 없거나 특정한 속성값이 없으면
