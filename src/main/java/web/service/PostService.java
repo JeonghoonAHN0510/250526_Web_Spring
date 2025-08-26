@@ -30,7 +30,7 @@ public class PostService {
         // 3. Dao에게 받을 자료 선언하기
         List<PostDto> postList;
         // key-keyword(검색)의 유무에 따른, totalCount와 postList 구분하기
-        if ( key == null && key.isEmpty() && keyword == null && keyword.isEmpty() ){
+        if ( key == null || key.isEmpty() && keyword == null || keyword.isEmpty() ){
             // (1) 검색이 존재하지 않을 때
             // (1-1) 카테고리별 자료 개수 구하기
             totalCount = postDao.getTotalCount( cno );

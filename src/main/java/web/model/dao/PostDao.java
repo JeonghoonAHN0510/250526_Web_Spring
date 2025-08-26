@@ -51,7 +51,27 @@ public class PostDao extends Dao {
 
     // [2-2] 검색에 따른 카테고리별 자료 개수 구하기
     public int getTotalCountSearch( int cno, String key, String keyword ){
-
+        try {
+            String SQL = "select count(*) from post where cno = ? and ";
+         // String SQL = "select count(*) from post where cno = ? and " + key + " like ?";
+            // key에 따른 동적 SQL 작성 -> 그 외의 속성이 있다면, 추가하기
+            if ( key.equals("ptitle") ){
+                SQL += " ptitle like ?";
+            } else if ( key.equals("pcontent") ){
+                SQL += " pcotent like ?";
+            } // if end
+            System.out.println("SQL = " + SQL);     // 동적 SQL 확인
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setInt( 1, cno );
+            ps.setString( 2, "%" + keyword + "%" );     // %는 .setXXX에서 추가하기
+            ResultSet rs = ps.executeQuery();
+            if ( rs.next() ){
+                return rs.getInt( 1 );
+            } // if end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return 0;
     } // func end
 
     // [2-3] 게시물 전체조회( 페이징처리 + 최신순 )
@@ -85,6 +105,38 @@ public class PostDao extends Dao {
 
     // [2-4] 검색에 따른 게시물 조회( 페이징처리 + 최신순 )
     public List< PostDto > findAllSearch( int cno, int startRow, int perCount, String key, String keyword ){
-
+        List< PostDto > postList = new ArrayList<>();
+        try {
+            String SQL = "select * from post p inner join member m using ( mno ) where p.cno = ? ";
+            // key에 따른 동적 SQL 작성
+            if ( key.equals("ptitle") ){
+                SQL += " and ptitle like ? ";
+            } else if ( key.equals("pcontent") ){
+                SQL += " and pcontent like ? ";
+            } // if end
+            SQL += " order by p.pno desc limit ?, ?";
+            System.out.println("SQL = " + SQL);     // 동적 SQL 확인
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setInt( 1, cno );
+            ps.setString( 2, "%" + keyword + "%" );
+            ps.setInt( 3, startRow );
+            ps.setInt( 4, perCount );
+            ResultSet rs = ps.executeQuery();
+            while ( rs.next() ){
+                PostDto postDto = new PostDto();
+                postDto.setPno( rs.getInt( "pno" ) );                   // 게시물 번호
+                postDto.setPtitle( rs.getString( "ptitle" ) );          // 게시물 제목
+                postDto.setPcontent( rs.getString( "pcontent" ) );      // 게시물 내용
+                postDto.setPdate( rs.getString( "pdate" ) );            // 게시물 작성일
+                postDto.setPview( rs.getInt( "pview" ) );               // 게시물 조회수
+                postDto.setMno( rs.getInt( "mno" ) );                   // 게시물 작성자 번호
+                postDto.setCno( rs.getInt( "cno" ) );                   // 게시물 카테고리 번호
+                postDto.setMid( rs.getString( "mid" ) );                // 게시물 작성자 아이디
+                postList.add( postDto );
+            } // while end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return postList;
     } // func end
 } // class end
