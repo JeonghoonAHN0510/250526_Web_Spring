@@ -30,15 +30,17 @@ public class PostController {
         return postService.writePost( postDto );
     } // func end
 
-    // [2] 게시물 전체조회(페이징처리)
+    // [2] 게시물 전체조회(페이징처리) + 검색 기능 추가
     // method : GET, URL : localhost:8080/post?cno=1&page=1&perCount=5
     @GetMapping("")
     // cno : 카테고리 번호, page : 현재 페이지번호, perCount : 페이지당 자료 개수
     public PageDto findAllPost( @RequestParam( defaultValue = "1" ) int cno,        // defaultValue : 만약 쿼리스트링 매개변수가 없으면, 기본값을 대입
                                 @RequestParam( defaultValue = "1" ) int page,
-                                @RequestParam( defaultValue = "5" ) int perCount ){
+                                @RequestParam( defaultValue = "5" ) int perCount,
+                                @RequestParam( required = false ) String key,       // required = false : 쿼리스트링 매개변수가 필수가 아님을 의미
+                                @RequestParam( required = false ) String keyword ){
         System.out.println("PostController.findAllPost");
 
-        return postService.findAllPost( cno, page, perCount );
+        return postService.findAllPost( cno, page, perCount, key, keyword );
     } // func end
 } // class end

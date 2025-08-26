@@ -18,24 +18,41 @@ public class PostService {
         return postDao.writePost( postDto );
     } // func end
 
-    // [2] 게시물 전체조회(페이징처리)
+    // [2] 게시물 전체조회(페이징처리) + 검색 기능 추가
     // cno : 카테고리 번호, page : 현재 페이지번호, perCount : 페이지당 자료 개수
-    public PageDto findAllPost( int cno, int page, int perCount ){
+    public PageDto findAllPost( int cno, int page, int perCount, String key, String keyword ){
         // 1. 페이지별 조회를 시작할 인덱스 번호 계산
         int startRow = ( page - 1 ) * perCount;
-        // 2. 카테고리별 자료 개수 구하기
-        int totalCount = postDao.getTotalCount( cno );
-        // 3. 전체 페이지 수 구하기 -> 자료개수 / 페이지당 자료 개수 = 나머지가 있으면, 페이지 1개 추가
+
+        // * 자료를 미리 선언하기
+        // 2. 카테고리별 자료 개수 선언하기
+        int totalCount;
+        // 3. Dao에게 받을 자료 선언하기
+        List<PostDto> postList;
+        // key-keyword(검색)의 유무에 따른, totalCount와 postList 구분하기
+        if ( key == null && key.isEmpty() && keyword == null && keyword.isEmpty() ){
+            // (1) 검색이 존재하지 않을 때
+            // (1-1) 카테고리별 자료 개수 구하기
+            totalCount = postDao.getTotalCount( cno );
+            // (1-2) Dao에게 자료 요청하기 : cno, startRow, count
+            postList = postDao.findAllPrint( cno, startRow, perCount );
+        } else {
+            // (2) 검색이 존재할 때
+            // (2-1) 검색 조건에 따른 카테고리별 자료 개수 구하기
+            totalCount = postDao.getTotalCountSearch( cno, key, keyword );
+            // (2-2) 검색 조건에 따른 Dao에게 자료 요청하기
+            postList = postDao.findAllSearch( cno, startRow, perCount, key, keyword );
+        } // if end
+
+        // 4. 전체 페이지 수 구하기 -> 자료개수 / 페이지당 자료 개수 = 나머지가 있으면, 페이지 1개 추가
         int totalPage = totalCount / perCount == 0 ? totalCount / perCount : (totalCount / perCount) + 1;
-        // 4. 페이지 시작 번호 구하기
+        // 5. 페이지 시작 번호 구하기
         // 한 페이지에 보여지는 버튼 수
         int btnCount = 5;
         int startBtn = ( ( page - 1 ) / btnCount ) * btnCount + 1;
-        // 5. 페이지 끝 번호 구하기
+        // 6. 페이지 끝 번호 구하기
         int endBtn = startBtn + btnCount - 1;
         if ( endBtn > totalPage ) endBtn = totalPage;
-        // 6. Dao에게 자료 요청하기 : cno, startRow, count
-        List< PostDto > postList = postDao.findAllPrint( cno, startRow, perCount );
         // 7. pageDto 구성하기
         PageDto pageDto = new PageDto();
         pageDto.setCurrentPage( page );         // 현재 페이지 번호

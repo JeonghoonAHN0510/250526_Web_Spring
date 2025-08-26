@@ -49,7 +49,12 @@ public class PostDao extends Dao {
         return 0;
     } // func end
 
-    // [2-2] 게시물 전체조회( 페이징처리 + 최신순 )
+    // [2-2] 검색에 따른 카테고리별 자료 개수 구하기
+    public int getTotalCountSearch( int cno, String key, String keyword ){
+
+    } // func end
+
+    // [2-3] 게시물 전체조회( 페이징처리 + 최신순 )
     public List< PostDto > findAllPrint( int cno, int startRow, int perCount ){
         List< PostDto > postList = new ArrayList<>();
         try {
@@ -76,5 +81,10 @@ public class PostDao extends Dao {
             System.out.println( e );
         } // try-catch end
         return postList;
+    } // func end
+
+    // [2-4] 검색에 따른 게시물 조회( 페이징처리 + 최신순 )
+    public List< PostDto > findAllSearch( int cno, int startRow, int perCount, String key, String keyword ){
+
     } // func end
 } // class end
