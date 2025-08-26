@@ -47,12 +47,13 @@
 
             </tbody>
         </table>
+        <!-- 페이지 버튼 구역 -->
         <div style="width: 300px;">
             <ul class="pageBtnBox" style="display: flex; justify-content: space-between;">
 
                 <!--
                 [ 테스트용 샘플 ]
-                
+
                 <li><a href="post.jsp?cno=1&page=1">1</a></li>
                 <li><a href="post.jsp?cno=1&page=2">2</a></li>
                 <li><a href="post.jsp?cno=1&page=3">3</a></li>
@@ -61,6 +62,21 @@
                 -->
 
             </ul>
+        </div>
+        <!-- 검색 구역 -->
+        <div style="display: flex;">
+            <div>
+                <select class="key">
+                    <option value="ptitle"> 제목 </option>
+                    <option value="pcontent"> 내용 </option>
+                </select>
+            </div>
+            <div>
+                <input type="text" class="keyword" placeholder="검색어를 입력하세요.">
+            </div>
+            <div>
+                <button type="button" onclick="onSearch()"> 검색 </button>
+            </div>
         </div>
     </div>
 
