@@ -31,7 +31,8 @@ public class PostController {
     } // func end
 
     // [2] 게시물 전체조회(페이징처리) + 검색 기능 추가
-    // method : GET, URL : localhost:8080/post?cno=1&page=1&perCount=5
+    // 검색이 없을 때 - method : GET, URL : localhost:8080/post?cno=1&page=1&perCount=5
+    // 검색이 있을 때 - method : GET, URL : localhost:8080/post?cno=1&page=1&perCount=5&key=ptitle&keyword=ai
     @GetMapping("")
     // cno : 카테고리 번호, page : 현재 페이지번호, perCount : 페이지당 자료 개수
     public PageDto findAllPost( @RequestParam( defaultValue = "1" ) int cno,        // defaultValue : 만약 쿼리스트링 매개변수가 없으면, 기본값을 대입

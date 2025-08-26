@@ -1,7 +1,6 @@
 package web.model.dao;
 
 import org.springframework.stereotype.Repository;
-import web.model.dto.PageDto;
 import web.model.dto.PostDto;
 
 import java.sql.PreparedStatement;
