@@ -30,18 +30,18 @@ public class PostService {
         // 3. Dao에게 받을 자료 선언하기
         List<PostDto> postList;
         // key-keyword(검색)의 유무에 따른, totalCount와 postList 구분하기
-        if ( key == null || key.isEmpty() && keyword == null || keyword.isEmpty() ){
-            // (1) 검색이 존재하지 않을 때
-            // (1-1) 카테고리별 자료 개수 구하기
-            totalCount = postDao.getTotalCount( cno );
-            // (1-2) Dao에게 자료 요청하기 : cno, startRow, count
-            postList = postDao.findAllPrint( cno, startRow, perCount );
-        } else {
-            // (2) 검색이 존재할 때
-            // (2-1) 검색 조건에 따른 카테고리별 자료 개수 구하기
+        if ( key != null && !key.isEmpty() && keyword != null && !keyword.isEmpty() ){
+            // (1) 검색이 존재할 때
+            // (1-1) 검색 조건에 따른 카테고리별 자료 개수 구하기
             totalCount = postDao.getTotalCountSearch( cno, key, keyword );
-            // (2-2) 검색 조건에 따른 Dao에게 자료 요청하기
+            // (1-2) 검색 조건에 따른 Dao에게 자료 요청하기
             postList = postDao.findAllSearch( cno, startRow, perCount, key, keyword );
+        } else {
+            // (2) 검색이 존재하지 않을 때
+            // (2-1) 카테고리별 자료 개수 구하기
+            totalCount = postDao.getTotalCount( cno );
+            // (2-2) Dao에게 자료 요청하기 : cno, startRow, count
+            postList = postDao.findAllPrint( cno, startRow, perCount );
         } // if end
 
         // 4. 전체 페이지 수 구하기 -> 자료개수 / 페이지당 자료 개수 = 나머지가 있으면, 페이지 1개 추가
