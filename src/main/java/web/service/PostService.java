@@ -44,8 +44,8 @@ public class PostService {
             postList = postDao.findAllPrint( cno, startRow, perCount );
         } // if end
 
-        // 4. 전체 페이지 수 구하기 -> 자료개수 / 페이지당 자료 개수 = 나머지가 있으면, 페이지 1개 추가
-        int totalPage = totalCount / perCount == 0 ? totalCount / perCount : (totalCount / perCount) + 1;
+        // 4. 전체 페이지 수 구하기 -> 자료개수 % 페이지당 자료 개수 = 나머지가 있으면, 페이지 1개 추가
+        int totalPage = totalCount % perCount == 0 ? totalCount / perCount : (totalCount / perCount) + 1;
         // 5. 페이지 시작 번호 구하기
         // 한 페이지에 보여지는 버튼 수
         int btnCount = 5;
