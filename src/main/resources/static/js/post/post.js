@@ -48,7 +48,8 @@ const searchURL = `&key=${ key }&keyword=${ keyword }`;
 const viewPageBtns = async ( data ) => {
     console.log('viewPageBtns func exe');
     // data로부터 정보 가져오기
-    let currentPage = parseInt( data.currentPage );     // parseInt( 자료 ) : 자료를 int 타입으로 변환
+    let currentPage = parseInt( data.currentPage );
+    // parseInt( 자료 ) : 자료를 int 타입으로 변환 -> java에서 js로 넘어올 때, 정적 변수로 넘어오기에 '이전''다음'에서 +1을 하면 1 + 1 -> 11이 된다. 그래서 int로 변환 후 사용
     let totalPage = data.totalPage;
     let startBtn = data.startBtn;
     let endBtn = data.endBtn;
