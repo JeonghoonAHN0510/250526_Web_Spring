@@ -1,6 +1,7 @@
 package web.model.dao;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestBody;
 import web.model.dto.PostDto;
 
 import java.sql.PreparedStatement;
@@ -191,13 +192,14 @@ public class PostDao extends Dao {
     } // func end
 
     // [5] 게시물 수정
-    public int updatePost( PostDto postDto ){
+    public int updatePost( @RequestBody PostDto postDto ){
         try {
-            String SQL = "update post set ptitle = ?, pcontent = ? where pno = ?";
+            String SQL = "update post set ptitle = ?, pcontent = ?, cno = ? where pno = ?";
             PreparedStatement ps = conn.prepareStatement( SQL );
             ps.setString( 1, postDto.getPtitle() );
             ps.setString( 2, postDto.getPcontent() );
-            ps.setInt( 3, postDto.getPno() );
+            ps.setInt( 3, postDto.getCno() );
+            ps.setInt( 4, postDto.getPno() );
             int count = ps.executeUpdate();
             if ( count == 1 ) return postDto.getPno();
         } catch ( SQLException e ){

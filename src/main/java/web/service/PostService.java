@@ -1,5 +1,6 @@
 package web.service;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import web.model.dao.PostDao;
@@ -78,12 +79,32 @@ public class PostService {
     } // func end
 
     // [4] 게시물 삭제
-    public boolean deletePost( int pno ){
+    public boolean deletePost( int pno, HttpSession session ){
+        // 1. 로그인 세션 확인하기
+        Object loginObject = session.getAttribute("loginMno");
+        // 2. 로그인한 회원번호 가져오기
+        int loginMno = loginObject == null ? 0 : (int) loginObject;
+        System.out.println("loginMno = " + loginMno);
+        // 3. 삭제할 게시물의 작성자와 클라이언트 비교하기
+        PostDto writer = getPost( pno );
+        if ( writer.getMno() != loginMno ){
+            return false;
+        } // if end
         return postDao.deletePost( pno );
     } // func end
 
     // [5] 게시물 수정
-    public int updatePost( PostDto postDto ){
+    public int updatePost( PostDto postDto, HttpSession session ){
+        // 1. 로그인 세션 확인하기
+        Object loginObject = session.getAttribute("loginMno");
+        // 2. 로그인한 회원번호 가져오기
+        int loginMno = loginObject == null ? 0 : (int) loginObject;
+        System.out.println("loginMno = " + loginMno);
+        // 3. 수정할 게시물의 작성자와 클라이언트 비교하기
+        PostDto writer = getPost( postDto.getPno() );
+        if ( writer.getMno() != loginMno ){
+            return 0;
+        } // if end
         return postDao.updatePost( postDto );
     } // func end
 } // class end

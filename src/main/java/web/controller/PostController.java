@@ -98,36 +98,15 @@ public class PostController {
     @DeleteMapping("")
     public boolean deletePost( @RequestParam int pno, HttpSession session ){
         System.out.println("PostController.deletePost");
-        // 1. 로그인 세션 확인하기
-        Object loginObject = session.getAttribute("loginMno");
-        // 2. 로그인한 회원번호 가져오기
-        int loginMno = loginObject == null ? 0 : (int) loginObject;
-        System.out.println("loginMno = " + loginMno);
-        // 3. 삭제할 게시물의 작성자와 클라이언트 비교하기
-        PostDto writer = postService.getPost( pno );
-        if ( writer.getMno() != loginMno ){
-            return false;
-        } // if end
 
-
-        return postService.deletePost( pno );
+        return postService.deletePost( pno, session );
     } // func end
 
     // [5] 게시물 수정
     @PutMapping("")
     public int updatePost( @RequestBody PostDto postDto, HttpSession session ){
         System.out.println("PostController.updatePost");
-        // 1. 로그인 세션 확인하기
-        Object loginObject = session.getAttribute("loginMno");
-        // 2. 로그인한 회원번호 가져오기
-        int loginMno = loginObject == null ? 0 : (int) loginObject;
-        System.out.println("loginMno = " + loginMno);
-        // 3. 수정할 게시물의 작성자와 클라이언트 비교하기
-        PostDto writer = postService.getPost( postDto.getPno() );
-        if ( writer.getMno() != loginMno ){
-            return 0;
-        } // if end
 
-        return postService.updatePost( postDto );
+        return postService.updatePost( postDto, session );
     } // func end
 } // class end
