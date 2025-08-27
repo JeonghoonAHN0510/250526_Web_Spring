@@ -138,4 +138,29 @@ public class PostDao extends Dao {
         } // try-catch end
         return postList;
     } // func end
+
+    // [3] 게시물 개별조회
+    public PostDto getPost( int pno ){
+        try {
+            String SQL = "select * from post p inner join member m using ( mno ) where p.pno = ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setInt( 1, pno );
+            ResultSet rs = ps.executeQuery();
+            if ( rs.next() ){
+                PostDto postDto = new PostDto();
+                postDto.setPno( rs.getInt( "pno" ) );                   // 게시물 번호
+                postDto.setPtitle( rs.getString( "ptitle" ) );          // 게시물 제목
+                postDto.setPcontent( rs.getString( "pcontent" ) );      // 게시물 내용
+                postDto.setPdate( rs.getString( "pdate" ) );            // 게시물 작성일
+                postDto.setPview( rs.getInt( "pview" ) );               // 게시물 조회수
+                postDto.setMno( rs.getInt( "mno" ) );                   // 게시물 작성자 번호
+                postDto.setCno( rs.getInt( "cno" ) );                   // 게시물 카테고리 번호
+                postDto.setMid( rs.getString( "mid" ) );                // 게시물 작성자 아이디
+                return postDto;
+            } // if end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return null;
+    } // func end
 } // class end

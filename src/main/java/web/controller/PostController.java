@@ -44,4 +44,12 @@ public class PostController {
 
         return postService.findAllPost( cno, page, perCount, key, keyword );
     } // func end
+
+    // [3] 게시물 개별조회
+    @GetMapping("/view")
+    public PostDto getPost( @RequestParam int pno ){
+        System.out.println("PostController.getPost");
+
+        return postService.getPost( pno );
+    } // func end
 } // class end

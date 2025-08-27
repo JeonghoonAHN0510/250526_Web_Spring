@@ -66,4 +66,13 @@ public class PostService {
         // 8. 반환하기
         return pageDto;
     } // func end
+
+    // [3] 게시물 개별조회
+    public PostDto getPost( int pno ){
+        PostDto postDto = postDao.getPost( pno );
+        // 기존 조회수를 꺼내기
+        int pview = postDto.getPview();
+
+        return postDao.getPost( pno );
+    } // func end
 } // class end
