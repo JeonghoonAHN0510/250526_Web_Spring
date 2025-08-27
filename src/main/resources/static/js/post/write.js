@@ -1,6 +1,11 @@
 console.log('write.js open');
 
-// [1]
+// [*] 썸머노트 실행
+$( document ).ready( function(){
+    $('#summernote').summernote();
+});
+
+// [1] 첨부파일이 없는 게시물 등록
 const onWrite = async ( ) => {
     console.log('onWrite func exe');
     try {
@@ -27,3 +32,7 @@ const onWrite = async ( ) => {
         console.log( error );
     } // try-catch end
 } // func end
+
+// [2] 첨부파일이 있는 게시물 or 내용에 텍스트 + 이미지 포함
+// https://ckeditor.com/ -> 내용에 텍스트 + 이미지 포함
+// https://summernote.org/

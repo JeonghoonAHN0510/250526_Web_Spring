@@ -12,6 +12,16 @@
     <!-- CSS 불러오기 : static 이하 경로부터 작성 -->
     <link rel="stylesheet" href="/css/common.css">
 
+    <!-- 썸머노트 부트스트랩 -->
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+
 </head>
 
 <body>
@@ -27,7 +37,7 @@
             <option value="5">사용자 리뷰</option>
         </select>
         <input type="text" class="ptitle">
-        <textarea class="pcontent"></textarea>
+        <textarea class="pcontent" id="summernote" name="editordata"></textarea>
         <button type="button" onclick="onWrite()"> 등록 </button>
 
     </div>
