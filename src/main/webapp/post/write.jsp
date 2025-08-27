@@ -12,15 +12,19 @@
     <!-- CSS 불러오기 : static 이하 경로부터 작성 -->
     <link rel="stylesheet" href="/css/common.css">
 
-    <!-- 썸머노트 부트스트랩 -->
+    <!-- 썸머노트 부트스트랩 : CDN을 이용하여 -->
     <!-- include libraries(jQuery, bootstrap) -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" ></script>
+
+    <!-- jquery 최신 버전 -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
     <!-- include summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.9.1/summernote-bs5.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.9.1/summernote-bs5.min.js"></script>
+    <!-- 썸머노트 한국어 패치 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.9.1/lang/summernote-ko-KR.min.js"></script>
 
 </head>
 
@@ -36,7 +40,7 @@
             <option value="4">튜토리얼</option>
             <option value="5">사용자 리뷰</option>
         </select>
-        <input type="text" class="ptitle">
+        <input type="text" class="ptitle" placeholder="제목을 입력하세요">
         <textarea class="pcontent" id="summernote" name="editordata"></textarea>
         <button type="button" onclick="onWrite()"> 등록 </button>
 

@@ -1,8 +1,13 @@
 console.log('write.js open');
 
 // [*] 썸머노트 실행
-$( document ).ready( function(){
-    $('#summernote').summernote();
+// $ : jquery( JS확장 라이브러리 ) 문법
+$( document ).ready( function() {
+    $( '#summernote' ).summernote({
+        lang: 'ko-KR',      // default: 'en-US'
+        minHeight : 300,    // 최소 높이
+        placeholder : '내용을 입력하세요'
+    });
 });
 
 // [1] 첨부파일이 없는 게시물 등록
@@ -36,3 +41,4 @@ const onWrite = async ( ) => {
 // [2] 첨부파일이 있는 게시물 or 내용에 텍스트 + 이미지 포함
 // https://ckeditor.com/ -> 내용에 텍스트 + 이미지 포함
 // https://summernote.org/
+// https://cdnjs.com/ -> cdn 링크 모음
