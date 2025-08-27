@@ -82,10 +82,15 @@ public class PostController {
             session.setAttribute("viewHistory", viewHistory);
         } // if end
         // 2. 요청한 사람이 본인이 작성한 글인지 확인
-        // 2-1. 요청한 사람의 mno 가져오기
-        int loginMno = (int) session.getAttribute("loginMno");
-
-
-        return postService.getPost( pno );
+        PostDto postDto = postService.getPost( pno );
+        // 2-1. 로그인 세션 확인
+        Object loginObject = session.getAttribute("loginMno");
+        // 2-2. 로그인정보가 없으면 0, 있으면 타입변환하여 저장
+        int loginMno = loginObject == null ? 0 : (int) loginObject;
+        System.out.println("loginMno = " + loginMno);
+        // 2-3. 작성자와 클라이언트가 같으면, host = true로 변경
+        if ( postDto.getMno() == loginMno ) postDto.setHost( true );
+        // 3. 최종적으로 반환
+        return postDto;
     } // func end
 } // class end
