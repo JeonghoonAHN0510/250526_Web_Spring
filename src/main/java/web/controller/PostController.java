@@ -8,6 +8,10 @@ import web.model.dto.PostDto;
 import web.service.MemberService;
 import web.service.PostService;
 
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor                    // final 변수에 대한 생성자 자동 제공
 @RequestMapping("/post")
@@ -47,8 +51,40 @@ public class PostController {
 
     // [3] 게시물 개별조회
     @GetMapping("/view")
-    public PostDto getPost( @RequestParam int pno ){
+    public PostDto getPost( @RequestParam int pno, HttpSession session ){
         System.out.println("PostController.getPost");
+        // HttpSession : 브라우저마다 별도의 저장소 개념
+        // 1. 24시간 내 1번만 조회수 증가 요청 가능
+        // 1-1. 세션 속성 내 'viewHistory' 값 가져오기
+            // viewHistory : 사용자가 조회한 게시물정보
+        Object object = session.getAttribute("viewHistory");
+        Map< Integer, String > viewHistory;
+        // 1-2. 만약에 viewHistory가 존재하지 않으면
+        if ( object == null ){
+            // 1-3. 새롭게 만들어주고
+            viewHistory = new HashMap<>();
+        } else {
+            // 1-3. 존재하면, 기존 자료를 타입변환한다.
+            viewHistory = (Map< Integer, String >) object;
+        } // if end
+        // 1-4. 현재 날짜를 문자열로 가져오기
+            // LocalDate.now() : 현재 시스템 날짜 반환 함수
+        String today = LocalDate.now().toString();
+        // 1-5. 현재 게시물과 today를 조합하여, 기록을 체크한다.
+        String check = viewHistory.get( pno );
+        // 1-6. 오늘 기록이 없거나, 기록이 현재 날짜와 다르다면
+        if ( check == null || !check.equals( today ) ){
+            // 1-7. 조회수 증가
+            postService.incrementView( pno );
+            // 1-8. 오늘 기록
+            viewHistory.put( pno, today );
+            // 1-9. 세션에 업데이트
+            session.setAttribute("viewHistory", viewHistory);
+        } // if end
+        // 2. 요청한 사람이 본인이 작성한 글인지 확인
+        // 2-1. 요청한 사람의 mno 가져오기
+        int loginMno = (int) session.getAttribute("loginMno");
+
 
         return postService.getPost( pno );
     } // func end

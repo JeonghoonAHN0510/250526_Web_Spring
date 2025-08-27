@@ -67,12 +67,13 @@ public class PostService {
         return pageDto;
     } // func end
 
-    // [3] 게시물 개별조회
+    // [3-1] 게시물 개별조회
     public PostDto getPost( int pno ){
-        PostDto postDto = postDao.getPost( pno );
-        // 기존 조회수를 꺼내기
-        int pview = postDto.getPview();
-
         return postDao.getPost( pno );
+    } // func end
+
+    // [3-2] 게시물 조회수 증가
+    public void incrementView( int pno ){
+        postDao.incrementView( pno );
     } // func end
 } // class end

@@ -139,7 +139,7 @@ public class PostDao extends Dao {
         return postList;
     } // func end
 
-    // [3] 게시물 개별조회
+    // [3-1] 게시물 개별조회
     public PostDto getPost( int pno ){
         try {
             String SQL = "select * from post p inner join member m using ( mno ) where p.pno = ?";
@@ -162,5 +162,18 @@ public class PostDao extends Dao {
             System.out.println( e );
         } // try-catch end
         return null;
+    } // func end
+
+    // [3-2] 게시물 조회수 증가
+    public void incrementView( int pno ){
+        try {
+            String SQL = "update post set pview = pview + 1 where pno = ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setInt( 1, pno );
+            ps.executeUpdate();
+            // void라서 반환값 X
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
     } // func end
 } // class end
