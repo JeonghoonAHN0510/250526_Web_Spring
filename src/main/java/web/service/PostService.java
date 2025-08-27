@@ -76,4 +76,14 @@ public class PostService {
     public void incrementView( int pno ){
         postDao.incrementView( pno );
     } // func end
+
+    // [4] 게시물 삭제
+    public boolean deletePost( int pno ){
+        return postDao.deletePost( pno );
+    } // func end
+
+    // [5] 게시물 수정
+    public int updatePost( PostDto postDto ){
+        return postDao.updatePost( postDto );
+    } // func end
 } // class end

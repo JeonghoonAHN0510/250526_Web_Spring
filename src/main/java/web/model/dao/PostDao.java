@@ -176,4 +176,33 @@ public class PostDao extends Dao {
             System.out.println( e );
         } // try-catch end
     } // func end
+
+    // [4] 게시물 삭제
+    public boolean deletePost( int pno ){
+        try {
+            String SQL = "delete from post where pno = ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setInt( 1, pno );
+            return ps.executeUpdate() == 1;
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return false;
+    } // func end
+
+    // [5] 게시물 수정
+    public int updatePost( PostDto postDto ){
+        try {
+            String SQL = "update post set ptitle = ?, pcontent = ? where pno = ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setString( 1, postDto.getPtitle() );
+            ps.setString( 2, postDto.getPcontent() );
+            ps.setInt( 3, postDto.getPno() );
+            int count = ps.executeUpdate();
+            if ( count == 1 ) return postDto.getPno();
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return 0;
+    } // func end
 } // class end
