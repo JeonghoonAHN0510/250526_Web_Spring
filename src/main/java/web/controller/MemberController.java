@@ -135,10 +135,12 @@ public class MemberController {
         MemberDto memberDto = new MemberDto();
         memberDto.setMno( mno );
         memberDto.setMpwd( mpwd );
-        // 5. 세션 초기화
-        session.invalidate();
-        // 6. Service에게 전달 후, 결과 반환하기
-        return memberService.delete( memberDto );
+        // 5. Service에게 전달 후 결과 받기
+        boolean result = memberService.delete( memberDto );
+        // 6. 성공했으면, 세션초기화
+        if ( result ) session.invalidate();
+        // 7. Service에게 전달 후, 결과 반환하기
+        return result;
     } // func end
 
     // [member09] 아이디 찾기 - findId
