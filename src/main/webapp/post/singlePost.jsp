@@ -24,8 +24,9 @@
             <div class="pContent">              
 
             </div>                              <br>
-            <button type="button" onclick="onPostUpdate()">게시물 수정</button>
-            <button type="button" onclick="onPostDelete()">게시물 삭제</button> <br>
+            <div class="etcBox">
+
+            </div>
         </div>
         <div class="reply">
             <table>

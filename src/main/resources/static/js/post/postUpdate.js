@@ -15,7 +15,7 @@ $( document ).ready( function() {
     });
 });
 
-// 개별조회하여 출력
+// 개별조회하여 기존 입력 출력
 const getPost = async ( ) => {
     console.log('getPost func exe');
     // 1. fetch
@@ -24,7 +24,7 @@ const getPost = async ( ) => {
     const data = await response.json();
     // 2. print
     document.querySelector('.ptitle').value = data.ptitle;
-    document.querySelector('.pcontent').innerHTML = 'asdadasd';
+    
 
 } // func enc
 getPost();

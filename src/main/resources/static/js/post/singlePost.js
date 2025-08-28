@@ -21,11 +21,17 @@ const findPost = async ( ) => {
         const postHeader = document.querySelector('.postHeader');
         const pContent = document.querySelector('.pContent');
         // 3. what
-        let header = `[${pno}] ${data.ptitle}  ${data.pdate}  조회수 : ${data.pview} 작성자 : ${data.mid} `;
+        let header = `[${pno}] ${data.ptitle}<br> 작성일 : ${data.pdate}  조회수 : ${data.pview}<br>작성자 : ${data.mid} `;
         let content = `${data.pcontent}`;
         // 4. print
         postHeader.innerHTML = header;
         pContent.innerHTML = content;
+        // 5. 내가 쓴 글이면, 삭제 수정 버튼 생성
+        if ( data.host ){
+            document.querySelector('.etcBox').innerHTML = `
+                        <button type="button" onclick="onPostUpdate()">게시물 수정</button>
+                        <button type="button" onclick="onPostDelete()">게시물 삭제</button>`
+        }
     } catch ( error ) {
         console.log( error );
     } // try-catch end
@@ -34,11 +40,7 @@ findPost();
 
 // 게시물 수정
 const onPostUpdate = async ( ) => {
-    if ( postMno == mno ){
-        location.href = `postUpdate.jsp?pno=${pno}&cno=${cno}`;
-    } else {
-        alert('내가 작성한 게시글이 아닙니다.')
-    }
+    location.href = `postUpdate.jsp?pno=${pno}&cno=${cno}`;
 } // func end
 
 // 게시물 삭제
