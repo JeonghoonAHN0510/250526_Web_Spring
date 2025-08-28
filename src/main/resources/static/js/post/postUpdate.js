@@ -10,8 +10,7 @@ const Params_cno = params.get('cno');      console.log( Params_cno );
 $( document ).ready( function() {
     $( '#summernote' ).summernote({
         lang: 'ko-KR',      // default: 'en-US'
-        minHeight : 300,    // 최소 높이
-        placeholder : '내용을 입력하세요'
+        minHeight : 300    // 최소 높이
     });
 });
 
@@ -23,9 +22,9 @@ const getPost = async ( ) => {
     const response = await fetch ( `/post/view?pno=${pno}`, option );
     const data = await response.json();
     // 2. print
+    document.querySelector('.cno').value = data.cno;            // select 마크업도 .value로 가면 된다.
     document.querySelector('.ptitle').value = data.ptitle;
-    
-
+    document.querySelector('.note-editable').innerHTML = data.pcontent;
 } // func enc
 getPost();
 
