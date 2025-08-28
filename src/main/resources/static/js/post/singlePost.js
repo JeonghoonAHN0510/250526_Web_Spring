@@ -5,6 +5,8 @@ const params = new URL( location.href ).searchParams;
 const pno = params.get('pno');      console.log( pno );
 const cno = params.get('cno');      console.log( cno );
 
+let postMno;
+
 // 게시물 개별조회
 const findPost = async ( ) => {
     console.log('findPost func exe');
@@ -14,6 +16,7 @@ const findPost = async ( ) => {
         const response = await fetch ( `/post/view?pno=${pno}`, option );
         const data = await response.json();
         console.log( data );
+        postMno = data.mno;
         // 2. where
         const postHeader = document.querySelector('.postHeader');
         const pContent = document.querySelector('.pContent');
@@ -31,7 +34,11 @@ findPost();
 
 // 게시물 수정
 const onPostUpdate = async ( ) => {
-    location.href = `postUpdate.jsp?pno=${pno}`;
+    if ( postMno == mno ){
+        location.href = `postUpdate.jsp?pno=${pno}&cno=${cno}`;
+    } else {
+        alert('내가 작성한 게시글이 아닙니다.')
+    }
 } // func end
 
 // 게시물 삭제

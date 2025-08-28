@@ -1,5 +1,7 @@
 console.log('header.js open');
 
+let mno;
+
 // [1] 내정보 요청하여 메뉴 나누기
 const infoMenu = async ( ) => {
     console.log('infoMenu func exe');
@@ -16,6 +18,7 @@ const infoMenu = async ( ) => {
         // return 값이 null이면, json() 변환이 안되기 때문에 catch에 잡혀서 넘어간다.
         // 즉, data == null로 잡아서 비로그인 시, 출력문을 작성하면 안 된다.
         console.log( data );
+        mno = data.mno;
         // * 특정 회원의 포인트 합계 가져오기 -> await를 사용하여 promise가 끝나는 것을 기다린다.
         let point = await memberPoint();
         console.log( point );
