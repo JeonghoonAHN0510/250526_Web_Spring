@@ -113,8 +113,9 @@ public class PostService {
     public int writeReply( Map< String, String > map, HttpSession session ){
         // 1. 로그인 세션 확인하기
         Object loginObject = session.getAttribute("loginMno");
+        if ( loginObject == null ) return 0;
         // 2. 로그인한 회원번호 가져오기
-        int loginMno = loginObject == null ? 0 : (int) loginObject;
+        int loginMno = (int) loginObject;
         // 3. 회원번호를 map에 추가하기 -> <String, String> 이기에 int를 String으로 변환
         map.put( "mno", loginMno + "" );
         // 4. Dao에게 전달 후 결과 반환하기
