@@ -120,4 +120,9 @@ public class PostService {
         // 4. Dao에게 전달 후 결과 반환하기
         return postDao.writeReply( map );
     } // func end
+
+    // 댓글 전체조회
+    public List<Map<String, String>> findAllReply( int pno ){
+        return postDao.findAllReply( pno );
+    } // func end
 } // class end

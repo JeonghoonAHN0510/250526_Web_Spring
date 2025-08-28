@@ -10,6 +10,7 @@ import web.service.PostService;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -116,5 +117,13 @@ public class PostController {
         System.out.println("PostController.writeReply");
 
         return postService.writeReply( map, session );
+    } // func end
+
+    // 댓글 전체조회
+    @GetMapping("/reply")
+    public List<Map<String, String>> findAllReply( @RequestParam int pno ){
+        System.out.println("PostController.findAllReply");
+
+        return postService.findAllReply( pno );
     } // func end
 } // class end

@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -228,5 +229,27 @@ public class PostDao extends Dao {
             System.out.println( e );
         } // try-catch end
         return 0;
+    } // func end
+    
+    // 댓글 전체조회
+    public List<Map<String, String>> findAllReply( int pno ){
+        List<Map<String, String>> list = new ArrayList<>();
+        try {
+            String SQL = "select * from reply r inner join member m using ( mno ) where pno = ?";
+            PreparedStatement ps = conn.prepareStatement( SQL );
+            ps.setInt( 1, pno );
+            ResultSet rs = ps.executeQuery();
+            while ( rs.next() ){
+                Map<String, String> map = new HashMap<>();
+                map.put( "rcontent", rs.getString( "rcontent" ) );
+                map.put( "rdate", rs.getString( "rdate" ) );
+                map.put( "rno", rs.getString( "rno" ) );
+                map.put( "mid", rs.getString( "mid" ) );
+                list.add( map );
+            } // while end
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return list;
     } // func end
 } // class end
