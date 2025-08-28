@@ -109,4 +109,12 @@ public class PostController {
 
         return postService.updatePost( postDto, session );
     } // func end
+
+    // 댓글 등록
+    @PostMapping("/reply")
+    public int writeReply( @RequestBody Map<String, String> map, HttpSession session ){
+        System.out.println("PostController.writeReply");
+
+        return postService.writeReply( map, session );
+    } // func end
 } // class end

@@ -8,6 +8,7 @@ import web.model.dto.PageDto;
 import web.model.dto.PostDto;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor            // final 변수에 대한 생성자 자동 제공
@@ -106,5 +107,17 @@ public class PostService {
             return 0;
         } // if end
         return postDao.updatePost( postDto );
+    } // func end
+
+    // 댓글 등록
+    public int writeReply( Map< String, String > map, HttpSession session ){
+        // 1. 로그인 세션 확인하기
+        Object loginObject = session.getAttribute("loginMno");
+        // 2. 로그인한 회원번호 가져오기
+        int loginMno = loginObject == null ? 0 : (int) loginObject;
+        // 3. 회원번호를 map에 추가하기 -> <String, String> 이기에 int를 String으로 변환
+        map.put( "mno", loginMno + "" );
+        // 4. Dao에게 전달 후 결과 반환하기
+        return postDao.writeReply( map );
     } // func end
 } // class end

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class PostDao extends Dao {
@@ -202,6 +203,27 @@ public class PostDao extends Dao {
             ps.setInt( 4, postDto.getPno() );
             int count = ps.executeUpdate();
             if ( count == 1 ) return postDto.getPno();
+        } catch ( SQLException e ){
+            System.out.println( e );
+        } // try-catch end
+        return 0;
+    } // func end
+
+    // 댓글 등록
+    public int writeReply( Map< String, String > map ){
+        try {
+            String SQL = "insert into reply ( rcontent, mno, pno ) values ( ?, ?, ? )";
+            PreparedStatement ps = conn.prepareStatement( SQL, Statement.RETURN_GENERATED_KEYS );
+            ps.setString( 1, map.get( "rcontent" ) );
+            ps.setInt( 2, Integer.parseInt( map.get( "mno" ) ) );
+            ps.setInt( 3, Integer.parseInt( map.get( "pno" ) ) );
+            int count = ps.executeUpdate();
+            if ( count == 1 ){
+                ResultSet rs = ps.getGeneratedKeys();
+                if ( rs.next() ){
+                    return rs.getInt( 1 );
+                } // if end
+            } // if end
         } catch ( SQLException e ){
             System.out.println( e );
         } // try-catch end
