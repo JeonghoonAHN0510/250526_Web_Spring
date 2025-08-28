@@ -36,8 +36,8 @@
 
                 </tbody>
             </table>
-
-            <textarea class="rcontent"></textarea>
+            <br>
+            <textarea class="rcontent" placeholder="댓글 내용을 입력하세요."></textarea>
             <button type="button" onclick="onWriteReply()">댓글등록</button>
         </div>
     </div>
