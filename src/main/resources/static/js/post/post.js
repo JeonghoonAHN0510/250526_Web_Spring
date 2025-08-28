@@ -26,7 +26,7 @@ const findAll = async ( ) => {
         data.data.forEach( (post) => {
             html += `<tr>
                         <td>${post.pno}</td>
-                        <td><a href="singlePost.jsp?pno=${post.pno}">${post.ptitle}</a></td>
+                        <td><a href="singlePost.jsp?pno=${post.pno}&cno=${cno}">${post.ptitle}</a></td>
                         <td>${post.mid}</td>
                         <td>${post.pdate}</td>
                         <td>${post.pview}</td>

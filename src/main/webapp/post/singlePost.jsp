@@ -19,8 +19,13 @@
     <jsp:include page="/header.jsp"></jsp:include>
 
     <div id="container">
-        <div class="content">
+        <div class="post">
+            <span class="postHeader"></span>    <br>
+            <div class="pContent">              
 
+            </div>                              <br>
+            <button type="button" onclick="onPostUpdate()">게시물 수정</button>
+            <button type="button" onclick="onPostDelete()">게시물 삭제</button> <br>
         </div>
         <div class="reply">
             <table>
